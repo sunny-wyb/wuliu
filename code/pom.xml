@@ -33,10 +33,37 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+		<!-- mybatis end -->
+		
+		<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+		<dependency>
+		    <groupId>c3p0</groupId>
+		    <artifactId>c3p0</artifactId>
+		    <version>0.9.1.2</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+        <outputDirectory>WebContent/WEB-INF/classes</outputDirectory>  
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -7,25 +7,45 @@
  */
 package com.crunchify.controller;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dao.TestDO;
+
 /**
- * 类CrunchifyHelloWorld.java的实现描述：TODO 类实现描述 
+ * 类CrunchifyHelloWorld.java的实现描述：TODO 类实现描述
+ * 
  * @author yunbin.wangyb 2016年12月27日 下午4:36:05
  */
 
 @Controller
 public class CrunchifyHelloWorld {
 
+    private SqlSessionTemplate sqlSessionTemplate;
+
     @RequestMapping("/welcome")
     public ModelAndView helloWorld() {
- 
+
         String message = "<br><div style='text-align:center;'>"
-                + "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
+                         + "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
+        TestDO testDO = new TestDO();
+        testDO.setName("adsadsdf");
+        System.out.println(sqlSessionTemplate.insert("Test.insert", testDO));
+        System.out.println(testDO.getId());
+        System.out.println(sqlSessionTemplate.insert("Test.insert", testDO));
+        System.out.println(testDO.getId());
         System.out.println("23");
         System.out.println("1233");
         return new ModelAndView("welcome", "message", message);
+    }
+
+    public SqlSessionTemplate getSqlSessionTemplate() {
+        return sqlSessionTemplate;
+    }
+
+    public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
     }
 }

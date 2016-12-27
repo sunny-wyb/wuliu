@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration  
+PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 不启用延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="Test" type="com.dao.TestDO" />
+	</typeAliases>
+	
+	<mappers>
+      <mapper resource = "sqlmap-test.xml"/>
+   </mappers>
+</configuration>
