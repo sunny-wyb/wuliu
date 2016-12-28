@@ -8,6 +8,8 @@
 package com.crunchify.controller;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,11 +25,14 @@ import com.dao.TestDO;
 @Controller
 public class CrunchifyHelloWorld {
 
+    private final static Logger logger     = LoggerFactory.getLogger(CrunchifyHelloWorld.class);
+
     private SqlSessionTemplate sqlSessionTemplate;
 
     @RequestMapping("/welcome")
     public ModelAndView helloWorld() {
 
+        logger.info("=========");
         String message = "3234=====";
         TestDO testDO = new TestDO();
         testDO.setName("adsadsdf");

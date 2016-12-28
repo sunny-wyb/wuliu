@@ -5,6 +5,11 @@
 	<artifactId>wuliu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
+	
+	<properties>
+		<logback.version>1.0.13</logback.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -79,6 +84,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
