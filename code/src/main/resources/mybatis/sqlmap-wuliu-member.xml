@@ -1,0 +1,95 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WuliuMember">
+
+	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id" parameterType="WuliuMember">
+		INSERT INTO WULIU_MEMBER (gmt_create , gmt_modified , name , nick_name ,
+		tel_number , m_number , address , w_price , v_price , status)
+		VALUES (now() , now() , #{name} , #{nickName} , #{telephoneNumber} ,
+		#{mobileNumber} , #{address} , #{weightPrice} , #{volumnPrice}, #{status});
+	</insert>
+
+	<update id="update" parameterType="WuliuMember">
+		UPDATE WULIU_MEMBER
+		SET
+		<if test = "name != null">
+		name = #{name},
+		</if>
+		
+		<if test = "nickName != null">
+		nick_name = #{nickName},
+		</if>
+		
+		<if test = "telephoneNumber != null">
+		tel_number = #{telephoneNumber},
+		</if>
+		
+		<if test = "mobileNumber != null">
+		m_number = #{mobileNumber},
+		</if>
+		
+		<if test = "address != null">
+		address = #{address},
+		</if>
+		
+		<if test = "weightPrice!= null">
+		w_price = #{weightPrice},
+		</if>
+		
+		<if test = "volumnPrice!= null">
+		v_price = #{volumnPrice},
+		</if>
+		
+		<if test = "status != null">
+		status = #{status},
+		</if>
+		
+		GMT_MODIFIED = NOW()
+		WHERE
+		id = #{id}
+	</update>
+	
+	<select id ="query" parameterType="java.util.Map" resultType="WuliuMember">
+		SELECT
+			id			as id,
+			name		as name,
+			nick_name	as nickName,
+			tel_number	as telephoneNumber,
+			m_number	as mobileNumber,
+			address		as address,
+			w_price		as weightPrice,
+			v_price		as volumnPrice,
+			status		as status
+		FROM WULIU_MEMBER
+		<where>
+			<if test = "id != null">
+				id = #{id}
+			</if>
+			<if test = "name != null">
+				AND name = #{name}
+			</if>
+			<if test = "status != null">
+				AND status = #{status}
+			</if>
+		</where>
+		limit #{start} , #{size}
+	</select>
+	
+	<select id ="count" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM WULIU_MEMBER
+		<where>
+			<if test = "id != null">
+				id = #{id}
+			</if>
+			<if test = "name != null">
+				AND name = #{name}
+			</if>
+			<if test = "status != null">
+				AND status = #{status}
+			</if>
+		</where>
+	</select>
+</mapper>

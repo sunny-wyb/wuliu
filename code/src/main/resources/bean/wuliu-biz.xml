@@ -10,8 +10,13 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
 	default-autowire="byName">
 	
-    <import resource="classpath:bean/wuliu-datasource.xml" />
-    <import resource="classpath:bean/wuliu-biz.xml" />
-    <import resource="classpath:bean/wuliu-dao.xml" />
+	<bean id = "wuliuMemberService" class="com.wuliu.biz.member.service.impl.WuliuMemberServiceImpl">
+		<property name="wuliuMemberAO" ref="wuliuMemberAO"/>
+	</bean>
+	
+	<bean id="wuliuMemberAO" class="com.wuliu.biz.member.AO.impl.WuliuMemberAOImpl">
+		<property name="wuliuMemberDAO" ref="wuliuMemberDAO" />
+	</bean>
+	
     
 </beans>

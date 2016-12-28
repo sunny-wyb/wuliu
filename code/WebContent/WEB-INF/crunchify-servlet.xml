@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
  
  
-    <import resource="classpath:wuliu-servlet.xml" />
+    <import resource="classpath:servlet/wuliu-servlet.xml" />
     
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">

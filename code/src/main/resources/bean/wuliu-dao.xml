@@ -10,8 +10,8 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
 	default-autowire="byName">
 	
-	<bean class="com.crunchify.controller.CrunchifyHelloWorld">
-		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	<bean id="wuliuMemberDAO" class="com.wuliu.dao.impl.WuliuMemberDAOImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
-    
+	
 </beans>
