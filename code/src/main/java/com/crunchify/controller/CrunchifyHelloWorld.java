@@ -17,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.dao.TestDO;
 import com.wuliu.api.member.model.WuliuMemberModel;
-import com.wuliu.api.member.model.WuliuMemberQueryParam;
 import com.wuliu.api.member.service.WuliuMemberService;
-import com.wuliu.api.order.model.WuliuOrderModel;
+import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
+import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
+import com.wuliu.api.orderdetail.model.WuliuOrderDetailQueryParam;
+import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
 
 /**
  * 类CrunchifyHelloWorld.java的实现描述：TODO 类实现描述
@@ -31,13 +33,15 @@ import com.wuliu.api.order.service.WuliuOrderService;
 @Controller
 public class CrunchifyHelloWorld {
 
-    private final static Logger logger = LoggerFactory.getLogger(CrunchifyHelloWorld.class);
+    private final static Logger     logger = LoggerFactory.getLogger(CrunchifyHelloWorld.class);
 
-    private SqlSessionTemplate  sqlSessionTemplate;
+    private SqlSessionTemplate      sqlSessionTemplate;
 
-    private WuliuMemberService  wuliuMemberService;
+    private WuliuMemberService      wuliuMemberService;
 
-    private WuliuOrderService   wuliuOrderService;
+    private WuliuOrderService       wuliuOrderService;
+
+    private WuliuOrderDetailService wuliuOrderDetailService;
 
     @RequestMapping("/welcome")
     public ModelAndView helloWorld() {
@@ -48,7 +52,33 @@ public class CrunchifyHelloWorld {
         testDO.setName("adsadsdf");
         System.out.println("23");
         System.out.println("1233");
-
+        
+        WuliuOrderDetailModel wuliuOrderDetailModel = new WuliuOrderDetailModel();
+        wuliuOrderDetailModel.setCount(1);
+        wuliuOrderDetailModel.setHeight(1L);
+        wuliuOrderDetailModel.setLength(1L);
+        wuliuOrderDetailModel.setMainOrderId(1L);
+        wuliuOrderDetailModel.setStatus("enable");
+        wuliuOrderDetailModel.setWeight(1L);
+        wuliuOrderDetailModel.setWidth(1L);
+        wuliuOrderDetailModel = wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel);
+        
+        wuliuOrderDetailModel.setCount(2);
+        wuliuOrderDetailModel.setHeight(2L);
+        wuliuOrderDetailModel.setLength(2L);
+        wuliuOrderDetailModel.setMainOrderId(2L);
+        wuliuOrderDetailModel.setStatus("enable");
+        wuliuOrderDetailModel.setWeight(2L);
+        wuliuOrderDetailModel.setWidth(2L);
+        wuliuOrderDetailService.updateOrderDetail(wuliuOrderDetailModel);
+        
+        wuliuOrderDetailService.deleteOrderDetail(wuliuOrderDetailModel.getId());
+        
+        
+        WuliuOrderDetailQueryParam wuliuOrderDetailQueryParam = new WuliuOrderDetailQueryParam();
+        wuliuOrderDetailQueryParam.setMainOrderId(1L);
+        wuliuOrderDetailQueryParam.setStatus("enable");
+        System.out.println(JSON.toJSONString(wuliuOrderDetailService.queryOrderDetails(wuliuOrderDetailQueryParam)));
         return new ModelAndView("index", "message", message);
     }
 
@@ -74,5 +104,13 @@ public class CrunchifyHelloWorld {
 
     public void setWuliuOrderService(WuliuOrderService wuliuOrderService) {
         this.wuliuOrderService = wuliuOrderService;
+    }
+
+    public WuliuOrderDetailService getWuliuOrderDetailService() {
+        return wuliuOrderDetailService;
+    }
+
+    public void setWuliuOrderDetailService(WuliuOrderDetailService wuliuOrderDetailService) {
+        this.wuliuOrderDetailService = wuliuOrderDetailService;
     }
 }

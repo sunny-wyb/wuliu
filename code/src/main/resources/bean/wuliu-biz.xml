@@ -27,10 +27,10 @@
 	</bean>
 	
 	<bean id = "wuliuOrderDetailService" class="com.wuliu.biz.orderdetail.service.impl.WuliuOrderDetailServiceImpl">
-		<property name="wuliuOrderAO" ref="wuliuOrderAO"/>
+		<property name="wuliuOrderDetailAO" ref="wuliuOrderDetailAO"/>
 	</bean>
 	
-	<bean id="wuliuOrderDetailAO" class="com.wuliu.biz.order.AO.impl.WuliuOrderDetailAOImpl">
+	<bean id="wuliuOrderDetailAO" class="com.wuliu.biz.orderdetail.AO.impl.WuliuOrderDetailAOImpl">
 		<property name="wuliuOrderDetailDAO" ref="wuliuOrderDetailDAO" />
 	</bean>
 </beans>

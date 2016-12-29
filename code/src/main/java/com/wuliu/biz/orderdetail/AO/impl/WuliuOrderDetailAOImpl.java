@@ -9,9 +9,9 @@ package com.wuliu.biz.orderdetail.AO.impl;
 
 import java.util.List;
 
+import com.wuliu.api.orderdetail.constant.WuliuOrderDetailConst;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailQueryParam;
-import com.wuliu.api.orderdetail.model.constant.WuliuOrderDetailConst;
 import com.wuliu.biz.orderdetail.AO.WuliuOrderDetailAO;
 import com.wuliu.biz.util.WuliuOrderDetailUtil;
 import com.wuliu.dao.WuliuOrderDetailDAO;
@@ -83,4 +83,11 @@ public class WuliuOrderDetailAOImpl implements WuliuOrderDetailAO {
         return updateOrderDetail(wuliuOrderDetailModel);
     }
 
+    public WuliuOrderDetailDAO getWuliuOrderDetailDAO() {
+        return wuliuOrderDetailDAO;
+    }
+
+    public void setWuliuOrderDetailDAO(WuliuOrderDetailDAO wuliuOrderDetailDAO) {
+        this.wuliuOrderDetailDAO = wuliuOrderDetailDAO;
+    }
 }

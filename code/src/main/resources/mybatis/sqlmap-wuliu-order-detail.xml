@@ -4,14 +4,18 @@
 
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id" parameterType="WuliuOrderDetail">
-		INSERT INTO WULIU_ORDER_DETAIL (gmt_create , gmt_modified , main_order_id , count , length , width , height , weight)
-		VALUES (now() , now() , #{mainOrderId} , #{count} , #{length} , #{{width} ,
-		#{height} , #{width});
+		INSERT INTO WULIU_ORDER_DETAIL (gmt_create , gmt_modified , main_order_id , count , length , width , height , weight , status)
+		VALUES (now() , now() , #{mainOrderId} , #{count} , #{length} , #{width} ,
+		#{height} , #{weight} , #{status});
 	</insert>
 
 	<update id="update" parameterType="WuliuOrderDetail">
 		UPDATE WULIU_ORDER_DETAIL
 		SET
+		
+		<if test = "mainOrderId!= null">
+		main_order_id = #{mainOrderId},
+		</if>
 		<if test = "count != null">
 		count = #{count},
 		</if>
@@ -31,9 +35,12 @@
 		<if test = "weight != null">
 		weight = #{weight},
 		</if>
+		<if test = "status != null">
+		status = #{status},
+		</if>
 		GMT_MODIFIED = NOW()
 		WHERE
-		id = #{id} ADN main_order_id = #{mainOrderId}
+		id = #{id}
 	</update>
 	
 	<select id ="query" parameterType="java.util.Map" resultType="WuliuOrderDetail">
@@ -44,7 +51,8 @@
 			length			as length,
 			width			as width,
 			height			as height,
-			weight			as weight
+			weight			as weight,
+			status			as status
 		FROM WULIU_ORDER_DETAIL
 		<where>
 			<if test = "id != null">
@@ -52,6 +60,9 @@
 			</if>
 			<if test = "mainOrderId != null">
 				AND main_order_id = #{mainOrderId}
+			</if>
+			<if test = "status!= null">
+				AND status = #{status}
 			</if>
 		</where>
 		ORDER BY ID ASC
@@ -68,6 +79,9 @@
 			</if>
 			<if test = "mainOrderId != null">
 				AND main_order_id = #{mainOrderId}
+			</if>
+			<if test = "status!= null">
+				AND status = #{status}
 			</if>
 		</where>
 	</select>

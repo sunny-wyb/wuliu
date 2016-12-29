@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package com.wuliu.api.orderdetail.model.constant;
+package com.wuliu.api.orderdetail.constant;
 
 /**
  * 类WuliuOrderDetailConst.java的实现描述：TODO 类实现描述

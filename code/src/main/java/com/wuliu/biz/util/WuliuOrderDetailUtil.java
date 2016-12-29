@@ -32,6 +32,7 @@ public class WuliuOrderDetailUtil {
         ret.setMainOrderId(wuliuOrderDetailDO.getMainOrderId());
         ret.setStatus(wuliuOrderDetailDO.getStatus());
         ret.setWidth(wuliuOrderDetailDO.getWidth());
+        ret.setWeight(wuliuOrderDetailDO.getWeight());
         ret.setStatus(wuliuOrderDetailDO.getStatus());
 
         return ret;
@@ -46,6 +47,7 @@ public class WuliuOrderDetailUtil {
         ret.setMainOrderId(wuliuOrderDetailModel.getMainOrderId());
         ret.setStatus(wuliuOrderDetailModel.getStatus());
         ret.setWidth(wuliuOrderDetailModel.getWidth());
+        ret.setWeight(wuliuOrderDetailModel.getWeight());
         ret.setStatus(wuliuOrderDetailModel.getStatus());
         return ret;
     }
