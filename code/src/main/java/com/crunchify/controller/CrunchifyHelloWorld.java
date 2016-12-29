@@ -19,6 +19,8 @@ import com.dao.TestDO;
 import com.wuliu.api.member.model.WuliuMemberModel;
 import com.wuliu.api.member.model.WuliuMemberQueryParam;
 import com.wuliu.api.member.service.WuliuMemberService;
+import com.wuliu.api.order.model.WuliuOrderModel;
+import com.wuliu.api.order.service.WuliuOrderService;
 
 /**
  * 类CrunchifyHelloWorld.java的实现描述：TODO 类实现描述
@@ -35,6 +37,8 @@ public class CrunchifyHelloWorld {
 
     private WuliuMemberService  wuliuMemberService;
 
+    private WuliuOrderService   wuliuOrderService;
+
     @RequestMapping("/welcome")
     public ModelAndView helloWorld() {
 
@@ -45,35 +49,6 @@ public class CrunchifyHelloWorld {
         System.out.println("23");
         System.out.println("1233");
 
-        WuliuMemberModel wuliuMemberModel = new WuliuMemberModel();
-        wuliuMemberModel.setAddress("address2");
-        wuliuMemberModel.setMobileNumber("m_number2");
-        wuliuMemberModel.setName("name2");
-        wuliuMemberModel.setNickName("nickName2");
-        wuliuMemberModel.setStatus("enable");
-        wuliuMemberModel.setTelephoneNumber("tel_number2");
-        wuliuMemberModel.setVolumnPrice(1002L);
-        wuliuMemberModel.setWeightPrice(2002L);
-        wuliuMemberModel = wuliuMemberService.addMember(wuliuMemberModel);
-        long id = wuliuMemberModel.getId();
-        wuliuMemberModel.setId(id);
-        wuliuMemberModel.setAddress("address3");
-        wuliuMemberModel.setMobileNumber("m_number3");
-        wuliuMemberModel.setName("name3");
-        wuliuMemberModel.setNickName("nickName3");
-        wuliuMemberModel.setStatus("enable");
-        wuliuMemberModel.setTelephoneNumber("tel_number3");
-        wuliuMemberModel.setVolumnPrice(1003L);
-        wuliuMemberModel.setWeightPrice(2003L);
-        wuliuMemberService.updateMember(wuliuMemberModel);
-        
-        
-        wuliuMemberService.deleteMember(id);
-        
-        WuliuMemberQueryParam wuliuMemberQueryParam = new WuliuMemberQueryParam();
-        wuliuMemberQueryParam.setName("name2");
-        wuliuMemberQueryParam.setStatus("enable");
-        System.out.println(JSON.toJSONString(wuliuMemberService.queryMembers(wuliuMemberQueryParam)));
         return new ModelAndView("index", "message", message);
     }
 
@@ -91,5 +66,13 @@ public class CrunchifyHelloWorld {
 
     public void setWuliuMemberService(WuliuMemberService wuliuMemberService) {
         this.wuliuMemberService = wuliuMemberService;
+    }
+
+    public WuliuOrderService getWuliuOrderService() {
+        return wuliuOrderService;
+    }
+
+    public void setWuliuOrderService(WuliuOrderService wuliuOrderService) {
+        this.wuliuOrderService = wuliuOrderService;
     }
 }

@@ -1,0 +1,108 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WuliuOrder">
+
+	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id" parameterType="WuliuOrder">
+		INSERT INTO WULIU_ORDER (gmt_create , gmt_modified , order_date , member_id ,
+		order_index , car_index , zz_fee , js_fee , ds_fee , status)
+		VALUES (now() , now() , #{orderDate} , #{memberId} , #{orderIndex} ,
+		#{carIndex} , #{zhongzhuanFee} , #{jiashouFee} , #{daishouFee}, #{status});
+	</insert>
+
+	<update id="update" parameterType="WuliuOrder">
+		UPDATE WULIU_ORDER
+		SET
+		<if test = "orderDate != null">
+		order_date = #{orderDate},
+		</if>
+		
+		<if test = "memberId != null">
+		member_id = #{memberId},
+		</if>
+		
+		<if test = "orderIndex != null">
+		order_index = #{orderIndex},
+		</if>
+		
+		<if test = "carIndex != null">
+		car_index = #{carIndex},
+		</if>
+		
+		<if test = "zhongzhuanFee!= null">
+		zz_fee = #{zhongzhuanFee},
+		</if>
+		
+		<if test = "jiashouFee != null">
+		js_fee = #{jiashouFee},
+		</if>
+		
+		<if test = "daishouFee != null">
+		ds_fee = #{daishouFee},
+		</if>
+		
+		<if test = "status != null">
+		status = #{status},
+		</if>
+		
+		GMT_MODIFIED = NOW()
+		WHERE
+		id = #{id}
+	</update>
+	
+	<select id ="query" parameterType="java.util.Map" resultType="WuliuOrder">
+		SELECT
+			id				as id,
+			order_date		as orderDate,
+			member_Id	as memberId,
+			order_index	as orderIndex,
+			car_index	as carIndex,		
+			zz_fee		as zhongzhuanFee,
+			js_fee		as jiashouFee,
+			ds_fee		as daishouFee,
+			status		as status
+		FROM WULIU_ORDER
+		<where>
+			<if test = "id != null">
+				id = #{id}
+			</if>
+			<if test = "orderDate != null">
+				AND order_date = #{orderDate}
+			</if>
+			<if test = "memberId != null">
+				AND member_id = #{memberId}
+			</if>
+			<if test = "carIndex != null">
+				AND car_index = #{carIndex}
+			</if>
+			<if test = "status != null">
+				AND status = #{status}
+			</if>
+		</where>
+		ORDER BY ID ASC
+		limit #{start} , #{size}
+	</select>
+	
+	<select id ="count" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM WULIU_ORDER
+		<where>
+			<if test = "id != null">
+				id = #{id}
+			</if>
+			<if test = "orderDate != null">
+				AND order_date = #{orderDate}
+			</if>
+			<if test = "memberId != null">
+				AND member_id = #{memberId}
+			</if>
+			<if test = "carIndex != null">
+				AND car_index = #{carIndex}
+			</if>
+			<if test = "status != null">
+				AND status = #{status}
+			</if>
+		</where>
+	</select>
+</mapper>

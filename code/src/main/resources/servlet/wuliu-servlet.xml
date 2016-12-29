@@ -12,6 +12,8 @@
 	
 	<bean class="com.crunchify.controller.CrunchifyHelloWorld">
 		<property name="wuliuMemberService" ref="wuliuMemberService" />
+		<property name="wuliuOrderService" ref="wuliuOrderService" />
+		<property name="wuliuOrderDetailService" ref="wuliuOrderDetailService" />
 	</bean>
     
 </beans>

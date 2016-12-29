@@ -10,9 +10,15 @@ PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias alias="WuliuMember" type="com.wuliu.dao.dataobject.WuliuMemberDO" />
 		<typeAlias alias="WuliuMemberQueryParam" type="com.wuliu.api.member.model.WuliuMemberQueryParam" />
+		<typeAlias alias="WuliuOrder" type="com.wuliu.dao.dataobject.WuliuOrderDO" />
+		<typeAlias alias="WuliuOrderQueryParam" type="com.wuliu.api.order.model.WuliuOrderQueryParam" />
+		<typeAlias alias="WuliuOrderDetail" type="com.wuliu.dao.dataobject.WuliuOrderDetailDO" />
+		<typeAlias alias="WuliuOrderDetailQueryParam" type="com.wuliu.api.orderdetail.model.WuliuOrderDetailQueryParam" />
 	</typeAliases>
 	
 	<mappers>
       <mapper resource = "mybatis/sqlmap-wuliu-member.xml"/>
+      <mapper resource = "mybatis/sqlmap-wuliu-order.xml"/>
+      <mapper resource = "mybatis/sqlmap-wuliu-order-detail.xml"/>
    </mappers>
 </configuration>

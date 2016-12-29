@@ -18,5 +18,19 @@
 		<property name="wuliuMemberDAO" ref="wuliuMemberDAO" />
 	</bean>
 	
-    
+	<bean id = "wuliuOrderService" class="com.wuliu.biz.order.service.impl.WuliuOrderServiceImpl">
+		<property name="wuliuOrderAO" ref="wuliuOrderAO"/>
+	</bean>
+	
+	<bean id="wuliuOrderAO" class="com.wuliu.biz.order.AO.impl.WuliuOrderAOImpl">
+		<property name="wuliuOrderDAO" ref="wuliuOrderDAO" />
+	</bean>
+	
+	<bean id = "wuliuOrderDetailService" class="com.wuliu.biz.orderdetail.service.impl.WuliuOrderDetailServiceImpl">
+		<property name="wuliuOrderAO" ref="wuliuOrderAO"/>
+	</bean>
+	
+	<bean id="wuliuOrderDetailAO" class="com.wuliu.biz.order.AO.impl.WuliuOrderDetailAOImpl">
+		<property name="wuliuOrderDetailDAO" ref="wuliuOrderDetailDAO" />
+	</bean>
 </beans>

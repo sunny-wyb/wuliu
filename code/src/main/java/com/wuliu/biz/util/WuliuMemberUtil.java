@@ -60,7 +60,7 @@ public class WuliuMemberUtil {
         return ret;
     }
 
-    public static List<WuliuMemberModel> convertToWuliuMemberList(List<WuliuMemberDO> wuliuMemberDOs) {
+    public static List<WuliuMemberModel> convertToWuliuMemberModelList(List<WuliuMemberDO> wuliuMemberDOs) {
         List<WuliuMemberModel> ret = new ArrayList<WuliuMemberModel>();
         
         if (CollectionUtils.isEmpty(wuliuMemberDOs)) {

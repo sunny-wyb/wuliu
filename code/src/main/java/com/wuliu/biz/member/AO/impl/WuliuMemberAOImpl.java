@@ -9,8 +9,6 @@ package com.wuliu.biz.member.AO.impl;
 
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-
 import com.wuliu.api.member.constant.WuliuMemberConst;
 import com.wuliu.api.member.model.WuliuMemberModel;
 import com.wuliu.api.member.model.WuliuMemberQueryParam;
@@ -63,7 +61,7 @@ public class WuliuMemberAOImpl implements WuliuMemberAO {
     @Override
     public List<WuliuMemberModel> queryMembers(WuliuMemberQueryParam wuliuMemberQueryParam) {
         List<WuliuMemberDO> wuliuMemberDOs = wuliuMemberDAO.queryMembers(wuliuMemberQueryParam);
-        return WuliuMemberUtil.convertToWuliuMemberList(wuliuMemberDOs);
+        return WuliuMemberUtil.convertToWuliuMemberModelList(wuliuMemberDOs);
     }
 
     /*
@@ -81,16 +79,12 @@ public class WuliuMemberAOImpl implements WuliuMemberAO {
      */
     @Override
     public boolean deleteMember(Long id) {
-        WuliuMemberQueryParam wuliuMemberQueryParam = new WuliuMemberQueryParam();
-        wuliuMemberQueryParam.setId(id);
-        List<WuliuMemberModel> wuliuMemberModels = queryMembers(wuliuMemberQueryParam);
-        if (CollectionUtils.isEmpty(wuliuMemberModels) || wuliuMemberModels.size() != 1)  {
-            return false;
-        }
         
-        WuliuMemberModel wuliuMemberModel = wuliuMemberModels.get(0);
+        WuliuMemberModel wuliuMemberModel = new WuliuMemberModel();
+        wuliuMemberModel.setId(id);
         wuliuMemberModel.setStatus(WuliuMemberConst.STATUS_DISABLE);
         return updateMember(wuliuMemberModel);
+        
     }
 
     public WuliuMemberDAO getWuliuMemberDAO() {

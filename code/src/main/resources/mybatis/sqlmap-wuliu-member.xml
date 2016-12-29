@@ -73,6 +73,7 @@
 				AND status = #{status}
 			</if>
 		</where>
+		ORDER BY ID ASC
 		limit #{start} , #{size}
 	</select>
 	

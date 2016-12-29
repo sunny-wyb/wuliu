@@ -50,8 +50,8 @@ public class WuliuMemberDAOImpl implements WuliuMemberDAO {
             return false;
         }
         
-        sqlSessionTemplate.update("WuliuMember.update", wuliuMemberDO);
-        return true;
+        int cnt = sqlSessionTemplate.update("WuliuMember.update", wuliuMemberDO);
+        return cnt > 0;
     }
 
     /*

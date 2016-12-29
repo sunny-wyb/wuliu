@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WuliuOrderDetail">
+
+	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id" parameterType="WuliuOrderDetail">
+		INSERT INTO WULIU_ORDER_DETAIL (gmt_create , gmt_modified , main_order_id , count , length , width , height , weight)
+		VALUES (now() , now() , #{mainOrderId} , #{count} , #{length} , #{{width} ,
+		#{height} , #{width});
+	</insert>
+
+	<update id="update" parameterType="WuliuOrderDetail">
+		UPDATE WULIU_ORDER_DETAIL
+		SET
+		<if test = "count != null">
+		count = #{count},
+		</if>
+		
+		<if test = "length!= null">
+		length = #{length},
+		</if>
+		
+		<if test = "width!= null">
+		width = #{width},
+		</if>
+		
+		<if test = "height != null">
+		height = #{height},
+		</if>
+		
+		<if test = "weight != null">
+		weight = #{weight},
+		</if>
+		GMT_MODIFIED = NOW()
+		WHERE
+		id = #{id} ADN main_order_id = #{mainOrderId}
+	</update>
+	
+	<select id ="query" parameterType="java.util.Map" resultType="WuliuOrderDetail">
+		SELECT
+			id				as id,
+			main_order_id	as mainOrderId,
+			count			as count,
+			length			as length,
+			width			as width,
+			height			as height,
+			weight			as weight
+		FROM WULIU_ORDER_DETAIL
+		<where>
+			<if test = "id != null">
+				id = #{id}
+			</if>
+			<if test = "mainOrderId != null">
+				AND main_order_id = #{mainOrderId}
+			</if>
+		</where>
+		ORDER BY ID ASC
+		limit #{start} , #{size}
+	</select>
+	
+	<select id ="count" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM WULIU_ORDER_DETAIL
+		<where>
+			<if test = "id != null">
+				id = #{id}
+			</if>
+			<if test = "mainOrderId != null">
+				AND main_order_id = #{mainOrderId}
+			</if>
+		</where>
+	</select>
+</mapper>

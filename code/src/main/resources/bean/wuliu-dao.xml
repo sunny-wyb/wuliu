@@ -14,4 +14,11 @@
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
 	
+	<bean id="wuliuOrderDAO" class="com.wuliu.dao.impl.WuliuOrderDAOImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="wuliuOrderDetailDAO" class="com.wuliu.dao.impl.WuliuOrderDetailDAOImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
 </beans>
