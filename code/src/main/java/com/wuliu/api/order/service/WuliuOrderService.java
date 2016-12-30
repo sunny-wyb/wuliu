@@ -13,18 +13,21 @@ import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 
 /**
- * 类WuliuOrderService.java的实现描述：TODO 类实现描述 
+ * 类WuliuOrderService.java的实现描述：TODO 类实现描述
+ * 
  * @author yunbin.wangyb 2016年12月28日 下午9:31:49
  */
 public interface WuliuOrderService {
 
     public WuliuOrderModel addOrder(WuliuOrderModel wuliuOrderModel);
-    
+
     public boolean updateOrder(WuliuOrderModel wuliuOrderModel);
-    
+
     public PageResultModel<WuliuOrderModel> queryOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
-    
+
     public int countOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
-    
+
     public PageResultModel<WuliuMergedOrderModel> queryMergedOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
+
+    public boolean deleteOrder(Long id);
 }

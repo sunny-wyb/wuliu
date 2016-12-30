@@ -22,7 +22,7 @@ import com.wuliu.biz.order.AO.WuliuOrderAO;
 public class WuliuOrderServiceImpl implements WuliuOrderService {
 
     private WuliuOrderAO wuliuOrderAO;
-
+    
     /*
      * (non-Javadoc)
      * @see com.wuliu.api.order.service.WuliuOrderService#addOrder(com.wuliu.api.order.model.WuliuOrderModel)
@@ -75,7 +75,6 @@ public class WuliuOrderServiceImpl implements WuliuOrderService {
      */
     @Override
     public PageResultModel<WuliuMergedOrderModel> queryMergedOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -85,5 +84,13 @@ public class WuliuOrderServiceImpl implements WuliuOrderService {
 
     public void setWuliuOrderAO(WuliuOrderAO wuliuOrderAO) {
         this.wuliuOrderAO = wuliuOrderAO;
+    }
+
+    /* (non-Javadoc)
+     * @see com.wuliu.api.order.service.WuliuOrderService#deleteOrder(java.lang.Long)
+     */
+    @Override
+    public boolean deleteOrder(Long id) {
+        return wuliuOrderAO.deleteOrder(id);
     }
 }

@@ -7,6 +7,8 @@
  */
 package com.crunchify.controller;
 
+import java.util.Date;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.dao.TestDO;
-import com.wuliu.api.member.model.WuliuMemberModel;
 import com.wuliu.api.member.service.WuliuMemberService;
+import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
-import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
-import com.wuliu.api.orderdetail.model.WuliuOrderDetailQueryParam;
 import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
 
 /**
@@ -53,32 +53,33 @@ public class CrunchifyHelloWorld {
         System.out.println("23");
         System.out.println("1233");
         
-        WuliuOrderDetailModel wuliuOrderDetailModel = new WuliuOrderDetailModel();
-        wuliuOrderDetailModel.setCount(1);
-        wuliuOrderDetailModel.setHeight(1L);
-        wuliuOrderDetailModel.setLength(1L);
-        wuliuOrderDetailModel.setMainOrderId(1L);
-        wuliuOrderDetailModel.setStatus("enable");
-        wuliuOrderDetailModel.setWeight(1L);
-        wuliuOrderDetailModel.setWidth(1L);
-        wuliuOrderDetailModel = wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel);
+        WuliuOrderModel wuliuOrderModel = new WuliuOrderModel();
+        wuliuOrderModel.setCarIndex(1L);
+        wuliuOrderModel.setDaishouFee(2L);
+        wuliuOrderModel.setJiashouFee(3L);
+        wuliuOrderModel.setMemberId(4L);
+        wuliuOrderModel.setOrderDate(new Date());
+        wuliuOrderModel.setOrderIndex(5L);
+        wuliuOrderModel.setStatus("enable");
+        wuliuOrderModel.setZhongzhuanFee(6L);
+        WuliuOrderModel newWuliuOrderModel =  wuliuOrderService.addOrder(wuliuOrderModel);
         
-        wuliuOrderDetailModel.setCount(2);
-        wuliuOrderDetailModel.setHeight(2L);
-        wuliuOrderDetailModel.setLength(2L);
-        wuliuOrderDetailModel.setMainOrderId(2L);
-        wuliuOrderDetailModel.setStatus("enable");
-        wuliuOrderDetailModel.setWeight(2L);
-        wuliuOrderDetailModel.setWidth(2L);
-        wuliuOrderDetailService.updateOrderDetail(wuliuOrderDetailModel);
+        newWuliuOrderModel.setCarIndex(2L);
+        newWuliuOrderModel.setDaishouFee(3L);
+        newWuliuOrderModel.setJiashouFee(4L);
+        newWuliuOrderModel.setMemberId(5L);
+        newWuliuOrderModel.setOrderDate(new Date(System.currentTimeMillis() + 3600L * 1000L));
+        newWuliuOrderModel.setOrderIndex(6L);
+        newWuliuOrderModel.setStatus("enable");
+        newWuliuOrderModel.setZhongzhuanFee(7L);
+        wuliuOrderService.updateOrder(newWuliuOrderModel);
         
-        wuliuOrderDetailService.deleteOrderDetail(wuliuOrderDetailModel.getId());
+        wuliuOrderService.deleteOrder(newWuliuOrderModel.getId());
         
+        WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
+        wuliuOrderQueryParam.setMemberId(5L);
+        System.out.println(JSON.toJSONString(wuliuOrderService.queryOrders(wuliuOrderQueryParam)));
         
-        WuliuOrderDetailQueryParam wuliuOrderDetailQueryParam = new WuliuOrderDetailQueryParam();
-        wuliuOrderDetailQueryParam.setMainOrderId(1L);
-        wuliuOrderDetailQueryParam.setStatus("enable");
-        System.out.println(JSON.toJSONString(wuliuOrderDetailService.queryOrderDetails(wuliuOrderDetailQueryParam)));
         return new ModelAndView("index", "message", message);
     }
 

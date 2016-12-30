@@ -25,7 +25,7 @@ import com.wuliu.dao.dataobject.WuliuOrderDO;
 public class WuliuOrderAOImpl implements WuliuOrderAO {
 
     private WuliuOrderDAO wuliuOrderDAO;
-
+    
     /*
      * (non-Javadoc)
      * @see com.wuliu.biz.order.AO.WuliuOrderAO#addOrder(com.wuliu.api.order.model.WuliuOrderModel)
@@ -36,9 +36,8 @@ public class WuliuOrderAOImpl implements WuliuOrderAO {
         boolean flag = wuliuOrderDAO.addOrder(wuliuOrderDO);
         if (!flag) {
             return null;
-        } else {
-            return WuliuOrderUtil.convertToWuliuOrderModel(wuliuOrderDO);
-        }
+        } 
+        return WuliuOrderUtil.convertToWuliuOrderModel(wuliuOrderDO);
     }
 
     /*
@@ -62,7 +61,8 @@ public class WuliuOrderAOImpl implements WuliuOrderAO {
     @Override
     public List<WuliuOrderModel> queryOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
         List<WuliuOrderDO> wuliuOrderDOs = wuliuOrderDAO.queryOrders(wuliuOrderQueryParam);
-        return WuliuOrderUtil.convertToWuliuModelOrderList(wuliuOrderDOs);
+        List<WuliuOrderModel> wuliuOrderModels = WuliuOrderUtil.convertToWuliuModelOrderList(wuliuOrderDOs);
+        return wuliuOrderModels;
     }
 
     /*

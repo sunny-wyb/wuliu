@@ -41,8 +41,6 @@ public class WuliuOrderModel implements Serializable {
 
     private Long                        daishouFee;
 
-    private List<WuliuOrderDetailModel> wuliuOrderDetails;
-
     private String                      status;
 
     public Long getId() {
@@ -107,14 +105,6 @@ public class WuliuOrderModel implements Serializable {
 
     public void setDaishouFee(Long daishouFee) {
         this.daishouFee = daishouFee;
-    }
-
-    public List<WuliuOrderDetailModel> getWuliuOrderDetails() {
-        return wuliuOrderDetails;
-    }
-
-    public void setWuliuOrderDetails(List<WuliuOrderDetailModel> wuliuOrderDetails) {
-        this.wuliuOrderDetails = wuliuOrderDetails;
     }
 
     public String getStatus() {
