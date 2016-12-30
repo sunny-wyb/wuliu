@@ -59,15 +59,16 @@ public class WuliuOrderDAOImpl implements WuliuOrderDAO {
      * @see com.wuliu.dao.WuliuOrderDAO#queryOrders(com.wuliu.api.order.model.WuliuORderQueryParam)
      */
     @Override
-    public List<WuliuOrderDO> queryOrders(WuliuOrderQueryParam wuliuORderQueryParam) {
+    public List<WuliuOrderDO> queryOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
         Map<String , Object> params = new HashMap<String , Object>();
-        params.put("id", wuliuORderQueryParam.getId());
-        params.put("carIndex", wuliuORderQueryParam.getCarIndex());
-        params.put("memberId", wuliuORderQueryParam.getMemberId());
-        params.put("orderDate", wuliuORderQueryParam.getOrderDate());
-        params.put("status", wuliuORderQueryParam.getStatus());
-        params.put("start", (wuliuORderQueryParam.getPageNum() - 1) * wuliuORderQueryParam.getPageSize());
-        params.put("size", wuliuORderQueryParam.getPageSize());
+        params.put("id", wuliuOrderQueryParam.getId());
+        params.put("carIndex", wuliuOrderQueryParam.getCarIndex());
+        params.put("memberId", wuliuOrderQueryParam.getMemberId());
+        params.put("minOrderDate", wuliuOrderQueryParam.getMinOrderDate());
+        params.put("maxOrderDate", wuliuOrderQueryParam.getMaxOrderDate());
+        params.put("status", wuliuOrderQueryParam.getStatus());
+        params.put("start", (wuliuOrderQueryParam.getPageNum() - 1) * wuliuOrderQueryParam.getPageSize());
+        params.put("size", wuliuOrderQueryParam.getPageSize());
         List<WuliuOrderDO> ret = sqlSessionTemplate.selectList("WuliuOrder.query", params);
         return ret;
     }
@@ -77,13 +78,14 @@ public class WuliuOrderDAOImpl implements WuliuOrderDAO {
      * @see com.wuliu.dao.WuliuOrderDAO#countOrders(com.wuliu.api.order.model.WuliuORderQueryParam)
      */
     @Override
-    public int countOrders(WuliuOrderQueryParam wuliuORderQueryParam) {
+    public int countOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
         Map<String , Object> params = new HashMap<String , Object>();
-        params.put("id", wuliuORderQueryParam.getId());
-        params.put("carIndex", wuliuORderQueryParam.getCarIndex());
-        params.put("memberId", wuliuORderQueryParam.getMemberId());
-        params.put("orderDate", wuliuORderQueryParam.getOrderDate());
-        params.put("status", wuliuORderQueryParam.getStatus());
+        params.put("id", wuliuOrderQueryParam.getId());
+        params.put("carIndex", wuliuOrderQueryParam.getCarIndex());
+        params.put("memberId", wuliuOrderQueryParam.getMemberId());
+        params.put("minOrderDate", wuliuOrderQueryParam.getMinOrderDate());
+        params.put("maxOrderDate", wuliuOrderQueryParam.getMaxOrderDate());
+        params.put("status", wuliuOrderQueryParam.getStatus());
         int count = sqlSessionTemplate.selectOne("WuliuOrder.count" , params);
         return count;
     }

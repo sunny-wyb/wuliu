@@ -60,7 +60,12 @@ public class WuliuOrderAOImpl implements WuliuOrderAO {
      */
     @Override
     public List<WuliuOrderModel> queryOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
+        if (wuliuOrderQueryParam.getStatus() == null) {
+            wuliuOrderQueryParam.setStatus(WuliuOrderConst.STATUS_ENABLE);
+        }
+        
         List<WuliuOrderDO> wuliuOrderDOs = wuliuOrderDAO.queryOrders(wuliuOrderQueryParam);
+        
         List<WuliuOrderModel> wuliuOrderModels = WuliuOrderUtil.convertToWuliuModelOrderList(wuliuOrderDOs);
         return wuliuOrderModels;
     }
@@ -71,6 +76,11 @@ public class WuliuOrderAOImpl implements WuliuOrderAO {
      */
     @Override
     public int countOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
+        
+        if (wuliuOrderQueryParam.getStatus() == null) {
+            wuliuOrderQueryParam.setStatus(WuliuOrderConst.STATUS_ENABLE);
+        }
+        
         return wuliuOrderDAO.countOrders(wuliuOrderQueryParam);
     }
 

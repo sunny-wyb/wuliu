@@ -8,10 +8,10 @@
 package com.wuliu.biz.order.service.impl;
 
 import com.wuliu.api.common.model.PageResultModel;
-import com.wuliu.api.order.model.WuliuMergedOrderModel;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
+import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
 import com.wuliu.biz.order.AO.WuliuOrderAO;
 
 /**
@@ -22,7 +22,7 @@ import com.wuliu.biz.order.AO.WuliuOrderAO;
 public class WuliuOrderServiceImpl implements WuliuOrderService {
 
     private WuliuOrderAO wuliuOrderAO;
-    
+
     /*
      * (non-Javadoc)
      * @see com.wuliu.api.order.service.WuliuOrderService#addOrder(com.wuliu.api.order.model.WuliuOrderModel)
@@ -51,7 +51,7 @@ public class WuliuOrderServiceImpl implements WuliuOrderService {
         if (wuliuOrderQueryParam == null) {
             return null;
         }
-        
+
         ret.setPageNum(wuliuOrderQueryParam.getPageNum());
         ret.setPageSize(wuliuOrderQueryParam.getPageSize());
         ret.setResultList(wuliuOrderAO.queryOrders(wuliuOrderQueryParam));
@@ -68,16 +68,6 @@ public class WuliuOrderServiceImpl implements WuliuOrderService {
         return wuliuOrderAO.countOrders(wuliuOrderQueryParam);
     }
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * com.wuliu.api.order.service.WuliuOrderService#queryMergedOrders(com.wuliu.api.member.model.WuliuMemberQueryParam)
-     */
-    @Override
-    public PageResultModel<WuliuMergedOrderModel> queryMergedOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
-        return null;
-    }
-
     public WuliuOrderAO getWuliuOrderAO() {
         return wuliuOrderAO;
     }
@@ -86,7 +76,8 @@ public class WuliuOrderServiceImpl implements WuliuOrderService {
         this.wuliuOrderAO = wuliuOrderAO;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.wuliu.api.order.service.WuliuOrderService#deleteOrder(java.lang.Long)
      */
     @Override

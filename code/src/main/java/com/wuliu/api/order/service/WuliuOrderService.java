@@ -8,7 +8,6 @@
 package com.wuliu.api.order.service;
 
 import com.wuliu.api.common.model.PageResultModel;
-import com.wuliu.api.order.model.WuliuMergedOrderModel;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 
@@ -26,8 +25,6 @@ public interface WuliuOrderService {
     public PageResultModel<WuliuOrderModel> queryOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
 
     public int countOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
-
-    public PageResultModel<WuliuMergedOrderModel> queryMergedOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
 
     public boolean deleteOrder(Long id);
 }

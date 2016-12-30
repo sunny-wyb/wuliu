@@ -23,25 +23,25 @@ public class WuliuOrderModel implements Serializable {
     /**
      * 
      */
-    private static final long           serialVersionUID = -1049743217129559470L;
+    private static final long serialVersionUID = -1049743217129559470L;
 
-    private Long                        id;
+    protected Long            id;
 
-    private Date                        orderDate;
+    protected Date            orderDate;
 
-    private Long                        orderIndex;
+    protected Long            orderIndex;
 
-    private Long                        memberId;
+    protected Long            memberId;
 
-    private Long                        carIndex;
+    protected Long            carIndex;
 
-    private Long                        zhongzhuanFee;
+    protected Long            zhongzhuanFee;
 
-    private Long                        jiashouFee;
+    protected Long            jiashouFee;
 
-    private Long                        daishouFee;
+    protected Long            daishouFee;
 
-    private String                      status;
+    protected String          status;
 
     public Long getId() {
         return id;

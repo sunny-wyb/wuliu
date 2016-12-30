@@ -66,8 +66,11 @@
 			<if test = "id != null">
 				id = #{id}
 			</if>
-			<if test = "orderDate != null">
-				AND order_date = #{orderDate}
+			<if test = "minOrderDate!= null">
+				<![CDATA[ AND order_date > #{minOrderDate} ]]>
+			</if>
+			<if test = "maxOrderDate!= null">
+				<![CDATA[ AND order_date < #{maxOrderDate} ]]>
 			</if>
 			<if test = "memberId != null">
 				AND member_id = #{memberId}
@@ -91,8 +94,11 @@
 			<if test = "id != null">
 				id = #{id}
 			</if>
-			<if test = "orderDate != null">
-				AND order_date = #{orderDate}
+			<if test = "minOrderDate!= null">
+				<![CDATA[ AND order_date > #{minOrderDate} ]]>
+			</if>
+			<if test = "maxOrderDate!= null">
+				<![CDATA[ AND order_date < #{maxOrderDate} ]]>
 			</if>
 			<if test = "memberId != null">
 				AND member_id = #{memberId}

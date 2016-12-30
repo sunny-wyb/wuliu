@@ -5,13 +5,11 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package com.wuliu.api.order.model;
+package com.wuliu.api.orderbusiness.model;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import com.wuliu.api.orderdetail.model.WuliuMergedOrderDetailModel;
 
 /**
  * 类WuliuMergedOrderModel.java的实现描述：TODO 类实现描述

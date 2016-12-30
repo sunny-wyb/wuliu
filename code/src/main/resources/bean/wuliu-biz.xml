@@ -33,4 +33,9 @@
 	<bean id="wuliuOrderDetailAO" class="com.wuliu.biz.orderdetail.AO.impl.WuliuOrderDetailAOImpl">
 		<property name="wuliuOrderDetailDAO" ref="wuliuOrderDetailDAO" />
 	</bean>
+	
+	<bean id="wuliuWholeOrderService" class="com.wuliu.biz.orderbusiness.service.impl.WuliuWholeOrderServiceImpl">
+		<property name="wuliuOrderDetailAO" ref="wuliuOrderDetailAO" />
+		<property name="wuliuOrderAO" ref="wuliuOrderAO" />
+	</bean>
 </beans>

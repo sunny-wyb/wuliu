@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package com.wuliu.api.orderdetail.model;
+package com.wuliu.api.orderbusiness.model;
 
 import java.io.Serializable;
 
@@ -23,13 +23,13 @@ public class WuliuMergedOrderDetailModel implements Serializable {
 
     private Long              mainOrderId;
 
-    private Integer           Count;
+    private int               Count;
 
-    private Long              weight;
+    private long              weight;
 
-    private Long              volumn;
+    private long              volumn;
 
-    private Long              cost;
+    private long              cost;
 
     private String            type;
 
@@ -41,35 +41,35 @@ public class WuliuMergedOrderDetailModel implements Serializable {
         this.mainOrderId = mainOrderId;
     }
 
-    public Integer getCount() {
+    public int getCount() {
         return Count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(int count) {
         Count = count;
     }
 
-    public Long getWeight() {
+    public long getWeight() {
         return weight;
     }
 
-    public void setWeight(Long weight) {
+    public void setWeight(long weight) {
         this.weight = weight;
     }
 
-    public Long getVolumn() {
+    public long getVolumn() {
         return volumn;
     }
 
-    public void setVolumn(Long volumn) {
+    public void setVolumn(long volumn) {
         this.volumn = volumn;
     }
 
-    public Long getCost() {
+    public long getCost() {
         return cost;
     }
 
-    public void setCost(Long cost) {
+    public void setCost(long cost) {
         this.cost = cost;
     }
 

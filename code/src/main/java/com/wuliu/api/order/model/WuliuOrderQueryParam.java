@@ -26,13 +26,15 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
 
     private Long              id;
 
-    private Date              orderDate;
-
     private Long              memberId;
 
     private Long              carIndex;
 
     private String            status;
+
+    private Date              minOrderDate;
+
+    private Date              maxOrderDate;
 
     public Long getId() {
         return id;
@@ -40,14 +42,6 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
     }
 
     public Long getMemberId() {
@@ -72,5 +66,21 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getMinOrderDate() {
+        return minOrderDate;
+    }
+
+    public void setMinOrderDate(Date minOrderDate) {
+        this.minOrderDate = minOrderDate;
+    }
+
+    public Date getMaxOrderDate() {
+        return maxOrderDate;
+    }
+
+    public void setMaxOrderDate(Date maxOrderDate) {
+        this.maxOrderDate = maxOrderDate;
     }
 }

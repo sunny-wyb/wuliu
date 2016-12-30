@@ -12,6 +12,7 @@ import java.util.List;
 import com.wuliu.api.member.constant.WuliuMemberConst;
 import com.wuliu.api.member.model.WuliuMemberModel;
 import com.wuliu.api.member.model.WuliuMemberQueryParam;
+import com.wuliu.api.orderdetail.constant.WuliuOrderDetailConst;
 import com.wuliu.biz.member.AO.WuliuMemberAO;
 import com.wuliu.biz.util.WuliuMemberUtil;
 import com.wuliu.dao.WuliuMemberDAO;
@@ -60,7 +61,12 @@ public class WuliuMemberAOImpl implements WuliuMemberAO {
      */
     @Override
     public List<WuliuMemberModel> queryMembers(WuliuMemberQueryParam wuliuMemberQueryParam) {
+        if (wuliuMemberQueryParam.getStatus() == null) {
+            wuliuMemberQueryParam.setStatus(WuliuOrderDetailConst.STATUS_ENABLE);
+        }
+
         List<WuliuMemberDO> wuliuMemberDOs = wuliuMemberDAO.queryMembers(wuliuMemberQueryParam);
+
         return WuliuMemberUtil.convertToWuliuMemberModelList(wuliuMemberDOs);
     }
 
@@ -70,6 +76,10 @@ public class WuliuMemberAOImpl implements WuliuMemberAO {
      */
     @Override
     public int countMembers(WuliuMemberQueryParam wuliuMemberQueryParam) {
+        if (wuliuMemberQueryParam.getStatus() == null) {
+            wuliuMemberQueryParam.setStatus(WuliuOrderDetailConst.STATUS_ENABLE);
+        }
+
         return wuliuMemberDAO.countMembers(wuliuMemberQueryParam);
     }
 
@@ -79,12 +89,12 @@ public class WuliuMemberAOImpl implements WuliuMemberAO {
      */
     @Override
     public boolean deleteMember(Long id) {
-        
+
         WuliuMemberModel wuliuMemberModel = new WuliuMemberModel();
         wuliuMemberModel.setId(id);
         wuliuMemberModel.setStatus(WuliuMemberConst.STATUS_DISABLE);
         return updateMember(wuliuMemberModel);
-        
+
     }
 
     public WuliuMemberDAO getWuliuMemberDAO() {
