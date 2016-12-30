@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.wuliu.api.common.model.PageResultModel;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.orderbusiness.model.WuliuWholeOrderModel;
@@ -39,8 +40,10 @@ public class WuliuWholeOrderServiceImpl implements WuliuWholeOrderService {
      * WuliuOrderQueryParam)
      */
     @Override
-    public List<WuliuWholeOrderModel> queryWholeOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
-        List<WuliuWholeOrderModel> ret = new ArrayList<WuliuWholeOrderModel>();
+    public PageResultModel<WuliuWholeOrderModel> queryWholeOrders(WuliuOrderQueryParam wuliuOrderQueryParam) {
+        PageResultModel<WuliuWholeOrderModel> ret = new PageResultModel<WuliuWholeOrderModel>();
+
+        List<WuliuWholeOrderModel> resultList = new ArrayList<WuliuWholeOrderModel>();
 
         if (wuliuOrderQueryParam == null) {
             return ret;
@@ -58,9 +61,14 @@ public class WuliuWholeOrderServiceImpl implements WuliuWholeOrderService {
             WuliuWholeOrderModel wuliuWholeOrderModel = WuliuWholeOrderUtil.buildWholeModel(item,
                                                                                             wuliuOrderDetailModels);
             if (wuliuWholeOrderModel != null) {
-                ret.add(wuliuWholeOrderModel);
+                resultList.add(wuliuWholeOrderModel);
             }
         }
+
+        ret.setPageNum(wuliuOrderQueryParam.getPageNum());
+        ret.setPageSize(wuliuOrderQueryParam.getPageSize());
+        ret.setTotalCount(wuliuOrderAO.countOrders(wuliuOrderQueryParam));
+        ret.setResultList(resultList);
 
         return ret;
     }

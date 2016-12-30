@@ -9,9 +9,6 @@ package com.wuliu.api.order.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-
-import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
 
 /**
  * 类WuliuOrderModel.java的实现描述：TODO 类实现描述

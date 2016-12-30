@@ -9,13 +9,14 @@ package com.wuliu.api.orderbusiness.service;
 
 import com.wuliu.api.common.model.PageResultModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
-import com.wuliu.api.orderbusiness.model.WuliuWholeOrderModel;
+import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
 
 /**
- * 类WuliuWholeOrderService.java的实现描述：TODO 类实现描述 
- * @author yunbin.wangyb 2016年12月30日 上午11:06:58
+ * 类WuliuMergedOrderService.java的实现描述：TODO 类实现描述
+ * 
+ * @author yunbin.wangyb 2016年12月30日 下午1:39:40
  */
-public interface WuliuWholeOrderService {
+public interface WuliuMergedOrderService {
 
-    public PageResultModel<WuliuWholeOrderModel> queryWholeOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
+    public PageResultModel<WuliuMergedOrderModel> queryMergedOrders(WuliuOrderQueryParam wuliuOrderQueryParam);
 }

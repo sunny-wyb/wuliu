@@ -43,8 +43,6 @@ public class WuliuMergedOrderModel implements Serializable {
 
     private Long                              cost;
 
-    private String                            status;
-
     public Long getId() {
         return id;
     }
@@ -123,13 +121,5 @@ public class WuliuMergedOrderModel implements Serializable {
 
     public void setCost(Long cost) {
         this.cost = cost;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

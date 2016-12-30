@@ -57,7 +57,7 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
                     volumnModel.setType(WuliuMergeOrderDetailConst.TYPE_VOLUMN);
                 }
 
-                add(weightModel, 0L, getVolumn(item), weightCost, item.getCount());
+                add(volumnModel, 0, getVolumn(item), volumnCost, item.getCount());
             }
         }
 
@@ -89,5 +89,6 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
         mergedModel.setCost(mergedModel.getCost() + partCost);
         mergedModel.setCount(mergedModel.getCount() + partCount);
         mergedModel.setWeight(mergedModel.getWeight() + partWeight);
+        mergedModel.setVolumn(mergedModel.getVolumn() + partVolumn);
     }
 }

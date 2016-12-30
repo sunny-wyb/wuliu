@@ -38,4 +38,14 @@
 		<property name="wuliuOrderDetailAO" ref="wuliuOrderDetailAO" />
 		<property name="wuliuOrderAO" ref="wuliuOrderAO" />
 	</bean>
+	
+	<bean id="wuliuMergedOrderService" class="com.wuliu.biz.orderbusiness.service.impl.WuliuMergedOrderServiceImpl">
+		<property name="wuliuOrderDetailAO" ref="wuliuOrderDetailAO" />
+		<property name="wuliuOrderAO" ref="wuliuOrderAO" />
+		<property name="wuliuMemberAO" ref="wuliuMemberAO" />
+		<property name="orderDetailMergeEngine" ref="orderDetailMergeEngine" />
+	</bean>
+	
+	<bean id ="orderDetailMergeEngine" class="com.wuliu.biz.orderdetail.engine.impl.OrderDetailMergeEngineImpl">
+	</bean>
 </beans>

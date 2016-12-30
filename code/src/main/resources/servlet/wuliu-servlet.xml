@@ -15,6 +15,7 @@
 		<property name="wuliuOrderService" ref="wuliuOrderService" />
 		<property name="wuliuOrderDetailService" ref="wuliuOrderDetailService" />
 		<property name="wuliuWholeOrderService" ref="wuliuWholeOrderService" />
+		<property name="wuliuMergedOrderService" ref="wuliuMergedOrderService" />
 	</bean>
     
 </beans>

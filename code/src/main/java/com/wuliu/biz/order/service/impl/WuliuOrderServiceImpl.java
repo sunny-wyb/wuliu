@@ -11,7 +11,6 @@ import com.wuliu.api.common.model.PageResultModel;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
-import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
 import com.wuliu.biz.order.AO.WuliuOrderAO;
 
 /**

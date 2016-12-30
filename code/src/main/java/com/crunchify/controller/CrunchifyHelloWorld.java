@@ -22,6 +22,7 @@ import com.wuliu.api.member.service.WuliuMemberService;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
+import com.wuliu.api.orderbusiness.service.WuliuMergedOrderService;
 import com.wuliu.api.orderbusiness.service.WuliuWholeOrderService;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
 import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
@@ -33,6 +34,7 @@ import com.wuliu.biz.util.CalendarUtil;
  * @author yunbin.wangyb 2016年12月27日 下午4:36:05
  */
 
+@SuppressWarnings("all")
 @Controller
 public class CrunchifyHelloWorld {
 
@@ -48,6 +50,8 @@ public class CrunchifyHelloWorld {
 
     private WuliuWholeOrderService  wuliuWholeOrderService;
 
+    private WuliuMergedOrderService wuliuMergedOrderService;
+
     @RequestMapping("/welcome")
     public ModelAndView helloWorld() {
 
@@ -57,59 +61,41 @@ public class CrunchifyHelloWorld {
         testDO.setName("adsadsdf");
         System.out.println("23");
         System.out.println("1233");
-        
-        
-       /* WuliuOrderDetailModel wuliuOrderDetailModel = new WuliuOrderDetailModel();
-        wuliuOrderDetailModel.setHeight(1L);
-        wuliuOrderDetailModel.setLength(1L);
-        wuliuOrderDetailModel.setMainOrderId(9L);
-        wuliuOrderDetailModel.setStatus("enable");
-        wuliuOrderDetailModel.setWeight(1L);
-        wuliuOrderDetailModel.setWidth(1L);
-        wuliuOrderDetailModel.setCount(1);
-        wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel);
-        
-        wuliuOrderDetailModel.setHeight(2L);
-        wuliuOrderDetailModel.setLength(2L);
-        wuliuOrderDetailModel.setMainOrderId(9L);
-        wuliuOrderDetailModel.setStatus("disable");
-        wuliuOrderDetailModel.setWeight(2L);
-        wuliuOrderDetailModel.setWidth(2L);
-        wuliuOrderDetailModel.setCount(2);
-        wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel);
-        
-        wuliuOrderDetailModel.setHeight(3L);
-        wuliuOrderDetailModel.setLength(3L);
-        wuliuOrderDetailModel.setMainOrderId(10L);
-        wuliuOrderDetailModel.setStatus("enable");
-        wuliuOrderDetailModel.setWeight(3L);
-        wuliuOrderDetailModel.setWidth(3L);
-        wuliuOrderDetailModel.setCount(3);
-        wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel);
-        
-        wuliuOrderDetailModel.setHeight(4L);
-        wuliuOrderDetailModel.setLength(4L);
-        wuliuOrderDetailModel.setMainOrderId(10L);
-        wuliuOrderDetailModel.setStatus("enable");
-        wuliuOrderDetailModel.setWeight(4L);
-        wuliuOrderDetailModel.setWidth(4L);
-        wuliuOrderDetailModel.setCount(4);
-        wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel);*/
-        
-        /*WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
-        wuliuOrderQueryParam.setCarIndex(123L);
-        System.out.println(JSON.toJSONString(wuliuWholeOrderService.queryWholeOrders(wuliuOrderQueryParam)));
-        
-        wuliuOrderQueryParam.setCarIndex(124L);
-        System.out.println(JSON.toJSONString(wuliuWholeOrderService.queryWholeOrders(wuliuOrderQueryParam)));
-        */
-        
+
+        /*
+         * WuliuOrderDetailModel wuliuOrderDetailModel = new WuliuOrderDetailModel();
+         * wuliuOrderDetailModel.setHeight(1L); wuliuOrderDetailModel.setLength(1L);
+         * wuliuOrderDetailModel.setMainOrderId(9L); wuliuOrderDetailModel.setStatus("enable");
+         * wuliuOrderDetailModel.setWeight(1L); wuliuOrderDetailModel.setWidth(1L); wuliuOrderDetailModel.setCount(1);
+         * wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel); wuliuOrderDetailModel.setHeight(2L);
+         * wuliuOrderDetailModel.setLength(2L); wuliuOrderDetailModel.setMainOrderId(9L);
+         * wuliuOrderDetailModel.setStatus("disable"); wuliuOrderDetailModel.setWeight(2L);
+         * wuliuOrderDetailModel.setWidth(2L); wuliuOrderDetailModel.setCount(2);
+         * wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel); wuliuOrderDetailModel.setHeight(3L);
+         * wuliuOrderDetailModel.setLength(3L); wuliuOrderDetailModel.setMainOrderId(10L);
+         * wuliuOrderDetailModel.setStatus("enable"); wuliuOrderDetailModel.setWeight(3L);
+         * wuliuOrderDetailModel.setWidth(3L); wuliuOrderDetailModel.setCount(3);
+         * wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel); wuliuOrderDetailModel.setHeight(4L);
+         * wuliuOrderDetailModel.setLength(4L); wuliuOrderDetailModel.setMainOrderId(10L);
+         * wuliuOrderDetailModel.setStatus("enable"); wuliuOrderDetailModel.setWeight(4L);
+         * wuliuOrderDetailModel.setWidth(4L); wuliuOrderDetailModel.setCount(4);
+         * wuliuOrderDetailService.addOrderDetail(wuliuOrderDetailModel);
+         */
+
+        /*
+         * WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
+         * wuliuOrderQueryParam.setCarIndex(123L);
+         * System.out.println(JSON.toJSONString(wuliuWholeOrderService.queryWholeOrders(wuliuOrderQueryParam)));
+         * wuliuOrderQueryParam.setCarIndex(124L);
+         * System.out.println(JSON.toJSONString(wuliuWholeOrderService.queryWholeOrders(wuliuOrderQueryParam)));
+         */
+
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
-        Date date = new Date(System.currentTimeMillis() + 24L * 1000L * 3600L);
+        Date date = new Date(System.currentTimeMillis());
         wuliuOrderQueryParam.setMinOrderDate(CalendarUtil.getMinDateInSameDay(date));
         wuliuOrderQueryParam.setMaxOrderDate(CalendarUtil.getMaxDateInSameDay(date));
-        System.out.println(JSON.toJSONString(wuliuWholeOrderService.queryWholeOrders(wuliuOrderQueryParam)));
-        
+        System.out.println(JSON.toJSONString(wuliuMergedOrderService.queryMergedOrders(wuliuOrderQueryParam)));
+
         return new ModelAndView("index", "message", message);
     }
 
@@ -151,5 +137,13 @@ public class CrunchifyHelloWorld {
 
     public void setWuliuWholeOrderService(WuliuWholeOrderService wuliuWholeOrderService) {
         this.wuliuWholeOrderService = wuliuWholeOrderService;
+    }
+
+    public WuliuMergedOrderService getWuliuMergedOrderService() {
+        return wuliuMergedOrderService;
+    }
+
+    public void setWuliuMergedOrderService(WuliuMergedOrderService wuliuMergedOrderService) {
+        this.wuliuMergedOrderService = wuliuMergedOrderService;
     }
 }
