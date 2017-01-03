@@ -1,6 +1,19 @@
 <html>
 <head>
+<meta charset="UTF-8"> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+
  <title>Spring & Velocity</title>  
+ 
+ <link rel="stylesheet" type="text/css" href="css/reset.css" />
+ <link rel="stylesheet" type="text/css" href="css/menu.css" />
+ <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+ <link rel="stylesheet" type="text/css" href="css/jquery.page.css" />
+ <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+ <script src="js/jquery.page.js" type="text/javascript"></script>
+ <script src="js/menu.js" type="text/javascript"></script>
+ <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+ 
 </head>
 <body>
   <div>
@@ -16,8 +29,5 @@
  
   </div>
   
-  <div>
-      #parse("/WEB-INF/fragments/_footer.vm")
-  </div>
 </body>
 </html>
