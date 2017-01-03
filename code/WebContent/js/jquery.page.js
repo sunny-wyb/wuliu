@@ -4,7 +4,7 @@
 (function ($) {
   //默认参数
   var defaults = {
-	defult_page_show : 1,
+	currentPage : 1,
     totalPages: 9,//总页数
     liNums: 9,//分页的数字按钮数(建议取奇数)
     activeClass: 'active' ,//active类
@@ -31,6 +31,7 @@
       var l = opts.totalPages;
       var n = opts.liNums;
       var active = opts.activeClass;
+      var currentPage = opts.currentPage;
       var str = '';
       var str1 = '<li><a href="javascript:" class="'+ active +'">1</a></li>';
       if (l > 1&&l < n+1) {
@@ -144,7 +145,7 @@
         }
       });
 
-      setPage(5);
+      setPage(currentPage);
           //重新渲染结构
         /*activePage 当前项*/
         function fpageShow(activePage){

@@ -35,6 +35,9 @@ import com.wuliu.api.orderbusiness.service.WuliuMergedOrderService;
 import com.wuliu.api.orderbusiness.service.WuliuWholeOrderService;
 import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 /**
  * 类CrunchifyHelloWorld.java的实现描述：TODO 类实现描述
  * 
@@ -69,9 +72,9 @@ public class Member {
                        @RequestParam(value = "w-price", required = false) Long weightPrice,
                        @RequestParam(value = "v-price", required = false) Long volumnPrice,
                        @RequestParam(value = "address", required = false) String address) {
-        
+
         WuliuMemberModel wuliuMemberModel = new WuliuMemberModel();
-        
+
         wuliuMemberModel.setId(id);
         wuliuMemberModel.setName(nickName);
         wuliuMemberModel.setNickName(nickName);
@@ -80,49 +83,63 @@ public class Member {
         wuliuMemberModel.setVolumnPrice(volumnPrice);
         wuliuMemberModel.setWeightPrice(weightPrice);
         wuliuMemberModel.setAddress(address);
-        
+
         Boolean result = null;
         if (id != null) {
             result = wuliuMemberService.updateMember(wuliuMemberModel);
-        }
-        else {
+        } else {
             wuliuMemberModel.setStatus(WuliuMemberConst.STATUS_ENABLE);
             WuliuMemberModel newWuliuMemberModel = wuliuMemberService.addMember(wuliuMemberModel);
             result = (newWuliuMemberModel != null);
         }
-        
-        Map<String , Object> ret = new HashMap<String, Object>();
+
+        Map<String, Object> ret = new HashMap<String, Object>();
         ret.put("result", result);
         return JSON.toJSONString(ret);
     }
 
     @RequestMapping("/member")
-    public ModelAndView load(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView load(@RequestParam(value = "page", required = false) Integer page,
+                             @RequestParam(value = "name", required = false) String name) throws UnsupportedEncodingException {
 
+        Map<String , Object> paramMap = new HashMap<String , Object>();
+        String decodeName = null;
+        if (name != null) {
+            decodeName = URLDecoder.decode(name, "utf-8");
+        }
+        paramMap.put("name", decodeName);
         WuliuMemberQueryParam wuliuMemberQueryParam = new WuliuMemberQueryParam();
+        if (page != null) {
+            wuliuMemberQueryParam.setPageNum(page);
+        }
+        if (decodeName != null) {
+            wuliuMemberQueryParam.setName(decodeName);
+        }
+
         PageResultModel<WuliuMemberModel> memberPageResult = wuliuMemberService.queryMembers(wuliuMemberQueryParam);
         List<WuliuMemberModel> members = memberPageResult.getResultList();
 
-        Map<String , Object> returnMap = new HashMap<String , Object>();
+        Map<String, Object> returnMap = new HashMap<String, Object>();
         returnMap.put("members", members);
-        returnMap.put("currentPage" , memberPageResult.getPageNum());
-        
+        returnMap.put("currentPage", memberPageResult.getPageNum());
+        returnMap.put("params", paramMap);
+
         int totalPage = memberPageResult.getTotalCount() / memberPageResult.getPageSize();
         if (memberPageResult.getTotalCount() % memberPageResult.getPageSize() != 0) {
             totalPage += 1;
         }
-        
+
         returnMap.put("totalPage", totalPage);
         returnMap.put("JSON", JSON.class);
         return new ModelAndView("member", returnMap);
     }
-    
+
     @RequestMapping(value = "/delete.html", method = { RequestMethod.POST, RequestMethod.GET })
     @ResponseBody
     public String delete(@RequestParam(value = "id") Long id) {
-        
+
         Boolean result = wuliuMemberService.deleteMember(id);
-        Map<String , Object> ret = new HashMap<String, Object>();
+        Map<String, Object> ret = new HashMap<String, Object>();
         ret.put("result", result);
         return JSON.toJSONString(ret);
     }

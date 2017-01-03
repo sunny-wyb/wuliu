@@ -104,11 +104,31 @@ $(function() {
 	var totalPage = $('.pagination').data('total-page');
 	var currentPage = $('.pagination').data('current-page');
 	$(".pagination").Page({
-      totalPages: totalPage,//分页总数
-      liNums: 7,
-      activeClass: 'activP', //active class style
-      callBack : function(page){
-    	  window.location.href='member.html?page=' + page;
-      }
-  });
+	    totalPages: totalPage,//分页总数
+	    liNums: 7,
+	    currentPage : currentPage,
+	    activeClass: 'activP', //active class style
+	    callBack : function(page){
+	    	window.location.href='member.html?page=' + page;
+	    }
+	});
+	
+	var doSearch = function() {
+		var name = $('.search-content input[name=name]').val();
+		var param = {};
+		if (name && name.trim().length > 0) {
+			param.name = name.trim();
+		}
+		
+		window.location.href='member.html?' + encodeURI($.param(param));
+	}
+	
+	$('.search-btns .btn-search').on('click' , function() {
+		doSearch();
+	});
+	
+	$('.search-btns .btn-cancel').on('click' , function() {
+		$('.search-content input[name=name]').val('');
+		doSearch();
+	});
 });
