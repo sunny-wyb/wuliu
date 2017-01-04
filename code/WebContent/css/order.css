@@ -1,0 +1,113 @@
+.wuliu .order .search-item {
+	display:inline-block;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top:20px;
+}
+
+.wuliu .order .search-operation {
+	position: relative;
+    background-color: white;
+    height: 110px;
+}
+
+.wuliu .order .search-content {
+	margin-right:200px;
+}
+
+.wuliu .order .search-btns {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 200px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    border-left: 1px solid #e3e3e3;
+}
+
+.wuliu .order .search-btns .btn-search {
+	color: #ffffff;
+    background-color: #2fafd7;
+    font-size: 14px;
+    height: 20px;
+    line-height: 40px;
+    width: 60px;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin-top:10px;
+    margin-left:50px;
+}
+
+.wuliu .order .search-btns .btn-cancel {
+	color: #ffffff;
+    background-color: #2fafd7;
+    font-size: 14px;
+    height: 20px;
+    line-height: 40px;
+    width: 60px;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin-top:10px;
+    margin-left:50px;
+}
+
+.wuliu .order .content {
+	margin-top:20px;
+	background-color:white;
+}
+
+
+.wuliu .order .content table thead{
+	background: #f8f8f8;
+}
+
+.wuliu .order .content table thead tr{
+	height:45px;
+	border-bottom:1px solid #e3e3e3;
+}
+
+.wuliu .order .content table tbody tr{
+	height:45px;
+	border-bottom:1px solid #e3e3e3;
+}
+
+.wuliu .order .content table .col-item{
+	text-align:center
+}
+
+.wuliu .order .content table .col-name {
+	width:68px;
+}
+
+.wuliu .order .content table .col-nick-name {
+	width:68px;
+}
+
+.wuliu .order .content table .col-tel-number{
+	width:68px;
+}
+
+.wuliu .order .content table .col-m-number{
+	width:68px;
+}
+
+.wuliu .order .content table .col-w-price{
+	width:68px;
+}
+
+.wuliu .order .content table .col-v-price{
+	width:68px;
+}
+
+.wuliu .order .content table .col-address {
+	width:68px;
+}
+
+.wuliu .order .content table .col-operations {
+	width:68px;
+}

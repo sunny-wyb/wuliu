@@ -1,0 +1,72 @@
+<link rel="stylesheet" type="text/css" href="css/order.css" />
+<div class='order'>
+	<div class='search-operation'>
+		<div class='search-content'>
+			<div class='search-item'>
+				<span class='form-title'>客户名字</span>
+				<input class='input' name="name" value="$!{params.name}"> 
+			</div>
+		</div>
+		<div class='search-btns'>
+				<div class='btn-search'>搜索</div>
+				<div class='btn-cancel'>取消</div>
+		</div>
+	</div>
+	<div class='content'>
+		<div class='function-area'>
+			<btn class='btn-create'> 新建</btn>
+		</div>
+		<table>	
+			<thead>
+				<tr>
+					<th class='col-name col-item'>车次</th>
+					<th class='col-nick-name col-item'>货号</th>
+					<th class='col-tel-number col-item'>姓名</th>
+					<th class='col-m-number col-item'>中转费</th>
+					<th class='col-w-price col-item'>加收费</th>
+					<th class='col-v-price col-item'>代收费</th>
+					<th class='col-address col-item'>备注</th>
+					<th class='col-operations col-item'>件数</th>
+					<th class='col-operations col-item'>重量</th>
+					<th class='col-operations col-item'>长</th>
+					<th class='col-operations col-item'>宽</th>
+					<th class='col-operations col-item'>高</th>
+					<th class='col-operations col-item'>总重</th>
+					<th class='col-operations col-item'>总体积</th>
+					<th class='col-operations col-item'>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				#foreach($item in $orders.resultList)	
+					#foreach($itemDetail in $item.wuliuOrderDetailModels)
+					<tr>
+						#if($velocityCount == 1)
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						#end
+						
+						<td class='col-name col-item' > b1</td>	
+						<td class='col-name col-item' > b1</td>	
+						<td class='col-name col-item' > b1</td>	
+						<td class='col-name col-item' > b1</td>	
+						<td class='col-name col-item' > b1</td>	
+						<td class='col-name col-item' > b1</td>	
+						<td class='col-name col-item' > b1</td>	
+						
+						
+						#if($velocityCount == 1)
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> cc</td>	
+						#end
+					</tr>	
+					#end
+				#end
+			</tbody>
+		</table>
+	</div>
+</div>

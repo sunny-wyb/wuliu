@@ -6,6 +6,7 @@
  <title>Spring & Velocity</title>  
  
  <link rel="stylesheet" type="text/css" href="css/reset.css" />
+ <link rel="stylesheet" type="text/css" href="css/index.css" />
  <link rel="stylesheet" type="text/css" href="css/menu.css" />
  <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
  <link rel="stylesheet" type="text/css" href="css/jquery.page.css" />
@@ -25,7 +26,30 @@
   
     <!-- View abc.vm is inserted here -->
     <!-- Noi dung View abc.vm se duoc tren tai day -->   
-    $screen_content
+    
+	<div class="wuliu">
+		<div class = 'menu'>
+			<ul id="accordion" class="accordion">
+		        <li>
+					<div class="link"><i class="fa fa-paint-brush"></i>客户管理<i class="fa fa-chevron-down"></i></div>
+					<ul class="submenu">
+						<li><a href="#">客户信息</a></li>
+					</ul>
+				</li>
+				<li>
+					<div class="link"><i class="fa fa-code"></i>订单管理<i class="fa fa-chevron-down"></i></div>
+					<ul class="submenu">
+						<li><a href="#">Javascript</a></li>
+						<li><a href="#">jQuery</a></li>
+						<li><a href="#">Frameworks javascript</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="main-content">
+	    	$screen_content
+    	</div>
+    </div>
  
   </div>
   

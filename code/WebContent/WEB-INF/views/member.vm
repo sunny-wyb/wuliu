@@ -1,115 +1,95 @@
 <link rel="stylesheet" type="text/css" href="css/member.css" />
-<div class="wuliu">
-	<div class = 'menu'>
-		<ul id="accordion" class="accordion">
-	        <li>
-				<div class="link"><i class="fa fa-paint-brush"></i>客户管理<i class="fa fa-chevron-down"></i></div>
-				<ul class="submenu">
-					<li><a href="#">客户信息</a></li>
-				</ul>
-			</li>
-			<li>
-				<div class="link"><i class="fa fa-code"></i>订单管理<i class="fa fa-chevron-down"></i></div>
-				<ul class="submenu">
-					<li><a href="#">Javascript</a></li>
-					<li><a href="#">jQuery</a></li>
-					<li><a href="#">Frameworks javascript</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-	<div class='main-content'>
-		<div class='search-operation'>
-			<div class='search-content'>
-				<div class='search-item'>
-					<span class='form-title'>客户名字</span>
-					<input class='input' name="name" value="$!{params.name}"> 
-				</div>
-			</div>
-			<div class='search-btns'>
-					<div class='btn-search'>搜索</div>
-					<div class='btn-cancel'>取消</div>
+<div class='member'>
+	<div class='search-operation'>
+		<div class='search-content'>
+			<div class='search-item'>
+				<span class='form-title'>客户名字</span>
+				<input class='input' name="name" value="$!{params.name}"> 
 			</div>
 		</div>
-		<div class='content'>
-			<div class='function-area'>
-				<btn class='btn-create'> 新建</btn>
-			</div>
-			<table>	
-				<thead>
-					<tr>
-						<th class='col-name col-item'>名字</th>
-						<th class='col-nick-name col-item'>别名</th>
-						<th class='col-tel-number col-item'>座机</th>
-						<th class='col-m-number col-item'>手机</th>
-						<th class='col-w-price col-item'>重量单价</th>
-						<th class='col-v-price col-item'>体积单价</th>
-						<th class='col-address col-item'>地址</th>
-						<th class='col-operations col-item'>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					#foreach($member in $members)
-					<tr data-json='$JSON.toJSONString($member)'>
-						<td class='col-name col-item'>$!{member.name}</td>
-						<td class='col-nick-name col-item'>$!{member.nickName}</td>
-						<td class='col-tel-number col-item'>$!{member.telephoneNumber}</td>
-						<td class='col-m-number col-item'>$!{member.mobileNumber}</td>
-						<td class='col-w-price col-item'>$!{member.weightPrice}</td>
-						<td class='col-v-price col-item'>$!{member.volumnPrice}</td>
-						<td class='col-address col-item'>$!{member.address}</td>
-						<td class='col-operations col-item'>
-							<a href='javascript:void(0);' class='btn-edit'>编辑</div>
-							<a href='javascript:void(0);' class='btn-delete'>删除</div>
-						</td>
-					</tr>
-					#end
-				</tbody>
-			</table>
-			<div class='pagination' data-total-page = '$totalPage' data-current-page = '$currentPage'></div>
-			
-			<div class='dialog-form' style='display:none'>
-				<form>
-					<input name="id" value="18" type="hidden">
-					<div class='form-item'>
-						<label for="name">姓名</label>
-						<input name='name' value='1'>
+		<div class='search-btns'>
+				<div class='btn-search'>搜索</div>
+				<div class='btn-cancel'>取消</div>
+		</div>
+	</div>
+	<div class='content'>
+		<div class='function-area'>
+			<btn class='btn-create'> 新建</btn>
+		</div>
+		<table>	
+			<thead>
+				<tr>
+					<th class='col-name col-item'>名字</th>
+					<th class='col-nick-name col-item'>别名</th>
+					<th class='col-tel-number col-item'>座机</th>
+					<th class='col-m-number col-item'>手机</th>
+					<th class='col-w-price col-item'>重量单价</th>
+					<th class='col-v-price col-item'>体积单价</th>
+					<th class='col-address col-item'>地址</th>
+					<th class='col-operations col-item'>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach($member in $members)
+				<tr data-json='$JSON.toJSONString($member)'>
+					<td class='col-name col-item'>$!{member.name}</td>
+					<td class='col-nick-name col-item'>$!{member.nickName}</td>
+					<td class='col-tel-number col-item'>$!{member.telephoneNumber}</td>
+					<td class='col-m-number col-item'>$!{member.mobileNumber}</td>
+					<td class='col-w-price col-item'>$!{member.weightPrice}</td>
+					<td class='col-v-price col-item'>$!{member.volumnPrice}</td>
+					<td class='col-address col-item'>$!{member.address}</td>
+					<td class='col-operations col-item'>
+						<a href='javascript:void(0);' class='btn-edit'>编辑</div>
+						<a href='javascript:void(0);' class='btn-delete'>删除</div>
+					</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+		<div class='pagination' data-total-page = '$totalPage' data-current-page = '$currentPage'></div>
+		
+		<div class='dialog-form' style='display:none'>
+			<form>
+				<input name="id" value="18" type="hidden">
+				<div class='form-item'>
+					<label for="name">姓名</label>
+					<input name='name' value='1'>
+				</div>
+				
+				<div class='form-item'>
+					<label for="nick-name">别名</label>
+					<input name='nick-name' value='1'>
+				</div>
+				<div class='form-item'>
+					<label for="tel-number">座机</label>
+					<input name='tel-number' value='1'>
+				</div>
+				
+				<div class='form-item'>
+					<label for="m-number">手机</label>
+					<input name='m-number' value='1'>
+				</div>
+				<div class='form-item'>
+					<label for="w-price">重量单价</label>
+					<input name='w-price' value='1'>
+				</div>
+				
+				<div class='form-item'>
+					<label for="v-price">体积单价</label>
+					<input name='v-price' value='1'>
+				</div>
+				<div class='form-item'>
+					<label for="address">地址</label>
+					<input name='address' value='1'>
+				</div>
+				<div class='btn-area'>
+					<div class='btns'>
+						<button class='btn-save btn-item'>保存</button>
+						<button class='btn-cancel btn-item'>取消</button>
 					</div>
-					
-					<div class='form-item'>
-						<label for="nick-name">别名</label>
-						<input name='nick-name' value='1'>
-					</div>
-					<div class='form-item'>
-						<label for="tel-number">座机</label>
-						<input name='tel-number' value='1'>
-					</div>
-					
-					<div class='form-item'>
-						<label for="m-number">手机</label>
-						<input name='m-number' value='1'>
-					</div>
-					<div class='form-item'>
-						<label for="w-price">重量单价</label>
-						<input name='w-price' value='1'>
-					</div>
-					
-					<div class='form-item'>
-						<label for="v-price">体积单价</label>
-						<input name='v-price' value='1'>
-					</div>
-					<div class='form-item'>
-						<label for="address">地址</label>
-						<input name='address' value='1'>
-					</div>
-					<div class='btn-area'>
-						<div class='btns'>
-							<button class='btn-save btn-item'>保存</button>
-							<button class='btn-cancel btn-item'>取消</button>
-						</div>
-					</div>
-				</form
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

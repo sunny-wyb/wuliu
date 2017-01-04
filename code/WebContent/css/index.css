@@ -1,0 +1,43 @@
+html , body {
+	background-color:#EFF2F9!important;
+}
+
+.wuliu {
+	position:relative;
+	margin:auto;
+	width:1190px;
+}
+
+.wuliu .menu {
+	position : absolute;
+	top:0px;
+	background-color:red;
+}
+
+.wuliu .main-content {
+	margin-left:170px;
+}
+
+.wuliu .input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+    outline: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #222;
+    height: 28px;
+    line-height: 26px;
+    padding: 0 8px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.wuliu .form-title {
+    line-height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 73px;
+    margin-left: 17px;
+}
