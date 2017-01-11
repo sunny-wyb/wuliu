@@ -91,4 +91,14 @@ public class WuliuMemberDAOImpl implements WuliuMemberDAO {
     public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
+
+    /* (non-Javadoc)
+     * @see com.wuliu.dao.WuliuMemberDAO#queryMemberWithId(java.lang.Long)
+     */
+    @Override
+    public WuliuMemberDO queryMemberWithId(Long id) {
+        Map<String , Object> params = new HashMap<String , Object>();
+        params.put("id", id);
+        return (WuliuMemberDO)sqlSessionTemplate.selectOne("WuliuMember.queryWithId" , params);
+    }
 }

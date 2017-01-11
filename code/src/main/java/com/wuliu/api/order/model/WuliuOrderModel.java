@@ -40,6 +40,8 @@ public class WuliuOrderModel implements Serializable {
 
     protected String          status;
 
+    protected String          comments;
+
     public Long getId() {
         return id;
     }
@@ -110,5 +112,13 @@ public class WuliuOrderModel implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

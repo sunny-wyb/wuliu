@@ -27,4 +27,6 @@ public interface WuliuMemberService {
     public int countMembers(WuliuMemberQueryParam wuliuMemberQueryParam);
 
     public boolean deleteMember(Long id);
+    
+    public WuliuMemberModel queryMemberWithId(Long id);
 }

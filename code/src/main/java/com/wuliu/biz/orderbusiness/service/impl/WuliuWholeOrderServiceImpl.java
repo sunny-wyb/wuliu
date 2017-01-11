@@ -13,15 +13,18 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 
 import com.wuliu.api.common.model.PageResultModel;
+import com.wuliu.api.member.model.WuliuMemberModel;
+import com.wuliu.api.member.service.WuliuMemberService;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.orderbusiness.model.WuliuWholeOrderModel;
 import com.wuliu.api.orderbusiness.service.WuliuWholeOrderService;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailQueryParam;
+import com.wuliu.biz.member.AO.WuliuMemberAO;
 import com.wuliu.biz.order.AO.WuliuOrderAO;
-import com.wuliu.biz.orderbusiness.util.WuliuWholeOrderUtil;
 import com.wuliu.biz.orderdetail.AO.WuliuOrderDetailAO;
+import com.wuliu.biz.util.WuliuWholeOrderUtil;
 
 /**
  * 类WuliuWholeOrderServiceImpl.java的实现描述：TODO 类实现描述
@@ -33,6 +36,8 @@ public class WuliuWholeOrderServiceImpl implements WuliuWholeOrderService {
     private WuliuOrderAO       wuliuOrderAO;
 
     private WuliuOrderDetailAO wuliuOrderDetailAO;
+
+    private WuliuMemberAO      wuliuMemberAO;
 
     /*
      * (non-Javadoc)
@@ -60,6 +65,11 @@ public class WuliuWholeOrderServiceImpl implements WuliuWholeOrderService {
             List<WuliuOrderDetailModel> wuliuOrderDetailModels = wuliuOrderDetailAO.queryOrderDetails(wuliuOrderDetailQueryParam);
             WuliuWholeOrderModel wuliuWholeOrderModel = WuliuWholeOrderUtil.buildWholeModel(item,
                                                                                             wuliuOrderDetailModels);
+            WuliuMemberModel wuliuMemberModel = wuliuMemberAO.queryMemberWithId(item.getMemberId());
+            if (wuliuMemberModel != null) {
+                wuliuWholeOrderModel.setName(wuliuMemberModel.getName());
+            }
+
             if (wuliuWholeOrderModel != null) {
                 resultList.add(wuliuWholeOrderModel);
             }
@@ -87,5 +97,13 @@ public class WuliuWholeOrderServiceImpl implements WuliuWholeOrderService {
 
     public void setWuliuOrderDetailAO(WuliuOrderDetailAO wuliuOrderDetailAO) {
         this.wuliuOrderDetailAO = wuliuOrderDetailAO;
+    }
+
+    public WuliuMemberAO getWuliuMemberAO() {
+        return wuliuMemberAO;
+    }
+
+    public void setWuliuMemberAO(WuliuMemberAO wuliuMemberAO) {
+        this.wuliuMemberAO = wuliuMemberAO;
     }
 }

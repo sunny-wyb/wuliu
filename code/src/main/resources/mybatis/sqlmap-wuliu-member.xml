@@ -93,4 +93,19 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id ="queryWithId" parameterType="java.util.Map" resultType="WuliuMember">
+		SELECT
+			id			as id,
+			name		as name,
+			nick_name	as nickName,
+			tel_number	as telephoneNumber,
+			m_number	as mobileNumber,
+			address		as address,
+			w_price		as weightPrice,
+			v_price		as volumnPrice,
+			status		as status
+		FROM WULIU_MEMBER
+		WHERE id = #{id}
+	</select>
 </mapper>

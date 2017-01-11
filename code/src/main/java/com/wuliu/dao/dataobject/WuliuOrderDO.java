@@ -34,6 +34,8 @@ public class WuliuOrderDO {
 
     private String status;
 
+    private String comments;
+
     public Long getId() {
         return id;
     }
@@ -104,5 +106,13 @@ public class WuliuOrderDO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

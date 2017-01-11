@@ -19,20 +19,20 @@
 		<table>	
 			<thead>
 				<tr>
-					<th class='col-name col-item'>车次</th>
-					<th class='col-nick-name col-item'>货号</th>
-					<th class='col-tel-number col-item'>姓名</th>
-					<th class='col-m-number col-item'>中转费</th>
-					<th class='col-w-price col-item'>加收费</th>
-					<th class='col-v-price col-item'>代收费</th>
-					<th class='col-address col-item'>备注</th>
-					<th class='col-operations col-item'>件数</th>
-					<th class='col-operations col-item'>重量</th>
-					<th class='col-operations col-item'>长</th>
-					<th class='col-operations col-item'>宽</th>
-					<th class='col-operations col-item'>高</th>
-					<th class='col-operations col-item'>总重</th>
-					<th class='col-operations col-item'>总体积</th>
+					<th class='col-car-index col-item'>车次</th>
+					<th class='col-order-number col-item'>货号</th>
+					<th class='col-name col-item'>姓名</th>
+					<th class='col-zz-fee col-item'>中转费</th>
+					<th class='col-js-fee col-item'>加收费</th>
+					<th class='col-ds-fee col-item'>代收费</th>
+					<th class='col-comments col-item'>备注</th>
+					<th class='col-count col-item'>件数</th>
+					<th class='col-weight col-item'>重量</th>
+					<th class='col-length col-item'>长</th>
+					<th class='col-width col-item'>宽</th>
+					<th class='col-height col-item'>高</th>
+					<th class='col-total-weight col-item'>总重</th>
+					<th class='col-total-volumn col-item'>总体积</th>
 					<th class='col-operations col-item'>操作</th>
 				</tr>
 			</thead>
@@ -42,31 +42,172 @@
 					#foreach($itemDetail in $item.wuliuOrderDetailModels)
 					<tr>
 						#if($velocityCount == 1)
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> aaa</td>	
+						<td class='col-car-index col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.carIndex</td>	
+						<td class='col-order-number col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.orderNumber</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.name</td>	
+						<td class='col-zz-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.zhongzhuanFee</td>	
+						<td class='col-js-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.jiashouFee</td>	
+						<td class='col-ds-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.daishouFee</td>	
+						<td class='col-comments col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.comments</td>	
 						#end
 						
-						<td class='col-name col-item' > b1</td>	
-						<td class='col-name col-item' > b1</td>	
-						<td class='col-name col-item' > b1</td>	
-						<td class='col-name col-item' > b1</td>	
-						<td class='col-name col-item' > b1</td>	
-						<td class='col-name col-item' > b1</td>	
-						<td class='col-name col-item' > b1</td>	
+						<td class='col-count col-item' > $itemDetail.count</td>	
+						<td class='col-weight col-item' > $itemDetail.weight</td>	
+						<td class='col-length col-item' > $itemDetail.length</td>	
+						<td class='col-width col-item' > $itemDetail.width</td>	
+						<td class='col-height col-item' > $itemDetail.height</td>	
+						<td class='col-total-weight col-item' > $itemDetail.totalWeight</td>	
+						<td class='col-total-volumn col-item' > $itemDetail.totalVolumn</td>	
 						
 						
 						#if($velocityCount == 1)
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> cc</td>	
+						<td class='col-operation col-item' rowspan = $item.wuliuOrderDetailModels.size() data-data='$JSON.toJSONString($item)'> 
+							<div class='btn-view'><a>查看</a></div>
+							<div class='btn-update'><a>更新</a></div>
+							<div><a>删除</a></div>
+							<div><a>合并结果</a></div>
+							<script type="text/x-template" name="offerGroup">
+								<div class='detail-cols'>
+									<div>123123</div>
+								</div>
+							</script>
+						</td>	
 						#end
 					</tr>	
 					#end
 				#end
 			</tbody>
 		</table>
+		<div class='dialog-form' style='display:none'>
+			<form>
+				<input name="order-id" value="18" type="hidden">
+				<div class='form-item'>
+					<label for="car-index">车次</label>
+					<input name='car-index' value='1'>
+				</div>
+				<div class='form-item'>
+					<label for="order-data">日期</label>
+					<input name='order-data' value='2016-1-1'>
+				</div>
+				
+				<div class='form-item'>
+					<label for="order-index">票号</label>
+					<input name='order-index' value='1'>
+				</div>
+				
+				<div class='form-item'>
+					<label for="member-id">客户</label>
+					<input name='member-id' value='1'>
+				</div>
+				
+				<div class='form-item'>
+					<label for="zz-fee">中转费</label>
+					<input name='zz-fee' value='1'>
+				</div>
+				
+				<div class='form-item'>
+					<label for="js-fee">加收费</label>
+					<input name='js-fee' value='1'>
+				</div>
+				<div class='form-item'>
+					<label for="ds-fee">代收费</label>
+					<input name='ds-fee' value='1'>
+				</div>
+				<div class='form-item comments-col'>
+					<label for="comments">备注</label>
+					<input name="comments" class="comments-col-input" value='1'>
+				</div>
+				<div class='form-item detail-list'>
+					<div class='detail-item-header'>
+						<div class='detail-col-count detail-col-item'>
+							件数
+						</div>
+						<div class='detail-col-weight detail-col-item'>
+							重量
+						</div>
+						<div class='detail-col-length detail-col-item'>
+							长度
+						</div>
+						<div class='detail-col-width detail-col-item'>
+							宽度
+						</div>
+						<div class='detail-col-height detail-col-item'>
+							高度
+						</div>
+						<div class='detail-col-total-weight detail-col-item'>
+							总重量
+						</div>
+						<div class='detail-col-total-volumn detail-col-item'>
+							总体积
+						</div>
+						<div class='detail-col-operation detail-col-item'>
+							操作
+						</div>
+					</div>
+					<div class='detail-item'>
+						<div class='detail-cols'>
+							<input name="detail-id" type="hidden">
+							<div class='detail-col-count detail-col-item'>
+								<input name="count">
+							</div>
+							<div class='detail-col-weight detail-col-item'>
+								<input name="weight">
+							</div>
+							<div class='detail-col-length detail-col-item'>
+								<input name="length">
+							</div>
+							<div class='detail-col-width detail-col-item'>
+								<input name="width">
+							</div>
+							<div class='detail-col-height detail-col-item'>
+								<input name="height">
+							</div>
+							<div class='detail-col-total-weight detail-col-item'>
+								<input name="total-weight">
+							</div>
+							<div class='detail-col-total-volumn detail-col-item'>
+								<input name="total-volumn">
+							</div>
+							<div class='detail-col-operation detail-col-item'>
+								<span>增加</span>
+							</div>
+						</div>
+						<div class='detail-cols'>
+							<div class='detail-col-count detail-col-item'>
+								<input name="count">
+							</div>
+							<div class='detail-col-weight detail-col-item'>
+								<input name="weight">
+							</div>
+							<div class='detail-col-length detail-col-item'>
+								<input name="length">
+							</div>
+							<div class='detail-col-width detail-col-item'>
+								<input name="width">
+							</div>
+							<div class='detail-col-height detail-col-item'>
+								<input name="height">
+							</div>
+							<div class='detail-col-total-weight detail-col-item'>
+								<input name="total-weight">
+							</div>
+							<div class='detail-col-total-volumn detail-col-item'>
+								<input name="total-volumn">
+							</div>
+							<div class='detail-col-operation detail-col-item'>
+								<span>删除</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='btn-area'>
+					<div class='btns'>
+						<button class='btn-save btn-item'>保存</button>
+						<button class='btn-cancel btn-item'>取消</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
+ <script src="js/order.js" type="text/javascript"></script>

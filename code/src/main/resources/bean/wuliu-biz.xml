@@ -37,6 +37,7 @@
 	<bean id="wuliuWholeOrderService" class="com.wuliu.biz.orderbusiness.service.impl.WuliuWholeOrderServiceImpl">
 		<property name="wuliuOrderDetailAO" ref="wuliuOrderDetailAO" />
 		<property name="wuliuOrderAO" ref="wuliuOrderAO" />
+		<property name="wuliuMemberAO" ref="wuliuMemberAO"/>
 	</bean>
 	
 	<bean id="wuliuMergedOrderService" class="com.wuliu.biz.orderbusiness.service.impl.WuliuMergedOrderServiceImpl">

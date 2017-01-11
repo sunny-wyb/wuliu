@@ -36,7 +36,7 @@ public class WuliuOrderDetailModel implements Serializable {
     private Long              weight;
 
     private String            status;
-
+    
     public Long getId() {
         return id;
     }

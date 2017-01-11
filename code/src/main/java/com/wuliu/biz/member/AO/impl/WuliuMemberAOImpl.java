@@ -104,4 +104,12 @@ public class WuliuMemberAOImpl implements WuliuMemberAO {
     public void setWuliuMemberDAO(WuliuMemberDAO wuliuMemberDAO) {
         this.wuliuMemberDAO = wuliuMemberDAO;
     }
+
+    /* (non-Javadoc)
+     * @see com.wuliu.biz.member.AO.WuliuMemberAO#queryMemberWithId(java.lang.Long)
+     */
+    @Override
+    public WuliuMemberModel queryMemberWithId(Long id) {
+        return WuliuMemberUtil.convertToWuliuMemberModel(wuliuMemberDAO.queryMemberWithId(id));
+    }
 }

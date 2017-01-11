@@ -8,6 +8,7 @@
 package com.wuliu.biz.order.service.impl;
 
 import com.wuliu.api.common.model.PageResultModel;
+import com.wuliu.api.order.constant.WuliuOrderConst;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
@@ -28,6 +29,9 @@ public class WuliuOrderServiceImpl implements WuliuOrderService {
      */
     @Override
     public WuliuOrderModel addOrder(WuliuOrderModel wuliuOrderModel) {
+        if (wuliuOrderModel.getStatus() == null) {
+            wuliuOrderModel.setStatus(WuliuOrderConst.STATUS_ENABLE);
+        }
         return wuliuOrderAO.addOrder(wuliuOrderModel);
     }
 

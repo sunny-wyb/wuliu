@@ -5,9 +5,12 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package com.wuliu.biz.orderbusiness.util;
+package com.wuliu.biz.util;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.orderbusiness.model.WuliuWholeOrderModel;
@@ -22,6 +25,7 @@ public class WuliuWholeOrderUtil {
 
     public static WuliuWholeOrderModel buildWholeModel(WuliuOrderModel wuliuOrderModel,
                                                 List<WuliuOrderDetailModel> wuliuOrderDetailModels) {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd");
         WuliuWholeOrderModel ret = new WuliuWholeOrderModel();
         ret.setCarIndex(wuliuOrderModel.getCarIndex());
         ret.setDaishouFee(wuliuOrderModel.getDaishouFee());
@@ -31,9 +35,17 @@ public class WuliuWholeOrderUtil {
         ret.setOrderDate(wuliuOrderModel.getOrderDate());
         ret.setOrderIndex(wuliuOrderModel.getOrderIndex());
         ret.setStatus(wuliuOrderModel.getStatus());
-        ret.setWuliuOrderDetailModels(wuliuOrderDetailModels);
+        ret.setWuliuOrderDetailModels(WuliuWholeOrderDetailUtil.builduliuWholeDetailModelList(wuliuOrderDetailModels));
         ret.setZhongzhuanFee(wuliuOrderModel.getZhongzhuanFee());
+        
+        int count = 0;
+        if (CollectionUtils.isNotEmpty(wuliuOrderDetailModels)) {
+            for (WuliuOrderDetailModel item : wuliuOrderDetailModels) {
+                count += item.getCount();
+            }
+        }
 
+        ret.setOrderNumber(sdf.format(wuliuOrderModel.getOrderDate()) + String.valueOf(wuliuOrderModel.getOrderIndex()) + String.valueOf(count));
         return ret;
     }
 }

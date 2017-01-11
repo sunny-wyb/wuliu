@@ -23,15 +23,35 @@ public class WuliuWholeOrderModel extends WuliuOrderModel implements Serializabl
     /**
      * 
      */
-    private static final long           serialVersionUID = -225344244820376541L;
+    private static final long                serialVersionUID = -225344244820376541L;
 
-    private List<WuliuOrderDetailModel> wuliuOrderDetailModels;
+    private String                           name;
 
-    public List<WuliuOrderDetailModel> getWuliuOrderDetailModels() {
+    private String                           orderNumber;
+
+    private List<WuliuWholeOrderDetailModel> wuliuOrderDetailModels;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public List<WuliuWholeOrderDetailModel> getWuliuOrderDetailModels() {
         return wuliuOrderDetailModels;
     }
 
-    public void setWuliuOrderDetailModels(List<WuliuOrderDetailModel> wuliuOrderDetailModels) {
+    public void setWuliuOrderDetailModels(List<WuliuWholeOrderDetailModel> wuliuOrderDetailModels) {
         this.wuliuOrderDetailModels = wuliuOrderDetailModels;
     }
 }

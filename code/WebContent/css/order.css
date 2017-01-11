@@ -77,7 +77,8 @@
 }
 
 .wuliu .order .content table .col-item{
-	text-align:center
+	text-align:center;
+	width:78px;
 }
 
 .wuliu .order .content table .col-name {
@@ -110,4 +111,111 @@
 
 .wuliu .order .content table .col-operations {
 	width:68px;
+}
+
+.wuliu .order .function-area .btn-create {
+	box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 33px;
+    border: 1px solid #e8e8e8;
+    padding: 0 15px;
+    color: #666;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    text-decoration: none;
+    color: #fff;
+    background: #027cff;
+    border-color: #027cff;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dialog-form .form-item {
+	margin-left:5px;
+    line-height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 17px;
+    margin-right: 10px;
+    margin-top:10px;
+}
+
+.dialog-form .form-item label{
+	width:70px;
+	display:inline-block;
+}
+
+.dialog-form .form-item.comments-col {
+	    display: block;
+}
+
+.dialog-form .form-item.comments-col .comments-col-input{
+	width:389px;
+}
+
+.dialog-form .form-item input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+    outline: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #222;
+    height: 28px;
+    line-height: 26px;
+    padding: 0 8px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.dialog-form .btn-area {
+	border-top: 1px solid #e3e3e3;
+    margin-top: 20px;
+    padding-top: 10px;
+    text-align: right;
+}
+
+.dialog-form .btn-area .btns .btn-item{
+	box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 33px;
+    border: 1px solid #e8e8e8;
+    padding: 0 15px;
+    color: #666;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    text-decoration: none;
+    color: #fff;
+    background: #027cff;
+    border-color: #027cff;
+}
+
+.detail-list .detail-col-item {
+    display: inline-block;
+    width: 55px;
+    text-align: center;
+}
+
+.detail-list .detail-item-header .detail-col-item {
+    border-bottom: 1px solid black;
+}
+
+.detail-list .detail-col-item input{
+	width:100%;
 }

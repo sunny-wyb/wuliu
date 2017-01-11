@@ -26,4 +26,6 @@ public interface WuliuMemberDAO {
     public List<WuliuMemberDO> queryMembers(WuliuMemberQueryParam wuliuMemberQueryParam);
 
     public int countMembers(WuliuMemberQueryParam wuliuMemberQueryParam);
+    
+    public WuliuMemberDO queryMemberWithId(Long id);
 }

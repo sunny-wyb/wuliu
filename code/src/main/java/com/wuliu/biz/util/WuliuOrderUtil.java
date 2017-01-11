@@ -37,6 +37,7 @@ public class WuliuOrderUtil {
         ret.setOrderIndex(wuliuOrderDO.getOrderIndex());
         ret.setStatus(wuliuOrderDO.getStatus());
         ret.setZhongzhuanFee(wuliuOrderDO.getZhongzhuanFee());
+        ret.setComments(wuliuOrderDO.getComments());
         return ret;
     }
 
@@ -55,6 +56,7 @@ public class WuliuOrderUtil {
         ret.setOrderIndex(wuliuOrderModel.getOrderIndex());
         ret.setStatus(wuliuOrderModel.getStatus());
         ret.setZhongzhuanFee(wuliuOrderModel.getZhongzhuanFee());
+        ret.setComments(wuliuOrderModel.getComments());
         return ret;
     }
 

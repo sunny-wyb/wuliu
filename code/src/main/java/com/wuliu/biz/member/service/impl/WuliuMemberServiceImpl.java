@@ -86,4 +86,13 @@ public class WuliuMemberServiceImpl implements WuliuMemberService {
     public void setWuliuMemberAO(WuliuMemberAO wuliuMemberAO) {
         this.wuliuMemberAO = wuliuMemberAO;
     }
+
+    /* (non-Javadoc)
+     * @see com.wuliu.api.member.service.WuliuMemberService#queryMemberWithId(java.lang.Long)
+     */
+    @Override
+    public WuliuMemberModel queryMemberWithId(Long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
