@@ -7,9 +7,11 @@
  */
 package com.wuliu.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.wuliu.api.common.model.PageResultModel;
 import com.wuliu.api.member.constant.WuliuMemberConst;
 import com.wuliu.api.member.model.WuliuMemberModel;
@@ -34,6 +38,7 @@ import com.wuliu.api.order.service.WuliuOrderService;
 import com.wuliu.api.orderbusiness.service.WuliuMergedOrderService;
 import com.wuliu.api.orderbusiness.service.WuliuWholeOrderService;
 import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
+import com.wuliu.biz.member.AO.WuliuMemberAO;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -143,6 +148,25 @@ public class Member {
         ret.put("result", result);
         return JSON.toJSONString(ret);
     }
+    
+    @RequestMapping(value = "/searchMember.html", method = { RequestMethod.POST, RequestMethod.GET })
+    @ResponseBody
+    public String searchMember(@RequestParam(value = "term") String name) {
+
+        WuliuMemberQueryParam param = new WuliuMemberQueryParam();
+        param.setPrefixName(name);
+        PageResultModel<WuliuMemberModel>result = wuliuMemberService.queryMembers(param);
+        JSONArray ret = new JSONArray();
+        if (result != null && result.getResultList() != null) {
+            for (WuliuMemberModel item : result.getResultList()) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("id", item.getId());
+                jsonObject.put("value", item.getName());
+                ret.add(jsonObject);
+            }
+        }
+        return ret.toJSONString();
+    }
 
     public SqlSessionTemplate getSqlSessionTemplate() {
         return sqlSessionTemplate;
@@ -190,5 +214,35 @@ public class Member {
 
     public void setWuliuMergedOrderService(WuliuMergedOrderService wuliuMergedOrderService) {
         this.wuliuMergedOrderService = wuliuMergedOrderService;
+    }
+}
+
+class TestModel {
+    long id;
+    String value;
+    
+    public TestModel (long id , String value) {
+        this.id = id;
+        this.value = value;
+    }
+
+    
+    public long getId() {
+        return id;
+    }
+
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    
+    public String getValue() {
+        return value;
+    }
+
+    
+    public void setValue(String value) {
+        this.value = value;
     }
 }

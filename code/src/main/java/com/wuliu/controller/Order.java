@@ -75,6 +75,9 @@ public class Order {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         returnMap.put("orders", result);
         returnMap.put("JSON", JSON.class);
+        
+        addUtils(returnMap);
+        
         return new ModelAndView("order", returnMap);
     }
 
@@ -236,5 +239,10 @@ public class Order {
 
     public void setWuliuMergedOrderService(WuliuMergedOrderService wuliuMergedOrderService) {
         this.wuliuMergedOrderService = wuliuMergedOrderService;
+    }
+    
+    private void addUtils(Map<String , Object> context) {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
+        context.put("sdf", sdf);
     }
 }

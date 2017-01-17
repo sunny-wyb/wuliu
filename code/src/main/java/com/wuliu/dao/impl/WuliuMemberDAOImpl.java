@@ -35,7 +35,7 @@ public class WuliuMemberDAOImpl implements WuliuMemberDAO {
         if (wuliuMemberDO == null) {
             return false;
         }
-        
+
         sqlSessionTemplate.insert("WuliuMember.insert", wuliuMemberDO);
         return true;
     }
@@ -49,7 +49,7 @@ public class WuliuMemberDAOImpl implements WuliuMemberDAO {
         if (wuliuMemberDO == null) {
             return false;
         }
-        
+
         int cnt = sqlSessionTemplate.update("WuliuMember.update", wuliuMemberDO);
         return cnt > 0;
     }
@@ -60,9 +60,10 @@ public class WuliuMemberDAOImpl implements WuliuMemberDAO {
      */
     @Override
     public List<WuliuMemberDO> queryMembers(WuliuMemberQueryParam wuliuMemberQueryParam) {
-        Map<String , Object> params = new HashMap<String , Object>();
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("id", wuliuMemberQueryParam.getId());
         params.put("name", wuliuMemberQueryParam.getName());
+        params.put("prefixName", wuliuMemberQueryParam.getPrefixName());
         params.put("status", wuliuMemberQueryParam.getStatus());
         params.put("start", (wuliuMemberQueryParam.getPageNum() - 1) * wuliuMemberQueryParam.getPageSize());
         params.put("size", wuliuMemberQueryParam.getPageSize());
@@ -76,11 +77,12 @@ public class WuliuMemberDAOImpl implements WuliuMemberDAO {
      */
     @Override
     public int countMembers(WuliuMemberQueryParam wuliuMemberQueryParam) {
-        Map<String , Object> params = new HashMap<String , Object>();
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("id", wuliuMemberQueryParam.getId());
         params.put("name", wuliuMemberQueryParam.getName());
+        params.put("prefixName", wuliuMemberQueryParam.getPrefixName());
         params.put("status", wuliuMemberQueryParam.getStatus());
-        int count = sqlSessionTemplate.selectOne("WuliuMember.count" , params);
+        int count = sqlSessionTemplate.selectOne("WuliuMember.count", params);
         return count;
     }
 
@@ -92,13 +94,14 @@ public class WuliuMemberDAOImpl implements WuliuMemberDAO {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.wuliu.dao.WuliuMemberDAO#queryMemberWithId(java.lang.Long)
      */
     @Override
     public WuliuMemberDO queryMemberWithId(Long id) {
-        Map<String , Object> params = new HashMap<String , Object>();
+        Map<String, Object> params = new HashMap<String, Object>();
         params.put("id", id);
-        return (WuliuMemberDO)sqlSessionTemplate.selectOne("WuliuMember.queryWithId" , params);
+        return (WuliuMemberDO) sqlSessionTemplate.selectOne("WuliuMember.queryWithId", params);
     }
 }

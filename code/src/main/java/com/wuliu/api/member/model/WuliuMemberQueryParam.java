@@ -27,8 +27,10 @@ public class WuliuMemberQueryParam extends BaseQueryParam implements Serializabl
 
     private String            name;
 
+    private String            prefixName;
+
     private String            status;
-    
+
     public Long getId() {
         return id;
     }
@@ -51,5 +53,13 @@ public class WuliuMemberQueryParam extends BaseQueryParam implements Serializabl
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPrefixName() {
+        return prefixName;
+    }
+
+    public void setPrefixName(String prefixName) {
+        this.prefixName = prefixName;
     }
 }

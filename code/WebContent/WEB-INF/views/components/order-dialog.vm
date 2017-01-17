@@ -1,0 +1,146 @@
+<form>
+	<input name="order-id" value="$!item.id" type="hidden">
+	<div class='form-item'>
+		<label for="car-index">车次</label>
+		#if($!item.id)
+		<input name='car-index' value='$!item.carIndex'>
+		#else
+		<input name='car-index'>
+		#end
+	</div>
+	<div class='form-item'>
+		<label for="order-data">日期</label>
+		#if($!item.orderDate)
+		<input name='order-data' value='$sdf.format($!item.orderDate)'>
+		#else
+		<input name='order-data' >
+		#end
+	</div>
+	
+	<div class='form-item'>
+		<label for="order-index">票号</label>
+		#if($!item.orderIndex)
+		<input name='order-index' value='$!item.orderIndex'>
+		#else
+		<input name='order-index'>
+		#end
+	</div>
+	
+	<div class='form-item'>
+		<label for="member-name">客户</label>
+		<input name='member-id' value='$!item.memberId' type='hidden'>
+		<input name='member-name' value='$!item.name'>
+	</div>
+	
+	<div class='form-item'>
+		<label for="zz-fee">中转费</label>
+		<input name='zz-fee' value='$!item.zhongzhuanFee'>
+	</div>
+	
+	<div class='form-item'>
+		<label for="js-fee">加收费</label>
+		<input name='js-fee' value='$!item.jiashouFee'>
+	</div>
+	<div class='form-item'>
+		<label for="ds-fee">代收费</label>
+		<input name='ds-fee' value='$!item.daishouFee'>
+	</div>
+	<div class='form-item comments-col'>
+		<label for="comments">备注</label>
+		<input name="comments" class="comments-col-input" value='$!item.comments'>
+	</div>
+	<div class='form-item detail-list'>
+		<div class='detail-item-header'>
+			<div class='detail-col-count detail-col-item'>
+				件数
+			</div>
+			<div class='detail-col-weight detail-col-item'>
+				重量
+			</div>
+			<div class='detail-col-length detail-col-item'>
+				长度
+			</div>
+			<div class='detail-col-width detail-col-item'>
+				宽度
+			</div>
+			<div class='detail-col-height detail-col-item'>
+				高度
+			</div>
+			<div class='detail-col-total-weight detail-col-item'>
+				总重量
+			</div>
+			<div class='detail-col-total-volumn detail-col-item'>
+				总体积
+			</div>
+			<div class='detail-col-operation detail-col-item'>
+				操作
+			</div>
+		</div>
+		
+		<div class='detail-item'>
+		#foreach($innerItemDetail in $!item.wuliuOrderDetailModels)
+			<div class='detail-cols'>
+				<input name="detail-id" type="hidden" value="$!innerItemDetail.id">
+				<div class='detail-col-count detail-col-item'>
+					<input name="count" value = "$!innerItemDetail.count">
+				</div>
+				<div class='detail-col-weight detail-col-item'>
+					<input name="weight" value = "$!innerItemDetail.weight">
+				</div>
+				<div class='detail-col-length detail-col-item'>
+					<input name="length" value = "$!innerItemDetail.length">
+				</div>
+				<div class='detail-col-width detail-col-item'>
+					<input name="width" value = "$!innerItemDetail.width">
+				</div>
+				<div class='detail-col-height detail-col-item'>
+					<input name="height" value = "$!innerItemDetail.height">
+				</div>
+				<div class='detail-col-total-weight detail-col-item'>
+					<input name="total-weight" value = "$!innerItemDetail.totalWeight">
+				</div>
+				<div class='detail-col-total-volumn detail-col-item'>
+					<input name="total-volumn" value = "$!innerItemDetail.totalVolumn">
+				</div>
+				<div class='detail-col-operation detail-col-item'>
+					<span>删除</span>
+				</div>
+			</div>
+		#end
+			<div class='detail-cols'>
+				<input name="detail-id" type="hidden">
+				<div class='detail-col-count detail-col-item'>
+					<input name="count">
+				</div>
+				<div class='detail-col-weight detail-col-item'>
+					<input name="weight">
+				</div>
+				<div class='detail-col-length detail-col-item'>
+					<input name="length">
+				</div>
+				<div class='detail-col-width detail-col-item'>
+					<input name="width">
+				</div>
+				<div class='detail-col-height detail-col-item'>
+					<input name="height" >
+				</div>
+				<div class='detail-col-total-weight detail-col-item'>
+					<input name="total-weight">
+				</div>
+				<div class='detail-col-total-volumn detail-col-item'>
+					<input name="total-volumn">
+				</div>
+				<div class='detail-col-operation detail-col-item'>
+					<span>增加</span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class='btn-area'>
+		<div class='btns'>
+			<button class='btn-save btn-item'>保存</button>
+			<button class='btn-cancel btn-item'>取消</button>
+		</div>
+	</div>
+</form>

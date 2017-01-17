@@ -4,13 +4,43 @@ $(function() {
 	});
 	dialog.dialog('close');
 	
+	$('.col-operation .btn-view').on('click' , function() {
+		var ele = $($(this).siblings('script[name=form-group]').html());
+		addToDialog(ele);
+		bind();
+		dialog.dialog('open');
+	});
 	
-	$('.btn-area .btns .btn-save').on('click' , function(event) {
-		event.preventDefault();
-		
+	$('.function-area .btn-create').on('click' , function() {
+		var ele = $($(this).siblings('script[name=form-create]').html());
+		addToDialog(ele);
+		bind();
+		dialog.dialog('open');
+	});
+	
+	var addToDialog = function(ele) {
+		$('.dialog-form').empty();
+		$('.dialog-form').append(ele);
+		$( ".form-item input[name=member-name]" ).autocomplete({
+	      source: 'searchMember.html',
+	      minLength: 2,
+	      select: function( event, ui ) {
+	        console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+	      }
+	    } );
+	};
+	
+	var bind = function() {
+		$('.btn-area .btns .btn-save').on('click' , function(event) {
+			event.preventDefault();
+			manageOrder();
+		});
+	};
+	
+	var manageOrder = function() {
 		var param = {};
 		
-		var orderId = $('.dialog-form form order-id').val();
+		var orderId = $('.dialog-form form input[name=order-id]').val();
 		var carIndex = $('.dialog-form form input[name=car-index]').val();
 		var orderDate = $('.dialog-form form input[name=order-data]').val();
 		var orderIndex = $('.dialog-form form input[name=order-index]').val();
@@ -31,9 +61,14 @@ $(function() {
 		param.memberId = memberId;
 		
 		var detailList = [];
+		var length = $('.dialog-form form .detail-item .detail-cols').length;
 		$('.dialog-form form .detail-item .detail-cols').each(function(index , e) {
+			if (index == (length - 1)) {
+				return;
+			}
+			
 			var detailParam = {};
-			detailParam.detailId = $(e).find('input[name=detail-id]').val();
+			detailParam.id= $(e).find('input[name=detail-id]').val();
 			detailParam.count= $(e).find('input[name=count]').val();
 			detailParam.weight = $(e).find('input[name=weight]').val();
 			detailParam.length = $(e).find('input[name=length]').val();
@@ -59,23 +94,5 @@ $(function() {
 				}
 			}
 		  });
-	});
-	
-	$('.function-area .btn-create').on('click' , function() {
-		dialog.dialog('open');
-	});
-	
-	$('.col-operation .btn-view').on('click' , function() {
-		var ele = $(this).siblings('script[name=offerGroup]').html();
-		test(ele);
-		dialog.dialog('open');
-		$(this).closest('td').data('data').wuliuOrderDetailModels.forEach(function(e , index) {
-		});
-	});
-	
-	var test = function(ele) {
-		$('form .detail-item').empty();
-		$('form .detail-item').append(ele);
-	};
-	
+	}
 });
