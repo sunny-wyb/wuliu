@@ -78,8 +78,10 @@
 		</div>
 		
 		<div class='detail-item'>
+		
+		#if($!item.wuliuOrderDetailModels.size() > 0)
 		#foreach($innerItemDetail in $!item.wuliuOrderDetailModels)
-			<div class='detail-cols'>
+			<div class='detail-cols not-empty-row'>
 				<input name="detail-id" type="hidden" value="$!innerItemDetail.id">
 				<div class='detail-col-count detail-col-item'>
 					<input name="count" value = "$!innerItemDetail.count">
@@ -103,11 +105,13 @@
 					<input name="total-volumn" value = "$!innerItemDetail.totalVolumn">
 				</div>
 				<div class='detail-col-operation detail-col-item'>
-					<span>删除</span>
+					<span class='action-delete'>删除</span>
+					<span class='action-add'>增加</span>
 				</div>
 			</div>
 		#end
-			<div class='detail-cols'>
+		#else
+			<div class='detail-cols empty-row' >
 				<input name="detail-id" type="hidden">
 				<div class='detail-col-count detail-col-item'>
 					<input name="count">
@@ -131,9 +135,11 @@
 					<input name="total-volumn">
 				</div>
 				<div class='detail-col-operation detail-col-item'>
-					<span>增加</span>
+					<span class='action-delete'>删除</span>
+					<span class='action-add'>增加</span>
 				</div>
 			</div>
+		#end
 		</div>
 		
 	</div>

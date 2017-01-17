@@ -18,6 +18,12 @@ $(function() {
 		dialog.dialog('open');
 	});
 	
+	$('.detail-col-operation .action-add').on('click' , function() {
+		
+	});
+	
+	
+	
 	var addToDialog = function(ele) {
 		$('.dialog-form').empty();
 		$('.dialog-form').append(ele);
@@ -25,7 +31,9 @@ $(function() {
 	      source: 'searchMember.html',
 	      minLength: 2,
 	      select: function( event, ui ) {
-	        console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+	    	  $('.dialog-form form input[name=member-id]').val(ui.item.id );
+	    	  $('.dialog-form form input[name=member-name]').val(ui.item.value);
+	    	  console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
 	      }
 	    } );
 	};
@@ -34,6 +42,17 @@ $(function() {
 		$('.btn-area .btns .btn-save').on('click' , function(event) {
 			event.preventDefault();
 			manageOrder();
+		});
+		
+		$('.detail-col-operation .action-delete').on('click' , function() {
+			$(this).closest('.detail-cols').remove();
+		});
+		
+		$('.detail-col-operation .action-add').on('click' , function() {
+			var ele = $(this).closest('.detail-cols');
+			var copyEle = $(this).closest('.detail-cols').clone(true);
+			clearInput(copyEle);
+			ele.after(copyEle);
 		});
 	};
 	
@@ -50,7 +69,9 @@ $(function() {
 		var comments = $('.dialog-form form input[name=comments]').val();
 		var memberId = $('.dialog-form form input[name=member-id]').val();
 		
-		param.orderId = orderId;
+		if (orderId != '') {
+			param.orderId = orderId;
+		}
 		param.carIndex = carIndex;
 		param.orderDate = orderDate;
 		param.orderIndex = orderIndex;
@@ -61,14 +82,15 @@ $(function() {
 		param.memberId = memberId;
 		
 		var detailList = [];
-		var length = $('.dialog-form form .detail-item .detail-cols').length;
 		$('.dialog-form form .detail-item .detail-cols').each(function(index , e) {
-			if (index == (length - 1)) {
+			if (!checkOrderDetail($(e))) {
 				return;
 			}
 			
 			var detailParam = {};
-			detailParam.id= $(e).find('input[name=detail-id]').val();
+			if ($(e).find('input[name=detail-id]').val() != '') {
+				detailParam.id= $(e).find('input[name=detail-id]').val();
+			}
 			detailParam.count= $(e).find('input[name=count]').val();
 			detailParam.weight = $(e).find('input[name=weight]').val();
 			detailParam.length = $(e).find('input[name=length]').val();
@@ -80,8 +102,6 @@ $(function() {
 		});
 		
 		param.detailList = JSON.stringify(detailList);
-		console.log(param);
-		console.log(JSON.stringify(param));
 		
 		  $.ajax({
 			url : 'manageorder.html',  
@@ -94,5 +114,23 @@ $(function() {
 				}
 			}
 		  });
+	};
+	
+	var checkOrderDetail = function(e) {
+		if (e.find('input[name=count]').val() != '' && e.find('input[name=weight]').val() 
+				&& e.find('input[name=length]').val()  && e.find('input[name=width]').val() 
+				 && e.find('input[name=height]').val()  && $(e).find('input[name=total-weight]').val()
+				 && $(e).find('input[name=total-volumn]').val()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	};
+	
+	var clearInput = function(e) {
+		e.find('input').each(function(index , ele) {
+			$(ele).val('');
+		});
 	}
 });
