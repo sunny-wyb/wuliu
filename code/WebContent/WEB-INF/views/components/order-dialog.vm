@@ -81,7 +81,7 @@
 		
 		#if($!item.wuliuOrderDetailModels.size() > 0)
 		#foreach($innerItemDetail in $!item.wuliuOrderDetailModels)
-			<div class='detail-cols not-empty-row'>
+			<div class='detail-cols'>
 				<input name="detail-id" type="hidden" value="$!innerItemDetail.id">
 				<div class='detail-col-count detail-col-item'>
 					<input name="count" value = "$!innerItemDetail.count">
@@ -111,7 +111,7 @@
 			</div>
 		#end
 		#else
-			<div class='detail-cols empty-row' >
+			<div class='detail-cols' >
 				<input name="detail-id" type="hidden">
 				<div class='detail-col-count detail-col-item'>
 					<input name="count">
