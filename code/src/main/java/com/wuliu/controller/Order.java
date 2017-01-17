@@ -66,15 +66,30 @@ public class Order {
     private WuliuMergedOrderService wuliuMergedOrderService;
 
     @RequestMapping("/order.html")
-    public ModelAndView load(@RequestParam(value = "page", required = false) Integer page)
+    public ModelAndView load(@RequestParam(value = "page", required = false) Integer page,
+                             @RequestParam(value = "memberId", required = false) Long memberId,
+                             @RequestParam(value = "orderDate", required = false) String orderDate,
+                             @RequestParam(value = "carIndex", required = false) Long carIndex)
                                                                                           throws UnsupportedEncodingException {
 
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
+        if (orderDate != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
+        }
+        
+        wuliuOrderQueryParam.setCarIndex(carIndex);
+        wuliuOrderQueryParam.setMemberId(memberId);
 
         PageResultModel<WuliuWholeOrderModel> result = wuliuWholeOrderService.queryWholeOrders(wuliuOrderQueryParam);
         Map<String, Object> returnMap = new HashMap<String, Object>();
         returnMap.put("orders", result);
         returnMap.put("JSON", JSON.class);
+        int cnt = result.getTotalCount() / result.getPageSize();
+        if (result.getTotalCount() % result.getPageSize() != 0) {
+            cnt += 1;
+        }
+        returnMap.put("totalPage", cnt);
+        returnMap.put("currentPage", page);
         
         addUtils(returnMap);
         

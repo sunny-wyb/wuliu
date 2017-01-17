@@ -9,11 +9,11 @@
 		#end
 	</div>
 	<div class='form-item'>
-		<label for="order-data">日期</label>
+		<label for="order-date">日期</label>
 		#if($!item.orderDate)
-		<input name='order-data' value='$sdf.format($!item.orderDate)'>
+		<input name='order-date' value='$sdf.format($!item.orderDate)'>
 		#else
-		<input name='order-data' >
+		<input name='order-date' >
 		#end
 	</div>
 	
@@ -79,7 +79,7 @@
 		
 		<div class='detail-item'>
 		
-		#if($!item.wuliuOrderDetailModels.size() > 0)
+		#if($!item.wuliuOrderDetailModels.size() && ($!item.wuliuOrderDetailModels.size() > 0))
 		#foreach($innerItemDetail in $!item.wuliuOrderDetailModels)
 			<div class='detail-cols'>
 				<input name="detail-id" type="hidden" value="$!innerItemDetail.id">

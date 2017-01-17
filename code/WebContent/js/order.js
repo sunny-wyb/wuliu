@@ -22,7 +22,56 @@ $(function() {
 		
 	});
 	
+	$('.search-operation input[name=order-date]').datepicker();
+	$('.search-operation input[name=order-date]').datepicker( "option", "dateFormat", "yy-mm-dd");
 	
+	
+	$( ".search-operation input[name=name]" ).autocomplete({
+      source: 'searchMember.html',
+      minLength: 2,
+      select: function( event, ui ) {
+    	  $( ".search-operation input[name=member-id]").val(ui.item.id );
+    	  $( ".search-operation input[name=name]").val(ui.item.value);
+      }
+    });
+	
+	var totalPage = $('.pagination').data('total-page');
+	var currentPage = $('.pagination').data('current-page');
+	$(".pagination").Page({
+	    totalPages: totalPage,//分页总数
+	    liNums: 7,
+	    currentPage : currentPage,
+	    activeClass: 'activP', //active class style
+	    callBack : function(page){
+	    	window.location.href='member.html?page=' + page;
+	    }
+	});
+	
+	var doSearch = function() {
+		var memberId = $('.search-content input[name=member-id]').val();
+		var carIndex = $('.search-content input[name=car-index]').val();
+		var orderDate = $('.search-content input[name=order-date]').val();
+		var param = {};
+		if (memberId && memberId.trim().length > 0) {
+			param.memberId = memberId.trim();
+		}
+		if (carIndex && carIndex.trim().length > 0) {
+			param.carIndex = carIndex.trim();
+		}
+		if (orderDate && orderDate.trim().length > 0) {
+			param.orderDate = orderDate.trim();
+		}
+		
+		window.location.href='order.html?' + encodeURI($.param(param));
+	}
+	
+	$('.search-btns .btn-search').on('click' , function() {
+		doSearch();
+	});
+	
+	$('.search-btns .btn-cancel').on('click' , function() {
+		
+	});
 	
 	var addToDialog = function(ele) {
 		$('.dialog-form').empty();
@@ -54,6 +103,11 @@ $(function() {
 			clearInput(copyEle);
 			ele.after(copyEle);
 		});
+		
+		var value = $('.dialog-form form input[name=order-date]').val();
+		$('.dialog-form form input[name=order-date]').datepicker();
+		$('.dialog-form form input[name=order-date]').datepicker( "option", "dateFormat", "yy-mm-dd");
+		$('.dialog-form form input[name=order-date]').datepicker("setDate" , value);
 	};
 	
 	var manageOrder = function() {
@@ -61,7 +115,7 @@ $(function() {
 		
 		var orderId = $('.dialog-form form input[name=order-id]').val();
 		var carIndex = $('.dialog-form form input[name=car-index]').val();
-		var orderDate = $('.dialog-form form input[name=order-data]').val();
+		var orderDate = $('.dialog-form form input[name=order-date]').val();
 		var orderIndex = $('.dialog-form form input[name=order-index]').val();
 		var zzFee = $('.dialog-form form input[name=zz-fee]').val();
 		var jsFee = $('.dialog-form form input[name=js-fee]').val();
