@@ -23,7 +23,7 @@ public class WuliuMergedOrderDetailModel implements Serializable {
 
     private Long              mainOrderId;
 
-    private int               Count;
+    private int               count;
 
     private long              weight;
 
@@ -42,11 +42,11 @@ public class WuliuMergedOrderDetailModel implements Serializable {
     }
 
     public int getCount() {
-        return Count;
+        return count;
     }
 
     public void setCount(int count) {
-        Count = count;
+        this.count = count;
     }
 
     public long getWeight() {

@@ -89,7 +89,7 @@ public class Order {
             cnt += 1;
         }
         returnMap.put("totalPage", cnt);
-        returnMap.put("currentPage", page);
+        returnMap.put("currentPage", result.getPageNum());
         
         addUtils(returnMap);
         

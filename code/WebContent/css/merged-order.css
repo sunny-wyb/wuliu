@@ -1,0 +1,232 @@
+.wuliu .merged-order .search-item {
+	display:inline-block;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top:20px;
+}
+
+.wuliu .merged-order .search-operation {
+	position: relative;
+    background-color: white;
+    height: 110px;
+}
+
+.wuliu .merged-order .search-content {
+	margin-right:200px;
+}
+
+.wuliu .merged-order .search-btns {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 200px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    border-left: 1px solid #e3e3e3;
+}
+
+.wuliu .merged-order .search-btns .btn-search {
+	color: #ffffff;
+    background-color: #2fafd7;
+    font-size: 14px;
+    height: 20px;
+    line-height: 40px;
+    width: 60px;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin-top:10px;
+    margin-left:50px;
+}
+
+.wuliu .merged-order .search-btns .btn-cancel {
+	color: #ffffff;
+    background-color: #2fafd7;
+    font-size: 14px;
+    height: 20px;
+    line-height: 40px;
+    width: 60px;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin-top:10px;
+    margin-left:50px;
+}
+
+.wuliu .merged-order .content {
+	margin-top:20px;
+	background-color:white;
+}
+
+
+.wuliu .merged-order .content table thead{
+	background: #f8f8f8;
+}
+
+.wuliu .merged-order .content table thead tr{
+	height:45px;
+	border-bottom:1px solid #e3e3e3;
+}
+
+.wuliu .merged-order .content table tbody tr{
+	height:45px;
+	border-bottom:1px solid #e3e3e3;
+}
+
+.wuliu .merged-order .content table .col-name {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-order-number {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-ds-fee {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-js-fee {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-zz-fee {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-unit {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-count {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-price{
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-cost {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-operations {
+	width:102px;
+}
+
+.wuliu .merged-order .content table .col-item{
+	text-align:center;
+}
+
+.wuliu .merged-order .function-area .btn-create {
+	box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 33px;
+    border: 1px solid #e8e8e8;
+    padding: 0 15px;
+    color: #666;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    text-decoration: none;
+    color: #fff;
+    background: #027cff;
+    border-color: #027cff;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dialog-form .form-item {
+	margin-left:5px;
+    line-height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 17px;
+    margin-right: 10px;
+    margin-top:10px;
+}
+
+.dialog-form .form-item label{
+	width:70px;
+	display:inline-block;
+}
+
+.dialog-form .form-item.comments-col {
+	    display: block;
+}
+
+.dialog-form .form-item.comments-col .comments-col-input{
+	width:389px;
+}
+
+.dialog-form .form-item input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+    outline: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #222;
+    height: 28px;
+    line-height: 26px;
+    padding: 0 8px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.dialog-form .btn-area {
+	border-top: 1px solid #e3e3e3;
+    margin-top: 20px;
+    padding-top: 10px;
+    text-align: right;
+}
+
+.dialog-form .btn-area .btns .btn-item{
+	box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 33px;
+    border: 1px solid #e8e8e8;
+    padding: 0 15px;
+    color: #666;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    text-decoration: none;
+    color: #fff;
+    background: #027cff;
+    border-color: #027cff;
+}
+
+.detail-list .detail-col-item {
+    display: inline-block;
+    width: 55px;
+    text-align: center;
+}
+
+.detail-list .detail-item-header .detail-col-item {
+    border-bottom: 1px solid black;
+}
+
+.detail-list .detail-col-item input{
+	width:100%;
+}
+
+.ui-autocomplete-loading {
+	background: white url("../images/ui-anim_basic_16x16.gif") right center no-repeat;
+}

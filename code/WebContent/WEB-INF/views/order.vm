@@ -53,6 +53,7 @@
 			<tbody>
 			
 				#foreach($item in $orders.resultList)	
+					#if($item.wuliuOrderDetailModels && $item.wuliuOrderDetailModels.size() > 0)
 					#foreach($itemDetail in $item.wuliuOrderDetailModels)
 					<tr>
 						#if($velocityCount == 1)
@@ -85,6 +86,36 @@
 							</script>
 						</td>	
 						#end
+					</tr>	
+					#end
+					#else
+					<tr>
+						<td class='col-car-index col-item' > $item.carIndex</td>	
+						<td class='col-order-number col-item' > $item.orderNumber</td>	
+						<td class='col-name col-item' > $item.name</td>	
+						<td class='col-zz-fee col-item' > $item.zhongzhuanFee</td>	
+						<td class='col-js-fee col-item' > $item.jiashouFee</td>	
+						<td class='col-ds-fee col-item' > $item.daishouFee</td>	
+						<td class='col-comments col-item'> $!item.comments</td>	
+						
+						<td class='col-count col-item' > </td>	
+						<td class='col-weight col-item' > </td>	
+						<td class='col-length col-item' > </td>	
+						<td class='col-width col-item' > </td>	
+						<td class='col-height col-item' > </td>	
+						<td class='col-total-weight col-item' > </td>	
+						<td class='col-total-volumn col-item' > </td>	
+						
+						
+						<td class='col-operation col-item' data-data='$JSON.toJSONString($item)'> 
+							<div class='btn-view'><a>查看</a></div>
+							<div class='btn-update'><a>更新</a></div>
+							<div><a>删除</a></div>
+							<div><a>合并结果</a></div>
+							<script type="text/x-template" name="form-group">
+								#parse("./WEB-INF/views//components/order-dialog.vm")
+							</script>
+						</td>	
 					</tr>	
 					#end
 				#end

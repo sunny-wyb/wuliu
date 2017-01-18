@@ -45,6 +45,10 @@ public class WuliuMergedOrderModel implements Serializable {
 
     private String                            comments;
 
+    private String                            name;
+
+    private String                            orderNumber;
+
     public Long getId() {
         return id;
     }
@@ -125,13 +129,27 @@ public class WuliuMergedOrderModel implements Serializable {
         this.cost = cost;
     }
 
-    
     public String getComments() {
         return comments;
     }
 
-    
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }

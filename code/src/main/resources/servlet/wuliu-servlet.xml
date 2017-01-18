@@ -26,4 +26,11 @@
 		<property name="wuliuMergedOrderService" ref="wuliuMergedOrderService" />
 	</bean>
     
+	<bean class="com.wuliu.controller.MergedOrder">
+		<property name="wuliuMemberService" ref="wuliuMemberService" />
+		<property name="wuliuOrderService" ref="wuliuOrderService" />
+		<property name="wuliuOrderDetailService" ref="wuliuOrderDetailService" />
+		<property name="wuliuWholeOrderService" ref="wuliuWholeOrderService" />
+		<property name="wuliuMergedOrderService" ref="wuliuMergedOrderService" />
+	</bean>
 </beans>

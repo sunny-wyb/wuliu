@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.orderbusiness.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,6 +93,7 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             wuliuMergedOrderModel.setOrderDate(item.getOrderDate());
             wuliuMergedOrderModel.setOrderIndex(item.getOrderIndex());
             wuliuMergedOrderModel.setZhongzhuanFee(item.getZhongzhuanFee());
+            
 
             List<WuliuOrderDetailModel> wuliuOrderDetailModels = wuliuOrderDetailAO.queryOrderDetails(wuliuOrderDetailQueryParam);
 
@@ -99,6 +101,10 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             if (wuliuMemberModel == null) {
                 continue;
             }
+            
+            wuliuMergedOrderModel.setName(wuliuMemberModel.getName());
+            SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd");
+            wuliuMergedOrderModel.setOrderNumber(sdf.format(item.getOrderDate()) + item.getOrderIndex() + String.valueOf(wuliuOrderDetailModels.size()));
 
             wuliuMergedOrderModel.setWuliuMergedOrderDetailModels(orderDetailMergeEngine.mergeOrderDetail(wuliuOrderDetailModels,
                                                                                                           wuliuMemberModel.getWeightPrice(),
