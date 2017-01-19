@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
-import com.wuliu.api.orderbusiness.constat.WuliuMergeOrderDetailConst;
+import com.wuliu.api.orderbusiness.constat.WuliuMergedOrderDetailConst;
 import com.wuliu.api.orderbusiness.model.WuliuMergedOrderDetailModel;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
 import com.wuliu.biz.orderdetail.engine.OrderDetailMergeEngine;
@@ -47,14 +47,14 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
             if (weightCost > volumnCost) {
                 if (weightModel == null) {
                     weightModel = new WuliuMergedOrderDetailModel();
-                    weightModel.setType(WuliuMergeOrderDetailConst.TYPE_WEIGHT);
+                    weightModel.setType(WuliuMergedOrderDetailConst.TYPE_WEIGHT);
                 }
 
                 add(weightModel, item.getWeight(), 0L, weightCost, item.getCount());
             } else {
                 if (volumnModel == null) {
                     volumnModel = new WuliuMergedOrderDetailModel();
-                    volumnModel.setType(WuliuMergeOrderDetailConst.TYPE_VOLUMN);
+                    volumnModel.setType(WuliuMergedOrderDetailConst.TYPE_VOLUMN);
                 }
 
                 add(volumnModel, 0, getVolumn(item), volumnCost, item.getCount());

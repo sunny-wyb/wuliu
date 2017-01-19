@@ -12,7 +12,7 @@ package com.wuliu.api.orderbusiness.constat;
  * 
  * @author yunbin.wangyb 2016年12月30日 上午10:43:09
  */
-public class WuliuMergeOrderDetailConst {
+public class WuliuMergedOrderDetailConst {
 
     public static final String TYPE_WEIGHT = "weight";
 
