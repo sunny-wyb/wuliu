@@ -16,6 +16,8 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +41,9 @@ import com.wuliu.api.orderbusiness.service.WuliuMergedOrderService;
 import com.wuliu.api.orderbusiness.service.WuliuWholeOrderService;
 import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
 import com.wuliu.biz.member.AO.WuliuMemberAO;
+import com.wuliu.biz.util.ExportUtil;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
@@ -105,8 +109,8 @@ public class Member {
 
     @RequestMapping("/member")
     public ModelAndView load(@RequestParam(value = "page", required = false) Integer page,
-                             @RequestParam(value = "name", required = false) String name) throws UnsupportedEncodingException {
-
+                             @RequestParam(value = "name", required = false) String name) throws EncryptedDocumentException, InvalidFormatException, IOException {
+        ExportUtil.getInstance().export("/tmp", null);
         Map<String , Object> paramMap = new HashMap<String , Object>();
         String decodeName = null;
         if (name != null) {

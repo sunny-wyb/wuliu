@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package wuliu.test;
+package com.wuliu.biz.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,20 +35,19 @@ import com.wuliu.api.orderbusiness.model.WuliuMergedOrderDetailModel;
 import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
 
 /**
- * 类POITest2.java的实现描述：TODO 类实现描述
- * 
- * @author yunbin.wangyb 2017年1月18日 下午10:14:44
+ * 类ExportUtil.java的实现描述：TODO 类实现描述 
+ * @author yunbin.wangyb 2017年1月20日 上午12:47:31
  */
-public class POITest2 {
-
+public class ExportUtil {
+    
     public static final int ROW_MAX = 50;
     
     public static final int COL_MAX = 20;
     
-    public static void main(String args[]) throws EncryptedDocumentException, InvalidFormatException, IOException {
-        POITest2 instance = new POITest2();
-        List<WuliuMergedOrderModel> mergedOrders = instance.fetchData();
-        instance.export("/tmp" , mergedOrders);
+    public static ExportUtil instance = new ExportUtil();
+    
+    public static ExportUtil getInstance() {
+        return instance;
     }
     
     public List<WuliuMergedOrderModel> fetchData() {
@@ -96,6 +95,7 @@ public class POITest2 {
                                                                                       throws EncryptedDocumentException,
                                                                                       InvalidFormatException,
                                                                                       IOException {
+        mergedOrders = fetchData();
         File folder = createFolder(folderPath);
         List<List<WuliuMergedOrderModel>> mergedOrderLists = split(mergedOrders);
 
@@ -104,8 +104,8 @@ public class POITest2 {
         }
 
         for (List<WuliuMergedOrderModel> item : mergedOrderLists) {
-            InputStream inp = new FileInputStream(
-                                                  "/Users/admin/Workspace/workspace/wuliu/code/src/test/resources/template.xlsx");
+            File template = new File(this.getClass().getClassLoader().getResource("template.xlsx").getFile());
+            InputStream inp = new FileInputStream(template);
             Workbook wb = WorkbookFactory.create(inp);
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
             Sheet sheet = wb.getSheetAt(0);
@@ -205,37 +205,37 @@ public class POITest2 {
             
             for (CellInfo cellInfo : cellInfoList) {
                 
-	            Row row = sheet.getRow(rowNum);
-	            rowNum += 1;
-	            
-	            Cell cell = createCellIfNotExit(row, 1);
-	            cell.setCellValue(index);;
-	            index += 1;
-	            
-	            if (cellInfo.getOrderNumber() != null) {
-	                cell = createCellIfNotExit(row, 2);
-	                cell.setCellValue(cellInfo.getOrderNumber());
-	            }
-	            
-	            if (cellInfo.getUnit() != null) {
-	               cell = createCellIfNotExit(row, 4); 
-	               cell.setCellValue(cellInfo.getUnit());
-	            }
-	            
-	            if (cellInfo.getCount() != null) {
-	               cell = createCellIfNotExit(row, 5); 
-	               cell.setCellValue(cellInfo.getCount());
-	            }
-	            
-	            if (cellInfo.getCost() != null) {
-	               cell = createCellIfNotExit(row, 7); 
-	               cell.setCellValue(cellInfo.getCost());
-	            }
-	            
-	            if (cellInfo.getComments() != null) {
-	               cell = createCellIfNotExit(row, 8); 
-	               cell.setCellValue(cellInfo.getComments());
-	            }
+                Row row = sheet.getRow(rowNum);
+                rowNum += 1;
+                
+                Cell cell = createCellIfNotExit(row, 1);
+                cell.setCellValue(index);;
+                index += 1;
+                
+                if (cellInfo.getOrderNumber() != null) {
+                    cell = createCellIfNotExit(row, 2);
+                    cell.setCellValue(cellInfo.getOrderNumber());
+                }
+                
+                if (cellInfo.getUnit() != null) {
+                   cell = createCellIfNotExit(row, 4); 
+                   cell.setCellValue(cellInfo.getUnit());
+                }
+                
+                if (cellInfo.getCount() != null) {
+                   cell = createCellIfNotExit(row, 5); 
+                   cell.setCellValue(cellInfo.getCount());
+                }
+                
+                if (cellInfo.getCost() != null) {
+                   cell = createCellIfNotExit(row, 7); 
+                   cell.setCellValue(cellInfo.getCost());
+                }
+                
+                if (cellInfo.getComments() != null) {
+                   cell = createCellIfNotExit(row, 8); 
+                   cell.setCellValue(cellInfo.getComments());
+                }
             }
         }
     }
