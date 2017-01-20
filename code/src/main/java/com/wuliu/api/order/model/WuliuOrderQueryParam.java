@@ -30,6 +30,8 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
 
     private Long              carIndex;
 
+    private Long              orderIndex;
+
     private String            status;
 
     private Date              minOrderDate;
@@ -82,5 +84,13 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
 
     public void setMaxOrderDate(Date maxOrderDate) {
         this.maxOrderDate = maxOrderDate;
+    }
+
+    public Long getOrderIndex() {
+        return orderIndex;
+    }
+
+    public void setOrderIndex(Long orderIndex) {
+        this.orderIndex = orderIndex;
     }
 }

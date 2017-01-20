@@ -95,7 +95,7 @@ public class ExportUtil {
                                                                                       throws EncryptedDocumentException,
                                                                                       InvalidFormatException,
                                                                                       IOException {
-        mergedOrders = fetchData();
+//        mergedOrders = fetchData();
         File folder = createFolder(folderPath);
         List<List<WuliuMergedOrderModel>> mergedOrderLists = split(mergedOrders);
 

@@ -9,7 +9,6 @@ package wuliu.test;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,7 +38,7 @@ public class ZipTest {
         instance1.doZip("/tmp", path);
     }
 
-    private void doZip(String tempPath, String folderPath) throws IOException {
+    private String doZip(String tempPath, String folderPath) throws IOException {
         File file = new File(folderPath);
         
         File zipFile = new File(tempPath , file.getName() + ".zip");
@@ -62,5 +61,7 @@ public class ZipTest {
             }
         }
         zipOut.close() ;    // 关闭输出流
+        
+        return zipFile.getAbsolutePath();
     }
 }
