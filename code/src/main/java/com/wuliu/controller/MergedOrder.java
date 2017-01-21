@@ -93,6 +93,11 @@ public class MergedOrder {
         wuliuOrderQueryParam.setCarIndex(carIndex);
         wuliuOrderQueryParam.setMemberId(memberId);
         wuliuOrderQueryParam.setOrderIndex(orderIndex);
+        
+        if (page == null) {
+            page = 1;
+        }
+        
         wuliuOrderQueryParam.setPageNum(page);
 
         PageResultModel<WuliuMergedOrderModel> result = wuliuMergedOrderService.queryMergedOrders(wuliuOrderQueryParam);

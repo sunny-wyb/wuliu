@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -42,6 +43,7 @@ import com.wuliu.api.orderdetail.constant.WuliuOrderDetailConst;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
 import com.wuliu.api.orderdetail.model.WuliuOrderDetailQueryParam;
 import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
+import com.wuliu.biz.util.CalendarUtil;
 
 /**
  * 类CrunchifyHelloWorld.java的实现描述：TODO 类实现描述
@@ -68,17 +70,26 @@ public class Order {
     @RequestMapping("/order.html")
     public ModelAndView load(@RequestParam(value = "page", required = false) Integer page,
                              @RequestParam(value = "memberId", required = false) Long memberId,
-                             @RequestParam(value = "orderDate", required = false) String orderDate,
-                             @RequestParam(value = "carIndex", required = false) Long carIndex)
-                                                                                          throws UnsupportedEncodingException {
+                             @RequestParam(value = "orderDate", required = false) String orderDateStr,
+                             @RequestParam(value = "carIndex", required = false) Long carIndex,
+                             @RequestParam(value = "orderIndex", required = false) Long orderIndex)
+                                                                                          throws UnsupportedEncodingException, ParseException {
 
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
-        if (orderDate != null) {
+        if (orderDateStr != null) {
             SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
+            Date date = sdf.parse(orderDateStr);
+            wuliuOrderQueryParam.setMinOrderDate(CalendarUtil.getMinDateInSameDay(date));
+            wuliuOrderQueryParam.setMaxOrderDate(CalendarUtil.getMaxDateInSameDay(date));
         }
         
         wuliuOrderQueryParam.setCarIndex(carIndex);
         wuliuOrderQueryParam.setMemberId(memberId);
+        wuliuOrderQueryParam.setOrderIndex(orderIndex);
+        
+        if (page != null) {
+            wuliuOrderQueryParam.setPageNum(page);
+        }
 
         PageResultModel<WuliuWholeOrderModel> result = wuliuWholeOrderService.queryWholeOrders(wuliuOrderQueryParam);
         Map<String, Object> returnMap = new HashMap<String, Object>();

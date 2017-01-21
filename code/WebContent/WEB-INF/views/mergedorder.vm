@@ -23,7 +23,7 @@
 	</div>
 	<div class='content'>
 		<div class='function-area'>
-			<btn class='btn-create'> 新建</btn>
+			<btn class='btn-download'>下载</btn>
 		</div>
 		<table>	
 			<thead>
@@ -41,9 +41,8 @@
 				</tr>
 			</thead>
 			<tbody>
-			
 				#foreach($item in $mergedOrders.resultList)	
-					#if(!$item.wuliuMergedOrderDetailModels && !$item.wuliuMergedOrderDetailModels.size() > 0)
+					#if($!item.wuliuMergedOrderDetailModels && ($!item.wuliuMergedOrderDetailModels.size() > 0))
 					#foreach($itemDetail in $item.wuliuMergedOrderDetailModels)
 					<tr>
 						#if($velocityCount == 1)
@@ -54,13 +53,19 @@
 						<td class='col-zz-fee col-item' rowspan = $item.wuliuMergedOrderDetailModels.size()> $item.zhongzhuanFee</td>	
 						#end
 						
-						<td class='col-unit col-item' > 单位</td>	
+						<td class='col-unit col-item' > 
+							#if($itemDetail.type == "weight")
+								千克
+							#else
+								立方米
+							#end
+						</td>	
 						<td class='col-count col-item' > $itemDetail.count</td>	
 						<td class='col-price col-item' ></td>	
 						<td class='col-cost col-item' > $itemDetail.cost</td>	
 						
 						#if($velocityCount == 1)
-						<td class='col-operation col-item' rowspan = $item.wuliuOrderDetailModels.size() data-data='$JSON.toJSONString($item)'> 
+						<td class='col-operation col-item' rowspan = $item.wuliuMergedOrderDetailModels.size() data-data='$JSON.toJSONString($item)'> 
 							<div class='btn-view'><a>查看</a></div>
 						</td>	
 						#end
@@ -93,3 +98,4 @@
 		</div>
 	</div>
 </div>
+ <script src="js/merged-order.js" type="text/javascript"></script>

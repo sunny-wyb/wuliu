@@ -67,10 +67,10 @@
 				id = #{id}
 			</if>
 			<if test = "minOrderDate!= null">
-				<![CDATA[ AND order_date > #{minOrderDate} ]]>
+				<![CDATA[ AND order_date >= #{minOrderDate} ]]>
 			</if>
 			<if test = "maxOrderDate!= null">
-				<![CDATA[ AND order_date < #{maxOrderDate} ]]>
+				<![CDATA[ AND order_date <= #{maxOrderDate} ]]>
 			</if>
 			<if test = "memberId != null">
 				AND member_id = #{memberId}

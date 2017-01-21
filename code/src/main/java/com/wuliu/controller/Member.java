@@ -85,7 +85,7 @@ public class Member {
         WuliuMemberModel wuliuMemberModel = new WuliuMemberModel();
 
         wuliuMemberModel.setId(id);
-        wuliuMemberModel.setName(nickName);
+        wuliuMemberModel.setName(name);
         wuliuMemberModel.setNickName(nickName);
         wuliuMemberModel.setMobileNumber(mobileNumber);
         wuliuMemberModel.setTelephoneNumber(telephoneNumber);

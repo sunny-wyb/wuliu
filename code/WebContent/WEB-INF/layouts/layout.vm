@@ -33,15 +33,14 @@
 		        <li>
 					<div class="link"><i class="fa fa-paint-brush"></i>客户管理<i class="fa fa-chevron-down"></i></div>
 					<ul class="submenu">
-						<li><a href="#">客户信息</a></li>
+						<li><a href="member.html">客户信息</a></li>
 					</ul>
 				</li>
 				<li>
 					<div class="link"><i class="fa fa-code"></i>订单管理<i class="fa fa-chevron-down"></i></div>
 					<ul class="submenu">
-						<li><a href="#">Javascript</a></li>
-						<li><a href="#">jQuery</a></li>
-						<li><a href="#">Frameworks javascript</a></li>
+						<li><a href="order.html">订单管理</a></li>
+						<li><a href="mergedorder.html">订单导出</a></li>
 					</ul>
 				</li>
 			</ul>
