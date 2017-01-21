@@ -110,7 +110,6 @@ public class Member {
     @RequestMapping("/member")
     public ModelAndView load(@RequestParam(value = "page", required = false) Integer page,
                              @RequestParam(value = "name", required = false) String name) throws EncryptedDocumentException, InvalidFormatException, IOException {
-        ExportUtil.getInstance().export("/tmp", null);
         Map<String , Object> paramMap = new HashMap<String , Object>();
         String decodeName = null;
         if (name != null) {
