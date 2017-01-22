@@ -5,9 +5,9 @@
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id" parameterType="WuliuOrder">
 		INSERT INTO WULIU_ORDER (gmt_create , gmt_modified , order_date , member_id ,
-		order_index , car_index , zz_fee , js_fee , ds_fee , status)
+		order_index , car_index , zz_fee , js_fee , ds_fee , status , comments)
 		VALUES (now() , now() , #{orderDate} , #{memberId} , #{orderIndex} ,
-		#{carIndex} , #{zhongzhuanFee} , #{jiashouFee} , #{daishouFee}, #{status});
+		#{carIndex} , #{zhongzhuanFee} , #{jiashouFee} , #{daishouFee}, #{status} , #{comments});
 	</insert>
 
 	<update id="update" parameterType="WuliuOrder">
@@ -44,6 +44,9 @@
 		<if test = "status != null">
 		status = #{status},
 		</if>
+		<if test = "comments != null">
+		comments = #{comments},
+		</if>
 		
 		GMT_MODIFIED = NOW()
 		WHERE
@@ -60,7 +63,8 @@
 			zz_fee		as zhongzhuanFee,
 			js_fee		as jiashouFee,
 			ds_fee		as daishouFee,
-			status		as status
+			status		as status,
+			comments	as comments
 		FROM WULIU_ORDER
 		<where>
 			<if test = "id != null">

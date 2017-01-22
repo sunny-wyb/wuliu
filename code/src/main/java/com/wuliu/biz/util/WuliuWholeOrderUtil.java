@@ -7,7 +7,6 @@
  */
 package com.wuliu.biz.util;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -25,7 +24,6 @@ public class WuliuWholeOrderUtil {
 
     public static WuliuWholeOrderModel buildWholeModel(WuliuOrderModel wuliuOrderModel,
                                                 List<WuliuOrderDetailModel> wuliuOrderDetailModels) {
-        SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd");
         WuliuWholeOrderModel ret = new WuliuWholeOrderModel();
         ret.setCarIndex(wuliuOrderModel.getCarIndex());
         ret.setDaishouFee(wuliuOrderModel.getDaishouFee());
@@ -37,6 +35,7 @@ public class WuliuWholeOrderUtil {
         ret.setStatus(wuliuOrderModel.getStatus());
         ret.setWuliuOrderDetailModels(WuliuWholeOrderDetailUtil.builduliuWholeDetailModelList(wuliuOrderDetailModels));
         ret.setZhongzhuanFee(wuliuOrderModel.getZhongzhuanFee());
+        ret.setComments(wuliuOrderModel.getComments());
         
         int count = 0;
         if (CollectionUtils.isNotEmpty(wuliuOrderDetailModels)) {
@@ -45,7 +44,7 @@ public class WuliuWholeOrderUtil {
             }
         }
 
-        ret.setOrderNumber(sdf.format(wuliuOrderModel.getOrderDate()) + String.valueOf(wuliuOrderModel.getOrderIndex()) + String.valueOf(count));
+        ret.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(wuliuOrderModel.getOrderDate(), wuliuOrderModel.getOrderIndex(), count));
         return ret;
     }
 }

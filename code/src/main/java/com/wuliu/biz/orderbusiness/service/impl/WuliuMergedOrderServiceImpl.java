@@ -28,6 +28,7 @@ import com.wuliu.biz.member.AO.WuliuMemberAO;
 import com.wuliu.biz.order.AO.WuliuOrderAO;
 import com.wuliu.biz.orderdetail.AO.WuliuOrderDetailAO;
 import com.wuliu.biz.orderdetail.engine.OrderDetailMergeEngine;
+import com.wuliu.biz.util.WuliuOrderNumberUtil;
 
 /**
  * 类WuliuMergedOrderServiceImpl.java的实现描述：TODO 类实现描述
@@ -104,7 +105,7 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             
             wuliuMergedOrderModel.setName(wuliuMemberModel.getName());
             SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd");
-            wuliuMergedOrderModel.setOrderNumber(sdf.format(item.getOrderDate()) + item.getOrderIndex() + String.valueOf(wuliuOrderDetailModels.size()));
+            wuliuMergedOrderModel.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(item.getOrderDate(), item.getOrderIndex(), wuliuOrderDetailModels.size()));
 
             wuliuMergedOrderModel.setWuliuMergedOrderDetailModels(orderDetailMergeEngine.mergeOrderDetail(wuliuOrderDetailModels,
                                                                                                           wuliuMemberModel.getWeightPrice(),

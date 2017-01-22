@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.wuliu.api.order.model.WuliuOrderModel;
-import com.wuliu.api.orderdetail.model.WuliuOrderDetailModel;
 
 /**
  * 类WuliuWholeOrderModel.java的实现描述：TODO 类实现描述
