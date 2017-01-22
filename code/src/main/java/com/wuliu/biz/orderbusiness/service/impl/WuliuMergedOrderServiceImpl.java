@@ -7,7 +7,6 @@
  */
 package com.wuliu.biz.orderbusiness.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -104,7 +103,6 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             }
             
             wuliuMergedOrderModel.setName(wuliuMemberModel.getName());
-            SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd");
             wuliuMergedOrderModel.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(item.getOrderDate(), item.getOrderIndex(), wuliuOrderDetailModels.size()));
 
             wuliuMergedOrderModel.setWuliuMergedOrderDetailModels(orderDetailMergeEngine.mergeOrderDetail(wuliuOrderDetailModels,
