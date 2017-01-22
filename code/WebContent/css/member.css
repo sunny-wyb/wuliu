@@ -27,8 +27,8 @@
 }
 
 .wuliu .member .search-btns .btn-search {
-	color: #ffffff;
-    background-color: #2fafd7;
+    color: #ffffff;
+    background-color: #027cff;
     font-size: 14px;
     height: 20px;
     line-height: 40px;
@@ -37,13 +37,14 @@
     text-align: center;
     width: 100px;
     height: 40px;
-    margin-top:10px;
-    margin-left:50px;
+    margin-top: 10px;
+    margin-left: 50px;
+    border-radius: 3px;
 }
 
 .wuliu .member .search-btns .btn-cancel {
 	color: #ffffff;
-    background-color: #2fafd7;
+    background-color: #027cff;
     font-size: 14px;
     height: 20px;
     line-height: 40px;
@@ -54,6 +55,7 @@
     height: 40px;
     margin-top:10px;
     margin-left:50px;
+    border-radius: 3px;
 }
 
 .wuliu .member .content {
