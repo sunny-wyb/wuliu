@@ -52,6 +52,7 @@ $(function() {
 		var memberId = $('.search-content input[name=member-id]').val();
 		var carIndex = $('.search-content input[name=car-index]').val();
 		var orderDate = $('.search-content input[name=order-date]').val();
+		var orderIndex = $('.search-content input[name=order-index]').val();
 		var param = {};
 		if (memberId && memberId.trim().length > 0) {
 			param.memberId = memberId.trim();
@@ -62,6 +63,9 @@ $(function() {
 		if (orderDate && orderDate.trim().length > 0) {
 			param.orderDate = orderDate.trim();
 		}
+		if (orderIndex && orderIndex .trim().length > 0) {
+			param.orderIndex= orderIndex.trim();
+		}
 		
 		window.location.href='order.html?' + encodeURI($.param(param));
 	}
@@ -71,8 +75,16 @@ $(function() {
 	});
 	
 	$('.search-btns .btn-cancel').on('click' , function() {
-		
+		clearSearchInput();
+		doSearch();
 	});
+	
+	var clearSearchInput = function() {
+		$('.search-content input[name=member-id]').val('');
+		$('.search-content input[name=car-index]').val('');
+		$('.search-content input[name=order-date]').val('');
+		$('.search-content input[name=order-index]').val('');
+	}
 	
 	var addToDialog = function(ele) {
 		$('.dialog-form').empty();
@@ -83,9 +95,8 @@ $(function() {
 	      select: function( event, ui ) {
 	    	  $('.dialog-form form input[name=member-id]').val(ui.item.id );
 	    	  $('.dialog-form form input[name=member-name]').val(ui.item.value);
-	    	  console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
 	      }
-	    } );
+	    });
 	};
 	
 	var bind = function() {

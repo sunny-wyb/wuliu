@@ -100,7 +100,7 @@ public class Order {
             cnt += 1;
         }
         returnMap.put("totalPage", cnt);
-        returnMap.put("currentPage", result.getPageNum());
+        returnMap.put("currentPage", wuliuOrderQueryParam.getPageNum());
         
         addUtils(returnMap);
         
@@ -226,7 +226,7 @@ public class Order {
        ret.put("result", true);
        return JSON.toJSONString(ret);
     }
-
+    
     public WuliuMemberService getWuliuMemberService() {
         return wuliuMemberService;
     }

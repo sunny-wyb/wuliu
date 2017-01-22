@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,6 +23,17 @@ public class WuliuOrderNumberUtil {
         sb.append(sdf.format(date)).append(getOrderINdexString(orderIndex)).append(count);
         
         return sb.toString();
+    }
+    
+    public static Date getDateFromOrderNumber(String orderNumber) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd");
+        String dateStr = orderNumber.substring(0 , 8);
+        return sdf.parse(dateStr);
+    }
+    
+    public static Long getOrderIndexFromOrderNumber(String orderNumber) {
+        String orderIndexStr = orderNumber.substring(8, 11);
+        return Long.parseLong(orderIndexStr);
     }
     
     private static String getOrderINdexString(Long orderIndex) {

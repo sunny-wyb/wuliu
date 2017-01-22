@@ -85,6 +85,9 @@
 			<if test = "status != null">
 				AND status = #{status}
 			</if>
+			<if test = "orderIndex != null">
+				AND order_index = #{orderIndex}
+			</if>
 		</where>
 		ORDER BY ID ASC
 		limit #{start} , #{size}
@@ -112,6 +115,9 @@
 			</if>
 			<if test = "status != null">
 				AND status = #{status}
+			</if>
+			<if test = "orderIndex != null">
+				AND order_index = #{orderIndex}
 			</if>
 		</where>
 	</select>

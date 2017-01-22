@@ -17,6 +17,10 @@
 				<input class='input' name="name"> 
 				<input class='input' name="member-id" type='hidden'> 
 			</div>
+			<div class='search-item'>
+				<span class='form-title'>票号</span>
+				<input class='input' name="order-index"> 
+			</div>
 		</div>
 		<div class='search-btns'>
 				<div class='btn-search'>搜索</div>

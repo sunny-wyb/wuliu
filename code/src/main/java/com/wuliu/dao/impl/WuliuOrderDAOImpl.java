@@ -67,6 +67,7 @@ public class WuliuOrderDAOImpl implements WuliuOrderDAO {
         params.put("minOrderDate", wuliuOrderQueryParam.getMinOrderDate());
         params.put("maxOrderDate", wuliuOrderQueryParam.getMaxOrderDate());
         params.put("status", wuliuOrderQueryParam.getStatus());
+        params.put("orderIndex", wuliuOrderQueryParam.getOrderIndex());
         params.put("start", (wuliuOrderQueryParam.getPageNum() - 1) * wuliuOrderQueryParam.getPageSize());
         params.put("size", wuliuOrderQueryParam.getPageSize());
         List<WuliuOrderDO> ret = sqlSessionTemplate.selectList("WuliuOrder.query", params);
@@ -86,6 +87,7 @@ public class WuliuOrderDAOImpl implements WuliuOrderDAO {
         params.put("minOrderDate", wuliuOrderQueryParam.getMinOrderDate());
         params.put("maxOrderDate", wuliuOrderQueryParam.getMaxOrderDate());
         params.put("status", wuliuOrderQueryParam.getStatus());
+        params.put("orderIndex", wuliuOrderQueryParam.getOrderIndex());
         int count = sqlSessionTemplate.selectOne("WuliuOrder.count" , params);
         return count;
     }

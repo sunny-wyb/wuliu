@@ -4,24 +4,20 @@
 		<div class='search-content'>
 			<div class='search-item'>
 				<span class='form-title'>日期</span>
-				<input class='input' name="order-date"> 
+				<input class='input' name="order-date" value = "$!params.orderDateStr"> 
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>车次</span>
-				<input class='input' name="car-index"> 
+				<input class='input' name="car-index" value = "$!params.carIndex"> 
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>名字</span>
-				<input class='input' name="name"> 
-				<input class='input' name="member-id" type='hidden'> 
+				<input class='input' name="name" value="$!params.name"> 
+				<input class='input' name="member-id" type='hidden' value="$!params.memberId"> 
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>票号</span>
-				<input class='input' name="order-index"> 
-			</div>
-			<div class='search-item'>
-				<span class='form-title'>订单号</span>
-				<input class='input' name="order-number"> 
+				<input class='input' name="order-index" value="$!params.orderIndex"> 
 			</div>
 		</div>
 		<div class='search-btns'>

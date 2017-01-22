@@ -86,9 +86,9 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
 
     private void add(WuliuMergedOrderDetailModel mergedModel, long partWeight, long partVolumn, long partCost,
                      int partCount) {
-        mergedModel.setCost(mergedModel.getCost() + partCost);
+        mergedModel.setCost(mergedModel.getCost() + partCost * partCount);
         mergedModel.setCount(mergedModel.getCount() + partCount);
-        mergedModel.setWeight(mergedModel.getWeight() + partWeight);
-        mergedModel.setVolumn(mergedModel.getVolumn() + partVolumn);
+        mergedModel.setWeight(mergedModel.getWeight() + partWeight * partCount);
+        mergedModel.setVolumn(mergedModel.getVolumn() + partVolumn * partCount);
     }
 }

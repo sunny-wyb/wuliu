@@ -39,6 +39,7 @@ import sun.java2d.pipe.AlphaPaintPipe;
 
 import com.alibaba.fastjson.JSON;
 import com.wuliu.api.common.model.PageResultModel;
+import com.wuliu.api.member.model.WuliuMemberModel;
 import com.wuliu.api.member.service.WuliuMemberService;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
@@ -82,6 +83,16 @@ public class MergedOrder {
                                                                                                    throws UnsupportedEncodingException,
                                                                                                    ParseException {
 
+        Map<String , Object> params = new HashMap<String , Object>();
+        params.put("memberId", memberId);
+        params.put("orderDate", orderDateStr);
+        params.put("carIndex", carIndex);
+        params.put("orderIndex", orderIndex);
+        if (memberId != null) {
+            WuliuMemberModel memberModel = wuliuMemberService.queryMemberWithId(memberId);
+            params.put("name", memberModel.getName());
+        }
+        
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
         if (orderDateStr != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -93,18 +104,17 @@ public class MergedOrder {
         wuliuOrderQueryParam.setCarIndex(carIndex);
         wuliuOrderQueryParam.setMemberId(memberId);
         wuliuOrderQueryParam.setOrderIndex(orderIndex);
-        
-        if (page == null) {
-            page = 1;
+
+        if (page != null) {
+            wuliuOrderQueryParam.setPageNum(page);
         }
-        
-        wuliuOrderQueryParam.setPageNum(page);
 
         PageResultModel<WuliuMergedOrderModel> result = wuliuMergedOrderService.queryMergedOrders(wuliuOrderQueryParam);
 
         Map<String, Object> returnMap = new HashMap<String, Object>();
         returnMap.put("mergedOrders", result);
         returnMap.put("JSON", JSON.class);
+        returnMap.put("params", params);
         int cnt = result.getTotalCount() / result.getPageSize();
         if (result.getTotalCount() % result.getPageSize() != 0) {
             cnt += 1;
@@ -120,8 +130,9 @@ public class MergedOrder {
                          @RequestParam(value = "orderDate", required = false) String orderDateStr,
                          @RequestParam(value = "carIndex", required = false) Long carIndex,
                          @RequestParam(value = "orderIndex", required = false) Long orderIndex,
-                         HttpServletResponse response) throws IOException, ParseException, EncryptedDocumentException, InvalidFormatException {
-        
+                         HttpServletResponse response) throws IOException, ParseException, EncryptedDocumentException,
+                                                      InvalidFormatException {
+
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
         if (orderDateStr != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -133,25 +144,25 @@ public class MergedOrder {
         wuliuOrderQueryParam.setCarIndex(carIndex);
         wuliuOrderQueryParam.setMemberId(memberId);
         wuliuOrderQueryParam.setOrderIndex(orderIndex);
-        
+
         List<WuliuMergedOrderModel> mergedOrderModel = new ArrayList<WuliuMergedOrderModel>();
-        
+
         int cnt = 0;
         while (true) {
             PageResultModel<WuliuMergedOrderModel> partResult = wuliuMergedOrderService.queryMergedOrders(wuliuOrderQueryParam);
             if (partResult == null || CollectionUtils.isEmpty(partResult.getResultList())) {
                 break;
             }
-            
+
             cnt += partResult.getResultList().size();
             mergedOrderModel.addAll(partResult.getResultList());
             if (cnt >= partResult.getTotalCount()) {
                 break;
             }
-            
+
             wuliuOrderQueryParam.setPageNum(wuliuOrderQueryParam.getPageNum() + 1);
         }
-        
+
         String path = ExportUtil.getInstance().export(ApplicationContext.TMP_FOLDER, mergedOrderModel);
         String zipPath = ZipUtil.doZip(ApplicationContext.TMP_FOLDER, path);
         DownloadUtil.download(zipPath, response);

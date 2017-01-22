@@ -92,7 +92,6 @@ public class WuliuMemberServiceImpl implements WuliuMemberService {
      */
     @Override
     public WuliuMemberModel queryMemberWithId(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        return wuliuMemberAO.queryMemberWithId(id);
     }
 }
