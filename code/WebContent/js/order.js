@@ -4,11 +4,47 @@ $(function() {
 	});
 	dialog.dialog('close');
 	
-	$('.col-operation .btn-view').on('click' , function() {
+	$('.col-operation .btn-edit').on('click' , function() {
+		event.preventDefault();
 		var ele = $($(this).siblings('script[name=form-group]').html());
 		addToDialog(ele);
 		bind();
 		dialog.dialog('open');
+	});
+	
+	$('.col-operation .btn-delete').on('click' , function() {
+		event.preventDefault();
+		var data = $(this).closest('td').data('data');
+		if (data) {
+			var id = data.id;
+			$('<div></div>').appendTo('body')
+			  .html('<div style="font-size: 18px;margin-top: 15;">确认删除这条记录？</div>')
+			  .dialog({
+			      modal: true, title: '提醒', zIndex: 10000, autoOpen: true,
+			      width: 'auto', resizable: false,
+			      buttons: {
+			          "确定": function () {
+			        	  $.ajax({
+			        		url : 'deleteorder.html',  
+			        		type : 'POST',
+			        		dataType : 'json',
+			        		data : {'id' : id},
+			        		success : function(result) {
+			        			if (result.result) {
+			        				window.location.reload(true);
+			        			}
+			        		}
+			        	  });
+			          },
+			          "取消": function () {
+			              $(this).dialog("close");
+			          }
+			      },
+			      close: function (event, ui) {
+			          $(this).remove();
+			      }
+			});
+		}
 	});
 	
 	$('.function-area .btn-create').on('click' , function() {
@@ -47,7 +83,8 @@ $(function() {
 	    currentPage : currentPage,
 	    activeClass: 'activP', //active class style
 	    callBack : function(page){
-	    	window.location.href='member.html?page=' + page;
+	    	var newParamStr = addParamToUrl({'page':page});
+	    	window.location.href='order.html?' + newParamStr;
 	    }
 	});
 	
@@ -71,7 +108,17 @@ $(function() {
 			param.orderIndex= orderIndex.trim();
 		}
 		
-		window.location.href='order.html?' + encodeURI($.param(param));
+		var page = getParam('page');
+		if (page) {
+			param.page = page;
+		}
+		
+		if (param) {
+			window.location.href='order.html?' + $.param(param);
+		}
+		else {
+			window.location.href='order.html?';
+		}
 	}
 	
 	$('.search-btns .btn-search').on('click' , function() {
@@ -205,4 +252,32 @@ $(function() {
 			$(ele).val('');
 		});
 	}
+	
+	var addParamToUrl = function(param) {
+		if (window.location.search) {
+			var oldParam = $.deparam(window.location.search.substr(1));
+			if (param) {
+				$.each(param , function(key , value) {
+					oldParam[key] = value;
+				});
+				return $.param(oldParam);
+			}
+			else {
+				return window.location.search.substr(1)
+			}
+		}
+		else {
+			return $.param(param);
+		}
+	};
+	
+	var getParam = function(name) {
+		if (window.location.search) {
+			var paramMap = $.deparam(window.location.search.substr(1));
+			return paramMap[name];
+		}
+		else {
+			return "";
+		}
+	};
 });

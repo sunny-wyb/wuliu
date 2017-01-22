@@ -33,6 +33,7 @@ public class WuliuWholeOrderUtil {
         ret.setOrderDate(wuliuOrderModel.getOrderDate());
         ret.setOrderIndex(wuliuOrderModel.getOrderIndex());
         ret.setStatus(wuliuOrderModel.getStatus());
+        ret.setId(wuliuOrderModel.getId());
         ret.setWuliuOrderDetailModels(WuliuWholeOrderDetailUtil.builduliuWholeDetailModelList(wuliuOrderDetailModels));
         ret.setZhongzhuanFee(wuliuOrderModel.getZhongzhuanFee());
         ret.setComments(wuliuOrderModel.getComments());

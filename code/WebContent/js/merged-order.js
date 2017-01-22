@@ -7,7 +7,7 @@ $(function() {
 		form.attr('action', 'download.html');
 
 		
-		var param = getParam();
+		var param = getSearchParam();
 		
 		if (param.memberId) {
 			var memberIdInput = $('<input>');
@@ -55,7 +55,14 @@ $(function() {
       }
     });
 	
-	var getParam = function() {
+	var date = $('.search-operation input[name=order-date]').val();
+	$('.search-operation input[name=order-date]').datepicker();
+	$('.search-operation input[name=order-date]').datepicker( "option", "dateFormat", "yy-mm-dd");
+	if (date) {
+		$('.search-operation input[name=order-date]').datepicker("setDate" , date);
+	}
+	
+	var getSearchParam = function() {
 		var memberId = $('.search-content input[name=member-id]').val();
 		var carIndex = $('.search-content input[name=car-index]').val();
 		var orderDate = $('.search-content input[name=order-date]').val();
@@ -78,8 +85,19 @@ $(function() {
 	
 	var doSearch = function() {
 		
-		var param = getParam();
-		window.location.href='mergedorder.html?' + encodeURI($.param(param));
+		var param = getSearchParam();
+		
+		var page = getParam('page');
+		if (page) {
+			param.page = page;
+		}
+		
+		if (param) {
+			window.location.href='mergedorder.html?' + $.param(param);
+		}
+		else {
+			window.location.href='mergedorder.html?';
+		}
 	}
 	
 	$('.search-btns .btn-search').on('click' , function() {
@@ -96,5 +114,46 @@ $(function() {
 		$('.search-content input[name=car-index]').val('');
 		$('.search-content input[name=order-date]').val('');
 		$('.search-content input[name=order-index]').val('');
-	}
+	};
+	
+	var totalPage = $('.pagination').data('total-page');
+	var currentPage = $('.pagination').data('current-page');
+	$(".pagination").Page({
+	    totalPages: totalPage,//分页总数
+	    liNums: 7,
+	    currentPage : currentPage,
+	    activeClass: 'activP', //active class style
+	    callBack : function(page){
+	    	var newParamStr = addParamToUrl({'page':page});
+	    	window.location.href='mergedorder.html?' + newParamStr;
+	    }
+	});
+	
+	var addParamToUrl = function(param) {
+		if (window.location.search) {
+			var oldParam = $.deparam(window.location.search.substr(1));
+			if (param) {
+				$.each(param , function(key , value) {
+					oldParam[key] = value;
+				});
+				return $.param(oldParam);
+			}
+			else {
+				return window.location.search.substr(1)
+			}
+		}
+		else {
+			return $.param(param);
+		}
+	};
+	
+	var getParam = function(name) {
+		if (window.location.search) {
+			var paramMap = $.deparam(window.location.search.substr(1));
+			return paramMap[name];
+		}
+		else {
+			return "";
+		}
+	};
 });

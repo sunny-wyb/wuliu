@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="css/order.css" />
-<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
 
 <div class='order'>
 	<div class='search-operation'>
@@ -81,10 +80,9 @@
 						
 						#if($velocityCount == 1)
 						<td class='col-operation col-item' rowspan = $item.wuliuOrderDetailModels.size() data-data='$JSON.toJSONString($item)'> 
-							<div class='btn-view'><a>查看</a></div>
-							<div class='btn-update'><a>更新</a></div>
-							<div><a>删除</a></div>
-							<div><a>合并结果</a></div>
+							<div class='btn-edit'><a href="javascript:void(0);">编辑</a></div>
+							<div><a href="javascript:void(0);">删除</a></div>
+							<div><a href="mergedorder.html?orderDate=$sdf.format($item.orderDate)&orderIndex=$item.orderIndex" target="_blank">合并</a></div>
 							<script type="text/x-template" name="form-group">
 								#parse("./WEB-INF/views//components/order-dialog.vm")
 							</script>
@@ -112,10 +110,9 @@
 						
 						
 						<td class='col-operation col-item' data-data='$JSON.toJSONString($item)'> 
-							<div class='btn-view'><a>查看</a></div>
-							<div class='btn-update'><a>更新</a></div>
-							<div><a>删除</a></div>
-							<div><a>合并结果</a></div>
+							<div class='btn-edit'><a href="javascript:void(0);">编辑</a></div>
+							<div><a href="javascript:void(0);">删除</a></div>
+							<div><a href="mergedorder.html?orderDate=$sdf.format($item.orderDate)&orderIndex=$item.orderIndex" target="_blank">合并</a></div>
 							<script type="text/x-template" name="form-group">
 								#parse("./WEB-INF/views//components/order-dialog.vm")
 							</script>
@@ -130,5 +127,5 @@
 		</div>
 	</div>
 </div>
-<script src="js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="js/order.js" type="text/javascript"></script>
+<script src="js/jquery-deparam.js" type="text/javascript"></script>

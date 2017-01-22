@@ -239,6 +239,15 @@ public class Order {
        return JSON.toJSONString(ret);
     }
     
+    @RequestMapping(value = "/deleteorder.html", method = { RequestMethod.POST, RequestMethod.GET })
+    @ResponseBody
+    public String manageOrder(@RequestParam(value = "id") Long id){
+        boolean result = wuliuOrderService.deleteOrder(id);
+        Map<String , Object> ret = new HashMap<String , Object>();
+        ret.put("result", result);
+        return JSON.toJSONString(ret);
+    }
+    
     public WuliuMemberService getWuliuMemberService() {
         return wuliuMemberService;
     }

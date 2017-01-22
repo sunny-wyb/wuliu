@@ -125,7 +125,13 @@ $(function() {
 		if (page) {
 			param.page = page;
 		}
-		window.location.href='member.html?' + $.param(param);
+		
+		if (param) {
+			window.location.href='member.html?' + $.param(param);
+		}
+		else {
+			window.location.href='member.html?';
+		}
 	}
 	
 	$('.search-btns .btn-search').on('click' , function() {

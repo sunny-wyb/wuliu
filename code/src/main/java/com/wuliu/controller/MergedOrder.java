@@ -96,7 +96,7 @@ public class MergedOrder {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date orderDate = sdf.parse(orderDateStr);
             wuliuOrderQueryParam.setMinOrderDate(CalendarUtil.getMinDateInSameDay(orderDate));
-            wuliuOrderQueryParam.setMinOrderDate(CalendarUtil.getMaxDateInSameDay(orderDate));
+            wuliuOrderQueryParam.setMaxOrderDate(CalendarUtil.getMaxDateInSameDay(orderDate));
         }
 
         wuliuOrderQueryParam.setCarIndex(carIndex);
@@ -118,7 +118,9 @@ public class MergedOrder {
             cnt += 1;
         }
         returnMap.put("totalPage", cnt);
-        returnMap.put("currentPage", page);
+        returnMap.put("currentPage", wuliuOrderQueryParam.getPageNum());
+        
+        addUtils(returnMap);
 
         return new ModelAndView("mergedorder", returnMap);
     }
@@ -208,5 +210,10 @@ public class MergedOrder {
 
     public static Logger getLogger() {
         return logger;
+    }
+    
+    private void addUtils(Map<String , Object> context) {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
+        context.put("sdf", sdf);
     }
 }
