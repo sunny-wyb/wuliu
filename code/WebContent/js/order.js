@@ -22,8 +22,12 @@ $(function() {
 		
 	});
 	
+	var date = $('.search-operation input[name=order-date]').val();
 	$('.search-operation input[name=order-date]').datepicker();
 	$('.search-operation input[name=order-date]').datepicker( "option", "dateFormat", "yy-mm-dd");
+	if (date) {
+		$('.search-operation input[name=order-date]').datepicker("setDate" , date);
+	}
 	
 	
 	$( ".search-operation input[name=name]" ).autocomplete({
@@ -119,7 +123,9 @@ $(function() {
 		var value = $('.dialog-form form input[name=order-date]').val();
 		$('.dialog-form form input[name=order-date]').datepicker();
 		$('.dialog-form form input[name=order-date]').datepicker( "option", "dateFormat", "yy-mm-dd");
-		$('.dialog-form form input[name=order-date]').datepicker("setDate" , value);
+		if (value) {
+			$('.dialog-form form input[name=order-date]').datepicker("setDate" , value);
+		}
 	};
 	
 	var manageOrder = function() {

@@ -109,7 +109,8 @@ $(function() {
 	    currentPage : currentPage,
 	    activeClass: 'activP', //active class style
 	    callBack : function(page){
-	    	window.location.href='member.html?page=' + page;
+	    	var newParamStr = addParamToUrl({'page':page});
+	    	window.location.href='member.html?' + newParamStr;
 	    }
 	});
 	
@@ -120,7 +121,11 @@ $(function() {
 			param.name = name.trim();
 		}
 		
-		window.location.href='member.html?' + encodeURI($.param(param));
+		var page = getParam('page');
+		if (page) {
+			param.page = page;
+		}
+		window.location.href='member.html?' + $.param(param);
 	}
 	
 	$('.search-btns .btn-search').on('click' , function() {
@@ -131,4 +136,32 @@ $(function() {
 		$('.search-content input[name=name]').val('');
 		doSearch();
 	});
+	
+	var addParamToUrl = function(param) {
+		if (window.location.search) {
+			var oldParam = $.deparam(window.location.search.substr(1));
+			if (param) {
+				$.each(param , function(key , value) {
+					oldParam[key] = value;
+				});
+				return $.param(oldParam);
+			}
+			else {
+				return window.location.search.substr(1)
+			}
+		}
+		else {
+			return $.param(param);
+		}
+	};
+	
+	var getParam = function(name) {
+		if (window.location.search) {
+			var paramMap = $.deparam(window.location.search.substr(1));
+			return paramMap[name];
+		}
+		else {
+			return "";
+		}
+	};
 });

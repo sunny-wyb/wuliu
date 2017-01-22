@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.wuliu.api.common.model.PageResultModel;
+import com.wuliu.api.member.model.WuliuMemberModel;
 import com.wuliu.api.member.service.WuliuMemberService;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
@@ -75,6 +76,16 @@ public class Order {
                              @RequestParam(value = "orderIndex", required = false) Long orderIndex)
                                                                                           throws UnsupportedEncodingException, ParseException {
 
+        Map<String , Object> params = new HashMap<String , Object>();
+        params.put("memberId", memberId);
+        params.put("orderDate", orderDateStr);
+        params.put("carIndex", carIndex);
+        params.put("orderIndex", orderIndex);
+        if (memberId != null) {
+            WuliuMemberModel memberModel = wuliuMemberService.queryMemberWithId(memberId);
+            params.put("name", memberModel.getName());
+        }
+        
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
         if (orderDateStr != null) {
             SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
@@ -95,6 +106,7 @@ public class Order {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         returnMap.put("orders", result);
         returnMap.put("JSON", JSON.class);
+        returnMap.put("params", params);
         int cnt = result.getTotalCount() / result.getPageSize();
         if (result.getTotalCount() % result.getPageSize() != 0) {
             cnt += 1;

@@ -1,25 +1,25 @@
 <link rel="stylesheet" type="text/css" href="css/order.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
 
 <div class='order'>
 	<div class='search-operation'>
 		<div class='search-content'>
 			<div class='search-item'>
 				<span class='form-title'>日期</span>
-				<input class='input' name="order-date"> 
+				<input class='input' name="order-date" value = "$!params.orderDate"> 
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>车次</span>
-				<input class='input' name="car-index"> 
+				<input class='input' name="car-index" value="$!params.carIndex"> 
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>名字</span>
-				<input class='input' name="name"> 
-				<input class='input' name="member-id" type='hidden'> 
+				<input class='input' name="name" value="$!params.name"> 
+				<input class='input' name="member-id" type='hidden' value="$!params.memberId"> 
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>票号</span>
-				<input class='input' name="order-index"> 
+				<input class='input' name="order-index" value="$!params.orderIndex"> 
 			</div>
 		</div>
 		<div class='search-btns'>
@@ -130,5 +130,5 @@
 		</div>
 	</div>
 </div>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="js/order.js" type="text/javascript"></script>
