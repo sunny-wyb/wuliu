@@ -35,8 +35,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import sun.java2d.pipe.AlphaPaintPipe;
-
 import com.alibaba.fastjson.JSON;
 import com.wuliu.api.common.model.PageResultModel;
 import com.wuliu.api.member.model.WuliuMemberModel;

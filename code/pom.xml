@@ -133,6 +133,7 @@
 					<webappDirectory>WebContent</webappDirectory>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>zhongjia</warName>  
 				</configuration>
 			</plugin>
 
