@@ -17,7 +17,7 @@
  
 </head>
 <body>
-  <div>
+  <div style="width:1190;margin:auto;">
       #parse("/WEB-INF/fragments/_header.vm")
   </div>
   
