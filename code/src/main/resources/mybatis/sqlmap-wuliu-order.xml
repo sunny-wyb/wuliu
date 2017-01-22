@@ -4,14 +4,14 @@
 
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id" parameterType="WuliuOrder">
-		INSERT INTO WULIU_ORDER (gmt_create , gmt_modified , order_date , member_id ,
+		INSERT INTO wuliu_order (gmt_create , gmt_modified , order_date , member_id ,
 		order_index , car_index , zz_fee , js_fee , ds_fee , status , comments)
 		VALUES (now() , now() , #{orderDate} , #{memberId} , #{orderIndex} ,
 		#{carIndex} , #{zhongzhuanFee} , #{jiashouFee} , #{daishouFee}, #{status} , #{comments});
 	</insert>
 
 	<update id="update" parameterType="WuliuOrder">
-		UPDATE WULIU_ORDER
+		UPDATE wuliu_order
 		SET
 		<if test = "orderDate != null">
 		order_date = #{orderDate},
@@ -65,7 +65,7 @@
 			ds_fee		as daishouFee,
 			status		as status,
 			comments	as comments
-		FROM WULIU_ORDER
+		FROM wuliu_order
 		<where>
 			<if test = "id != null">
 				id = #{id}
@@ -96,7 +96,7 @@
 	<select id ="count" parameterType="java.util.Map" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
-		FROM WULIU_ORDER
+		FROM wuliu_order
 		<where>
 			<if test = "id != null">
 				id = #{id}

@@ -4,13 +4,13 @@
 
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id" parameterType="WuliuOrderDetail">
-		INSERT INTO WULIU_ORDER_DETAIL (gmt_create , gmt_modified , main_order_id , count , length , width , height , weight , status)
+		INSERT INTO wuliu_order_detail (gmt_create , gmt_modified , main_order_id , count , length , width , height , weight , status)
 		VALUES (now() , now() , #{mainOrderId} , #{count} , #{length} , #{width} ,
 		#{height} , #{weight} , #{status});
 	</insert>
 
 	<update id="update" parameterType="WuliuOrderDetail">
-		UPDATE WULIU_ORDER_DETAIL
+		UPDATE wuliu_order_detail
 		SET
 		
 		<if test = "mainOrderId!= null">
@@ -53,7 +53,7 @@
 			height			as height,
 			weight			as weight,
 			status			as status
-		FROM WULIU_ORDER_DETAIL
+		FROM wuliu_order_detail
 		<where>
 			<if test = "id != null">
 				id = #{id}
@@ -72,7 +72,7 @@
 	<select id ="count" parameterType="java.util.Map" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
-		FROM WULIU_ORDER_DETAIL
+		FROM wuliu_order_detail
 		<where>
 			<if test = "id != null">
 				id = #{id}

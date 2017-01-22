@@ -4,14 +4,14 @@
 
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id" parameterType="WuliuMember">
-		INSERT INTO WULIU_MEMBER (gmt_create , gmt_modified , name , nick_name ,
+		INSERT INTO wuliu_member (gmt_create , gmt_modified , name , nick_name ,
 		tel_number , m_number , address , w_price , v_price , status)
 		VALUES (now() , now() , #{name} , #{nickName} , #{telephoneNumber} ,
 		#{mobileNumber} , #{address} , #{weightPrice} , #{volumnPrice}, #{status});
 	</insert>
 
 	<update id="update" parameterType="WuliuMember">
-		UPDATE WULIU_MEMBER
+		UPDATE wuliu_member
 		SET
 		<if test = "name != null">
 		name = #{name},
@@ -61,7 +61,7 @@
 			w_price		as weightPrice,
 			v_price		as volumnPrice,
 			status		as status
-		FROM WULIU_MEMBER
+		FROM wuliu_member
 		<where>
 			<if test = "id != null">
 				id = #{id}
@@ -83,7 +83,7 @@
 	<select id ="count" parameterType="java.util.Map" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
-		FROM WULIU_MEMBER
+		FROM wuliu_member
 		<where>
 			<if test = "id != null">
 				id = #{id}
@@ -111,7 +111,7 @@
 			w_price		as weightPrice,
 			v_price		as volumnPrice,
 			status		as status
-		FROM WULIU_MEMBER
+		FROM wuliu_member
 		WHERE id = #{id}
 	</select>
 </mapper>
