@@ -38,6 +38,8 @@ import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
  * 类ExportUtil.java的实现描述：TODO 类实现描述 
  * @author yunbin.wangyb 2017年1月20日 上午12:47:31
  */
+
+@SuppressWarnings("all")
 public class ExportUtil {
     
     public static final int ROW_MAX = 50;

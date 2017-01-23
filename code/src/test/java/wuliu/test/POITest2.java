@@ -39,6 +39,7 @@ import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
  * 
  * @author yunbin.wangyb 2017年1月18日 下午10:14:44
  */
+@SuppressWarnings("all")
 public class POITest2 {
 
     public static final int ROW_MAX = 50;
