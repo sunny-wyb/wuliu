@@ -49,4 +49,8 @@
 	
 	<bean id ="orderDetailMergeEngine" class="com.wuliu.biz.orderdetail.engine.impl.OrderDetailMergeEngineImpl">
 	</bean>
+	
+	<bean  class="com.wuliu.biz.util.ApplicationContext" init-method="init">
+		<property name="tmp_folder" value="${wuliu.tmp.folder}" />	
+	</bean>
 </beans>

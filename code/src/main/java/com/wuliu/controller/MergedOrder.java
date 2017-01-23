@@ -49,6 +49,7 @@ import com.wuliu.biz.util.ApplicationContext;
 import com.wuliu.biz.util.CalendarUtil;
 import com.wuliu.biz.util.DownloadUtil;
 import com.wuliu.biz.util.ExportUtil;
+import com.wuliu.biz.util.FileUtil;
 import com.wuliu.biz.util.ZipUtil;
 
 /**
@@ -134,6 +135,7 @@ public class MergedOrder {
                          HttpServletResponse response) throws IOException, ParseException, EncryptedDocumentException,
                                                       InvalidFormatException {
 
+        logger.info("logger");
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
         if (orderDateStr != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -164,9 +166,11 @@ public class MergedOrder {
             wuliuOrderQueryParam.setPageNum(wuliuOrderQueryParam.getPageNum() + 1);
         }
 
-        String path = ExportUtil.getInstance().export(ApplicationContext.TMP_FOLDER, mergedOrderModel);
-        String zipPath = ZipUtil.doZip(ApplicationContext.TMP_FOLDER, path);
+        String path = ExportUtil.getInstance().export(ApplicationContext.tmp_folder, mergedOrderModel);
+        String zipPath = ZipUtil.doZip(ApplicationContext.tmp_folder, path);
+        FileUtil.delete(path);
         DownloadUtil.download(zipPath, response);
+        FileUtil.delete(zipPath);
     }
 
     public WuliuMemberService getWuliuMemberService() {
