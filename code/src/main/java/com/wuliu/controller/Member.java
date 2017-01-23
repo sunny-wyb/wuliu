@@ -154,10 +154,15 @@ public class Member {
     
     @RequestMapping(value = "/searchMember.html", method = { RequestMethod.POST, RequestMethod.GET })
     @ResponseBody
-    public String searchMember(@RequestParam(value = "term") String name) {
+    public String searchMember(@RequestParam(value = "term") String name) throws UnsupportedEncodingException {
 
+        String decodeName = null;
+        if (name != null) {
+            decodeName = URLDecoder.decode(name, "utf-8");
+        }
+        
         WuliuMemberQueryParam param = new WuliuMemberQueryParam();
-        param.setPrefixName(name);
+        param.setPrefixName(decodeName);
         PageResultModel<WuliuMemberModel>result = wuliuMemberService.queryMembers(param);
         JSONArray ret = new JSONArray();
         if (result != null && result.getResultList() != null) {

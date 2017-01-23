@@ -47,7 +47,18 @@ $(function() {
 	});
 	
 	$( ".search-operation input[name=name]" ).autocomplete({
-      source: 'searchMember.html',
+      source: function( request, response ) {
+          $.ajax( {
+              url: "searchMember.html",
+              dataType: "json",
+              data: {
+                term:encodeURIComponent(request.term) 
+              },
+              success: function( data ) {
+                response( data );
+              }
+            } );
+      },
       minLength: 2,
       select: function( event, ui ) {
     	  $( ".search-operation input[name=member-id]").val(ui.item.id );

@@ -198,6 +198,29 @@ public class ExportUtil {
     }
 
     private void fillSheet(Sheet sheet, List<WuliuMergedOrderModel> mergedOrderModels) {
+        
+        //file name
+        Row row3 = sheet.getRow(3);
+        Cell nameCell = row3.getCell(3);
+        if (nameCell == null) {
+            nameCell = row3.createCell(3);
+        }
+        nameCell.setCellValue(mergedOrderModels.get(0).getName());
+        
+        Cell phoneCell = row3.getCell(6);
+        if (phoneCell == null) {
+            phoneCell = row3.createCell(6);
+        }
+        phoneCell.setCellValue(getPhoneNumber(mergedOrderModels.get(0)));
+        
+        //fill address
+        Row row4 = sheet.getRow(4);
+        Cell addressCell = row4.getCell(3);
+        if (addressCell == null) {
+            addressCell = row4.createCell(3);
+        }
+        addressCell.setCellValue(mergedOrderModels.get(0).getAddress());
+        
         int rowNum = 6;
         int index = 1;
         for (WuliuMergedOrderModel item : mergedOrderModels) {
@@ -326,6 +349,20 @@ public class ExportUtil {
                 }
             }
         }
+    }
+    
+    private String getPhoneNumber(WuliuMergedOrderModel mergedOrderModel) {
+        StringBuffer sb = new StringBuffer();
+        if (mergedOrderModel.getTelephoneNumber() != null) {
+            sb.append(mergedOrderModel.getTelephoneNumber());
+        }
+        if (mergedOrderModel.getMobileNumber() != null) {
+            if (sb.length() > 0) {
+                sb.append(" / ");
+            }
+            sb.append(mergedOrderModel.getMobileNumber());
+        }
+        return sb.toString();
     }
 }
 

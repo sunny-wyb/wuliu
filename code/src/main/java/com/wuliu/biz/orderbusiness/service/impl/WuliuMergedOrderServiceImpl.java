@@ -103,6 +103,9 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             }
             
             wuliuMergedOrderModel.setName(wuliuMemberModel.getName());
+            wuliuMergedOrderModel.setAddress(wuliuMemberModel.getAddress());
+            wuliuMergedOrderModel.setTelephoneNumber(wuliuMemberModel.getTelephoneNumber());
+            wuliuMergedOrderModel.setMobileNumber(wuliuMemberModel.getMobileNumber());
             wuliuMergedOrderModel.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(item.getOrderDate(), item.getOrderIndex(), wuliuOrderDetailModels.size()));
 
             wuliuMergedOrderModel.setWuliuMergedOrderDetailModels(orderDetailMergeEngine.mergeOrderDetail(wuliuOrderDetailModels,
