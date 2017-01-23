@@ -1,0 +1,17 @@
+<div class='login'>
+	<div class='dialog'  title="登录">
+		<form action="login.html" method="post">
+			<label for = "username"> 用户名</label>
+			<input name="username" style="width:100%">
+			<label for = "password"> 密码</label>
+			<input name="password" style="width:100%;" type="password">
+			<input type="submit" value="提交" style="float:right;margin-top:5px;"/>
+		</form>
+	</div>
+</div>
+
+<script>
+  $( function() {
+    $( ".dialog" ).dialog();
+  } );
+</script>

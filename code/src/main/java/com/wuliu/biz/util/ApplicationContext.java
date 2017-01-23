@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package com.wuliu.controller;
+package com.wuliu.biz.util;
 
 /**
  * 类ApplicationContext.java的实现描述：TODO 类实现描述 

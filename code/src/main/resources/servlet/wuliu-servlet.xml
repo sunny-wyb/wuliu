@@ -10,6 +10,15 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
 	default-autowire="byName">
 	
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:wuliu.properties</value>
+			</list>
+		</property>
+	</bean>
+	
 	<bean class="com.wuliu.controller.Member">
 		<property name="wuliuMemberService" ref="wuliuMemberService" />
 		<property name="wuliuOrderService" ref="wuliuOrderService" />
@@ -32,5 +41,10 @@
 		<property name="wuliuOrderDetailService" ref="wuliuOrderDetailService" />
 		<property name="wuliuWholeOrderService" ref="wuliuWholeOrderService" />
 		<property name="wuliuMergedOrderService" ref="wuliuMergedOrderService" />
+	</bean>
+	
+	<bean class="com.wuliu.controller.Login">
+		<property name="username" value="${wuliu.username}" />
+		<property name="password" value="${wuliu.password}" />
 	</bean>
 </beans>
