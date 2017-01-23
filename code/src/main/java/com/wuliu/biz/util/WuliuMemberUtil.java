@@ -37,6 +37,7 @@ public class WuliuMemberUtil {
         ret.setTelephoneNumber(wuliuMemberModel.getTelephoneNumber());
         ret.setVolumnPrice(wuliuMemberModel.getVolumnPrice());
         ret.setWeightPrice(wuliuMemberModel.getWeightPrice());
+        ret.setShopAddress(wuliuMemberModel.getShopAddress());
 
         return ret;
     }
@@ -56,6 +57,7 @@ public class WuliuMemberUtil {
         ret.setTelephoneNumber(wuliuMemberDO.getTelephoneNumber());
         ret.setVolumnPrice(wuliuMemberDO.getVolumnPrice());
         ret.setWeightPrice(wuliuMemberDO.getWeightPrice());
+        ret.setShopAddress(wuliuMemberDO.getShopAddress());
 
         return ret;
     }

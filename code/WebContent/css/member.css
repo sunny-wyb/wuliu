@@ -110,8 +110,12 @@
 	width:210px;
 }
 
-.wuliu .member .content table .col-operations {
+.wuliu .member .content table .col-shop-address {
 	width:210px;
+}
+
+.wuliu .member .content table .col-operations {
+	width:110px;
 }
 
 .dialog-form .form-item {

@@ -19,6 +19,7 @@ $(function() {
 		$('.dialog-form form input[name=w-price]').val(data.weightPrice);
 		$('.dialog-form form input[name=v-price]').val(data.volumnPrice);
 		$('.dialog-form form input[name=address]').val(data.address);
+		$('.dialog-form form input[name=shop-address]').val(data.shopAddress);
 		
 		dialog.dialog('open');
 	});
@@ -96,6 +97,7 @@ $(function() {
 		$('.dialog-form form input[name=w-price]').val('');
 		$('.dialog-form form input[name=v-price]').val('');
 		$('.dialog-form form input[name=address]').val('');
+		$('.dialog-form form input[name=shop-address]').val('');
 		
 		$('.dialog-form').dialog({width:530});
 	});

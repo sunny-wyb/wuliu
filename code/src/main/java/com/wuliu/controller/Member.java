@@ -80,7 +80,8 @@ public class Member {
                        @RequestParam(value = "m-number", required = false) String mobileNumber,
                        @RequestParam(value = "w-price", required = false) Long weightPrice,
                        @RequestParam(value = "v-price", required = false) Long volumnPrice,
-                       @RequestParam(value = "address", required = false) String address) {
+                       @RequestParam(value = "address", required = false) String address,
+                       @RequestParam(value = "shop-address", required = false) String shopAddress) {
 
         WuliuMemberModel wuliuMemberModel = new WuliuMemberModel();
 
@@ -92,6 +93,7 @@ public class Member {
         wuliuMemberModel.setVolumnPrice(volumnPrice);
         wuliuMemberModel.setWeightPrice(weightPrice);
         wuliuMemberModel.setAddress(address);
+        wuliuMemberModel.setShopAddress(shopAddress);
 
         Boolean result = null;
         if (id != null) {

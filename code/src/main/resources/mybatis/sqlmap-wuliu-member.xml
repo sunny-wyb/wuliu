@@ -5,9 +5,9 @@
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id" parameterType="WuliuMember">
 		INSERT INTO wuliu_member (gmt_create , gmt_modified , name , nick_name ,
-		tel_number , m_number , address , w_price , v_price , status)
+		tel_number , m_number , address , w_price , v_price , status , shop_address)
 		VALUES (now() , now() , #{name} , #{nickName} , #{telephoneNumber} ,
-		#{mobileNumber} , #{address} , #{weightPrice} , #{volumnPrice}, #{status});
+		#{mobileNumber} , #{address} , #{weightPrice} , #{volumnPrice}, #{status} , #{shopAddress});
 	</insert>
 
 	<update id="update" parameterType="WuliuMember">
@@ -45,6 +45,10 @@
 		status = #{status},
 		</if>
 		
+		<if test = "shopAddress != null">
+		shop_address= #{shopAddress},
+		</if>
+		
 		GMT_MODIFIED = NOW()
 		WHERE
 		id = #{id}
@@ -52,15 +56,16 @@
 	
 	<select id ="query" parameterType="java.util.Map" resultType="WuliuMember">
 		SELECT
-			id			as id,
-			name		as name,
-			nick_name	as nickName,
-			tel_number	as telephoneNumber,
-			m_number	as mobileNumber,
-			address		as address,
-			w_price		as weightPrice,
-			v_price		as volumnPrice,
-			status		as status
+			id				as id,
+			name			as name,
+			nick_name		as nickName,
+			tel_number		as telephoneNumber,
+			m_number		as mobileNumber,
+			address			as address,
+			w_price			as weightPrice,
+			v_price			as volumnPrice,
+			status			as status,
+			shop_address	as shopAddress
 		FROM wuliu_member
 		<where>
 			<if test = "id != null">
@@ -102,15 +107,16 @@
 	
 	<select id ="queryWithId" parameterType="java.util.Map" resultType="WuliuMember">
 		SELECT
-			id			as id,
-			name		as name,
-			nick_name	as nickName,
-			tel_number	as telephoneNumber,
-			m_number	as mobileNumber,
-			address		as address,
-			w_price		as weightPrice,
-			v_price		as volumnPrice,
-			status		as status
+			id				as id,
+			name			as name,
+			nick_name		as nickName,
+			tel_number		as telephoneNumber,
+			m_number		as mobileNumber,
+			address			as address,
+			w_price			as weightPrice,
+			v_price			as volumnPrice,
+			status			as status,
+			shop_address	as shopAddress
 		FROM wuliu_member
 		WHERE id = #{id}
 	</select>

@@ -13,5 +13,22 @@
 <script>
   $( function() {
     $( ".dialog" ).dialog();
+    
+    $.ajax({
+	    url: "https://apps.1688.com/fragment/index.htm?apps=[{%22appName%22:%22bar_my%22}]&from=1688&site_id=winport",
+	 
+	    jsonp: "callback",
+	 
+	    dataType: "jsonp",
+	 
+	    data: {
+	        q: "select title,abstract,url from search.news where query=\"cat\"",
+	        format: "json"
+	    },
+	 
+	    success: function( response ) {
+	        console.log( response ); // server response
+	    }
+	});
   } );
 </script>

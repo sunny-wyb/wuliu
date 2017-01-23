@@ -36,18 +36,21 @@
 		<div class = 'menu'>
 			<ul id="accordion" class="accordion">
 		        <li>
-					<div class="link"><i class="fa fa-paint-brush"></i>客户管理<i class="fa fa-chevron-down"></i></div>
-					<ul class="submenu">
-						<li><a href="member.html">客户信息</a></li>
-					</ul>
+					<div class="link"><i class="fa fa-paint-brush"></i><a href="member.html">客户管理</a><i class="fa fa-chevron-down"></i></div>
 				</li>
-				<li>
+		        <li>
+					<div class="link"><i class="fa fa-paint-brush"></i><a href="order.html">订单管理</a><i class="fa fa-chevron-down"></i></div>
+				</li>
+		        <li>
+					<div class="link"><i class="fa fa-paint-brush"></i><a href="mergedorder.html">订单导出</a><i class="fa fa-chevron-down"></i></div>
+				</li>
+				<!-- <li>
 					<div class="link"><i class="fa fa-code"></i>订单管理<i class="fa fa-chevron-down"></i></div>
 					<ul class="submenu">
 						<li><a href="order.html">订单管理</a></li>
 						<li><a href="mergedorder.html">订单导出</a></li>
 					</ul>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 		<div class="main-content">

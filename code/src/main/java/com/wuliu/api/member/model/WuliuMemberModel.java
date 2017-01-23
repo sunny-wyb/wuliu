@@ -63,6 +63,11 @@ public class WuliuMemberModel implements Serializable {
      */
     private String            status;
 
+    /*
+     * 店铺地址
+     */
+    private String            shopAddress;
+
     public Long getId() {
         return id;
     }
@@ -133,5 +138,13 @@ public class WuliuMemberModel implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getShopAddress() {
+        return shopAddress;
+    }
+
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
     }
 }

@@ -32,6 +32,8 @@ public class WuliuMemberDO {
 
     private String status;
 
+    private String shopAddress;
+
     public Long getId() {
         return id;
     }
@@ -102,5 +104,13 @@ public class WuliuMemberDO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getShopAddress() {
+        return shopAddress;
+    }
+
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
     }
 }
