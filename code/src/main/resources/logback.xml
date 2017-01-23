@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     
+    <property resource="wuliu.properties" />
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 	    <layout class="ch.qos.logback.classic.PatternLayout">
 
@@ -16,7 +17,7 @@
         <Encoding>UTF-8</Encoding>   
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-            <FileNamePattern>${logback.base}/zhongjia.log.%d{yyyy-MM-dd}.log</FileNamePattern>   
+            <FileNamePattern>${wuliu.logback.base}/zhongjia.log.%d{yyyy-MM-dd}.log</FileNamePattern>   
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>   
         <layout class="ch.qos.logback.classic.PatternLayout">  
