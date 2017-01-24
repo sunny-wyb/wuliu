@@ -53,4 +53,8 @@
 	<bean  class="com.wuliu.biz.util.ApplicationContext" init-method="init">
 		<property name="tmp_folder" value="${wuliu.tmp.folder}" />	
 	</bean>
+	
+	<bean  class="com.wuliu.biz.util.ExportUtil">
+		<property name="exportStrategyFactory" ref="exportStrategyFactory" />
+	</bean>
 </beans>

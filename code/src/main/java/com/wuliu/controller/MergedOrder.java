@@ -45,6 +45,7 @@ import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
 import com.wuliu.api.orderbusiness.service.WuliuMergedOrderService;
 import com.wuliu.api.orderbusiness.service.WuliuWholeOrderService;
 import com.wuliu.api.orderdetail.service.WuliuOrderDetailService;
+import com.wuliu.biz.constant.ExportStrategyConst;
 import com.wuliu.biz.util.ApplicationContext;
 import com.wuliu.biz.util.CalendarUtil;
 import com.wuliu.biz.util.DownloadUtil;
@@ -132,8 +133,7 @@ public class MergedOrder {
                          @RequestParam(value = "orderDate", required = false) String orderDateStr,
                          @RequestParam(value = "carIndex", required = false) Long carIndex,
                          @RequestParam(value = "orderIndex", required = false) Long orderIndex,
-                         HttpServletResponse response) throws IOException, ParseException, EncryptedDocumentException,
-                                                      InvalidFormatException {
+                         HttpServletResponse response) throws Exception {
 
         logger.info("logger");
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
@@ -166,7 +166,7 @@ public class MergedOrder {
             wuliuOrderQueryParam.setPageNum(wuliuOrderQueryParam.getPageNum() + 1);
         }
 
-        String path = ExportUtil.getInstance().export(ApplicationContext.tmp_folder, mergedOrderModel);
+        String path = ExportUtil.export(ExportStrategyConst.WHOLE_ORDER, mergedOrderModel);
         String zipPath = ZipUtil.doZip(ApplicationContext.tmp_folder, path);
         FileUtil.delete(path);
         DownloadUtil.download(zipPath, response);
