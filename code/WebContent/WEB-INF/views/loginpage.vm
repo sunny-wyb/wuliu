@@ -14,7 +14,7 @@
   $( function() {
     $( ".dialog" ).dialog();
     
-    $.ajax({
+   /* $.ajax({
 	    url: "https://apps.1688.com/fragment/index.htm?apps=[{%22appName%22:%22bar_my%22}]&from=1688&site_id=winport",
 	 
 	    jsonp: "callback",
@@ -29,6 +29,6 @@
 	    success: function( response ) {
 	        console.log( response ); // server response
 	    }
-	});
+	});*/
   } );
 </script>

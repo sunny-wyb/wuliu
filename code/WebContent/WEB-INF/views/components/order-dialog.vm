@@ -13,7 +13,9 @@
 		#if($!item.orderDate)
 		<input name='order-date' value='$sdf.format($!item.orderDate)'>
 		#else
-		<input name='order-date' >
+		#if (!$!item)
+		<input name='order-date' value='$sdf.format($!nowDate)'>
+		#end
 		#end
 	</div>
 	

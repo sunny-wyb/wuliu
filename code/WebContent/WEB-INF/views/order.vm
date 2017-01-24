@@ -60,12 +60,12 @@
 					#foreach($itemDetail in $item.wuliuOrderDetailModels)
 					<tr>
 						#if($velocityCount == 1)
-						<td class='col-car-index col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.carIndex</td>	
-						<td class='col-order-number col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.orderNumber</td>	
-						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.name</td>	
-						<td class='col-zz-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.zhongzhuanFee</td>	
-						<td class='col-js-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.jiashouFee</td>	
-						<td class='col-ds-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $item.daishouFee</td>	
+						<td class='col-car-index col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.carIndex</td>	
+						<td class='col-order-number col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.orderNumber</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.name</td>	
+						<td class='col-zz-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.zhongzhuanFee</td>	
+						<td class='col-js-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.jiashouFee</td>	
+						<td class='col-ds-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.daishouFee</td>	
 						<td class='col-comments col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.comments</td>	
 						#end
 						
