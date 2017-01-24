@@ -207,6 +207,13 @@
     background: #027cff;
     border-color: #027cff;
 }
+.dialog-form .detail-col-operation .action-add {
+	cursor: pointer;
+}
+
+.dialog-form .detail-col-operation .action-delete {
+	cursor: pointer;
+}
 
 .detail-list .detail-col-item {
     display: inline-block;

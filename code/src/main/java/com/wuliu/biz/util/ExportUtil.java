@@ -131,7 +131,7 @@ public class ExportUtil {
     }
     
     private List<List<WuliuMergedOrderModel>> split(List<WuliuMergedOrderModel> mergedOrders) {
-        List<List<WuliuMergedOrderModel>> memberSplitList = split(mergedOrders);
+        List<List<WuliuMergedOrderModel>> memberSplitList = splitMember(mergedOrders);
         List<List<WuliuMergedOrderModel>> carIndexSplitList = new ArrayList<List<WuliuMergedOrderModel>>();
         for (List<WuliuMergedOrderModel> item : memberSplitList) {
             carIndexSplitList.addAll(splitCarIndex(item));

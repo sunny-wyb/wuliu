@@ -2,7 +2,7 @@ $(function() {
 	
 	
 	var dialog = $('.dialog-form').dialog({
-		width:530
+		width:580
 	});
 	
 	dialog.dialog('close');
@@ -99,7 +99,7 @@ $(function() {
 		$('.dialog-form form input[name=address]').val('');
 		$('.dialog-form form input[name=shop-address]').val('');
 		
-		$('.dialog-form').dialog({width:530});
+		$('.dialog-form').dialog({width:580});
 	});
 	
 	
