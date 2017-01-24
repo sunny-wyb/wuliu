@@ -28,15 +28,23 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginFilter implements Filter {
 
-    public static final String[]    WHITE_LIST     = { "/login.html", "/loginpage.html" ,"/images/banner.png",
-                                                       "/css/reset.css" , "/css/jquery-ui.min.css",
-                                                       "/js/jquery-3.1.1.min.js", "/js/jquery-ui.min.js"};
+    public static final String[]    WHITE_LIST               = { "/login.html", "/loginpage.html",
+            "/images/banner.png", "/css/reset.css", "/css/jquery-ui.min.css", "/js/jquery-3.1.1.min.js",
+            "/js/jquery-ui.min.js"                          };
 
-    public static final Set<String> WHITE_LIST_SET = new HashSet<String>();
+    public static final String[]    STATIC_RESOURCE_TYPE     = { "js", "css", "images" };
+
+    public static final Set<String> WHITE_LIST_SET           = new HashSet<String>();
+
+    public static final Set<String> STATIC_RESOURCE_TYPE_SET = new HashSet<String>();
 
     {
         for (String item : WHITE_LIST) {
             WHITE_LIST_SET.add(item);
+        }
+
+        for (String item : STATIC_RESOURCE_TYPE) {
+            STATIC_RESOURCE_TYPE_SET.add(item);
         }
     }
 
@@ -62,10 +70,10 @@ public class LoginFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         if (isInWhiteList(request.getContextPath(), request.getRequestURI())
+            || isStaticResource(request.getContextPath(), request.getRequestURI())
             || (session != null && session.getAttribute("__USER__") != null)) {
             chain.doFilter(_request, _response);
-        }
-        else {
+        } else {
             response.sendRedirect("loginpage.html");
         }
     }
@@ -82,5 +90,17 @@ public class LoginFilter implements Filter {
     private boolean isInWhiteList(String context, String uri) {
         String page = uri.substring(context.length());
         return WHITE_LIST_SET.contains(page);
+    }
+
+    private boolean isStaticResource(String context, String uri) {
+        String resource = uri.substring(context.length());
+        String path = resource.substring(1);
+        int index = path.indexOf("/");
+        if (index == -1) {
+            return false;
+        }
+        
+        String type = path.substring(0, index);
+        return STATIC_RESOURCE_TYPE_SET.contains(type);
     }
 }
