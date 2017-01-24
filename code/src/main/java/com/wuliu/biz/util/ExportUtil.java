@@ -131,8 +131,20 @@ public class ExportUtil {
     }
     
     private List<List<WuliuMergedOrderModel>> split(List<WuliuMergedOrderModel> mergedOrders) {
-        List<List<WuliuMergedOrderModel>> ret = new ArrayList<List<WuliuMergedOrderModel>>();
+        List<List<WuliuMergedOrderModel>> memberSplitList = split(mergedOrders);
+        List<List<WuliuMergedOrderModel>> carIndexSplitList = new ArrayList<List<WuliuMergedOrderModel>>();
+        for (List<WuliuMergedOrderModel> item : memberSplitList) {
+            carIndexSplitList.addAll(splitCarIndex(item));
+        }
         
+        List<List<WuliuMergedOrderModel>>  ret = new ArrayList<List<WuliuMergedOrderModel>>();
+        for (List<WuliuMergedOrderModel> item : carIndexSplitList) {
+            ret.addAll(splitSize(item));
+        }
+        return ret;
+    }
+    
+    private List<List<WuliuMergedOrderModel>> splitMember(List<WuliuMergedOrderModel> mergedOrders) {
         Map<Long  , List<WuliuMergedOrderModel>> map = new HashMap<Long , List<WuliuMergedOrderModel>>();
         
         for (WuliuMergedOrderModel item : mergedOrders) {
@@ -144,15 +156,33 @@ public class ExportUtil {
             list.add(item);
         }
         
+        List<List<WuliuMergedOrderModel>> ret = new ArrayList<List<WuliuMergedOrderModel>>();
         for (List<WuliuMergedOrderModel> item : map.values()) {
-            List<List<WuliuMergedOrderModel>> temp = splitSameMember(item);
-            ret.addAll(temp);
+            ret.add(item);
+        }
+        return ret;
+    }
+    
+    private List<List<WuliuMergedOrderModel>> splitCarIndex(List<WuliuMergedOrderModel> mergedOrders) {
+        Map<Long , List<WuliuMergedOrderModel>> map = new HashMap<Long , List<WuliuMergedOrderModel>>();
+        
+        for (WuliuMergedOrderModel item : mergedOrders) {
+            List<WuliuMergedOrderModel> tmpList = map.get(item.getCarIndex());
+            if (tmpList == null) {
+                tmpList = new ArrayList<WuliuMergedOrderModel>();
+                map.put(item.getCarIndex(), tmpList);
+            }
+            tmpList.add(item);
         }
         
+        List<List<WuliuMergedOrderModel>> ret = new ArrayList<List<WuliuMergedOrderModel>>();
+        for (List<WuliuMergedOrderModel> item : map.values()) {
+            ret.add(item);
+        }
         return ret;
     }
 
-    private List<List<WuliuMergedOrderModel>> splitSameMember(List<WuliuMergedOrderModel> mergedOrders) {
+    private List<List<WuliuMergedOrderModel>> splitSize(List<WuliuMergedOrderModel> mergedOrders) {
 
         if (CollectionUtils.isEmpty(mergedOrders)) {
             return null;
@@ -200,6 +230,14 @@ public class ExportUtil {
     }
 
     private void fillSheet(Sheet sheet, List<WuliuMergedOrderModel> mergedOrderModels) {
+        //file header
+        if (sheet.getHeader() != null) {
+	        String right = sheet.getHeader().getRight();
+	        if (right != null && right.length() > 5) {
+	            right = right.substring(0 , right.length() - 5) + "第" + mergedOrderModels.get(0).getCarIndex() + "车";
+	            sheet.getHeader().setRight(right);
+	        }
+        }
         
         //file name
         Row row3 = sheet.getRow(3);
@@ -222,6 +260,15 @@ public class ExportUtil {
             addressCell = row4.createCell(3);
         }
         addressCell.setCellValue(mergedOrderModels.get(0).getAddress());
+        
+        //fill send date
+        Cell sendDateCell = row4.getCell(6);
+        if (sendDateCell == null) {
+            sendDateCell = row4.createCell(6); 
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        sendDateCell.setCellValue("送货日期：" + sdf.format(mergedOrderModels.get(0).getSendDate()));
+        
         
         int rowNum = 6;
         int index = 1;

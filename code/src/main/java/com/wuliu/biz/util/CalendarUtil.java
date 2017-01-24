@@ -36,4 +36,11 @@ public class CalendarUtil {
         calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
         return calendar.getTime();
     }
+    
+    public static Date addDays(Date date , int days) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_YEAR, days);
+        return calendar.getTime();
+    }
 }

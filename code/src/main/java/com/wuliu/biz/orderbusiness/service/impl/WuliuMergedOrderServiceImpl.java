@@ -27,6 +27,7 @@ import com.wuliu.biz.member.AO.WuliuMemberAO;
 import com.wuliu.biz.order.AO.WuliuOrderAO;
 import com.wuliu.biz.orderdetail.AO.WuliuOrderDetailAO;
 import com.wuliu.biz.orderdetail.engine.OrderDetailMergeEngine;
+import com.wuliu.biz.util.CalendarUtil;
 import com.wuliu.biz.util.WuliuOrderNumberUtil;
 
 /**
@@ -35,6 +36,8 @@ import com.wuliu.biz.util.WuliuOrderNumberUtil;
  * @author yunbin.wangyb 2016年12月30日 下午1:44:05
  */
 public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
+
+    public static final int        SEND_DAYS = 4;
 
     private WuliuOrderAO           wuliuOrderAO;
 
@@ -93,7 +96,6 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             wuliuMergedOrderModel.setOrderDate(item.getOrderDate());
             wuliuMergedOrderModel.setOrderIndex(item.getOrderIndex());
             wuliuMergedOrderModel.setZhongzhuanFee(item.getZhongzhuanFee());
-            
 
             List<WuliuOrderDetailModel> wuliuOrderDetailModels = wuliuOrderDetailAO.queryOrderDetails(wuliuOrderDetailQueryParam);
 
@@ -101,12 +103,15 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             if (wuliuMemberModel == null) {
                 continue;
             }
-            
+
             wuliuMergedOrderModel.setName(wuliuMemberModel.getName());
             wuliuMergedOrderModel.setAddress(wuliuMemberModel.getAddress());
             wuliuMergedOrderModel.setTelephoneNumber(wuliuMemberModel.getTelephoneNumber());
             wuliuMergedOrderModel.setMobileNumber(wuliuMemberModel.getMobileNumber());
-            wuliuMergedOrderModel.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(item.getOrderDate(), item.getOrderIndex(), wuliuOrderDetailModels.size()));
+            wuliuMergedOrderModel.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(item.getOrderDate(),
+                                                                                     item.getOrderIndex(),
+                                                                                     wuliuOrderDetailModels.size()));
+            wuliuMergedOrderModel.setSendDate(CalendarUtil.addDays(item.getOrderDate(), SEND_DAYS));
 
             wuliuMergedOrderModel.setWuliuMergedOrderDetailModels(orderDetailMergeEngine.mergeOrderDetail(wuliuOrderDetailModels,
                                                                                                           wuliuMemberModel.getWeightPrice(),

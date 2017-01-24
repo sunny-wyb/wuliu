@@ -55,6 +55,8 @@ public class WuliuMergedOrderModel implements Serializable {
 
     private String                            mobileNumber;
 
+    private Date                              sendDate;
+
     public Long getId() {
         return id;
     }
@@ -181,5 +183,13 @@ public class WuliuMergedOrderModel implements Serializable {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public Date getSendDate() {
+        return sendDate;
+    }
+
+    public void setSendDate(Date sendDate) {
+        this.sendDate = sendDate;
     }
 }

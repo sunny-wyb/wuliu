@@ -54,7 +54,7 @@ public class WuliuMemberModel implements Serializable {
     private Long              weightPrice;
 
     /**
-     * 体积单价 这里的单位是杜少
+     * 体积单价 这里的单位是 分 / 立方米
      */
     private Long              volumnPrice;
 
