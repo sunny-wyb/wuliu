@@ -57,6 +57,12 @@ public class WuliuMergedOrderModel implements Serializable {
 
     private Date                              sendDate;
 
+    private String                            daishouFeeForDisplay;
+
+    private String                            zhongzhuanFeeForDisplay;
+
+    private String                            jiashouFeeForDisplay;
+
     public Long getId() {
         return id;
     }
@@ -191,5 +197,29 @@ public class WuliuMergedOrderModel implements Serializable {
 
     public void setSendDate(Date sendDate) {
         this.sendDate = sendDate;
+    }
+
+    public String getDaishouFeeForDisplay() {
+        return daishouFeeForDisplay;
+    }
+
+    public void setDaishouFeeForDisplay(String daishouFeeForDisplay) {
+        this.daishouFeeForDisplay = daishouFeeForDisplay;
+    }
+
+    public String getZhongzhuanFeeForDisplay() {
+        return zhongzhuanFeeForDisplay;
+    }
+
+    public void setZhongzhuanFeeForDisplay(String zhongzhuanFeeForDisplay) {
+        this.zhongzhuanFeeForDisplay = zhongzhuanFeeForDisplay;
+    }
+
+    public String getJiashouFeeForDisplay() {
+        return jiashouFeeForDisplay;
+    }
+
+    public void setJiashouFeeForDisplay(String jiashouFeeForDisplay) {
+        this.jiashouFeeForDisplay = jiashouFeeForDisplay;
     }
 }

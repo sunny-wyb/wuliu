@@ -64,12 +64,13 @@ public class WuliuWholeOrderDetailUtil {
             }
         }
         
+        df.applyPattern("0.#");
         if (ret.getTotalWeight() != null) {
             if (ret.getTotalWeight() % 1000 == 0){
                 ret.setTotalWeightForDisplay(String.valueOf(ret.getTotalWeight() / 1000));
             }
             else {
-                ret.setTotalWeightForDisplay(String.valueOf((long)Math.ceil(ret.getTotalWeight() / 1000.0)));
+                ret.setTotalWeightForDisplay(df.format((ret.getTotalWeight() / 1000.0)));
             }
         }
         

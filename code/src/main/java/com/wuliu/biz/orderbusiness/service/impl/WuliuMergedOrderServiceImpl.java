@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.orderbusiness.service.impl;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,14 +72,9 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
                 continue;
             }
 
-            WuliuMemberQueryParam wuliuMemberQueryParam = new WuliuMemberQueryParam();
-            wuliuMemberQueryParam.setId(item.getMemberId());
-            List<WuliuMemberModel> wuliuMemberModels = wuliuMemberAO.queryMembers(wuliuMemberQueryParam);
-            if (CollectionUtils.isEmpty(wuliuMemberModels)) {
-                continue;
-            }
+            WuliuMemberModel wuliuMemberModel = wuliuMemberAO.queryMemberWithId(item.getMemberId());
 
-            wuliuMemberMap.put(item.getId(), wuliuMemberModels.get(0));
+            wuliuMemberMap.put(item.getMemberId(), wuliuMemberModel);
         }
 
         List<WuliuMergedOrderModel> wuliuMergedOrderModels = new ArrayList<WuliuMergedOrderModel>();
@@ -96,10 +92,23 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             wuliuMergedOrderModel.setOrderDate(item.getOrderDate());
             wuliuMergedOrderModel.setOrderIndex(item.getOrderIndex());
             wuliuMergedOrderModel.setZhongzhuanFee(item.getZhongzhuanFee());
+            
+            DecimalFormat df = new DecimalFormat("0.##");
+            if (wuliuMergedOrderModel.getJiashouFee() != null) {
+                wuliuMergedOrderModel.setJiashouFeeForDisplay(df.format(wuliuMergedOrderModel.getJiashouFee() / 100.0));
+            }
+            
+            if (wuliuMergedOrderModel.getDaishouFee() != null) {
+                wuliuMergedOrderModel.setDaishouFeeForDisplay(df.format(wuliuMergedOrderModel.getDaishouFee() / 100.0));
+            }
+            
+            if (wuliuMergedOrderModel.getZhongzhuanFee() != null) {
+                wuliuMergedOrderModel.setZhongzhuanFeeForDisplay(df.format(wuliuMergedOrderModel.getZhongzhuanFee() / 100.0));;
+            }
 
             List<WuliuOrderDetailModel> wuliuOrderDetailModels = wuliuOrderDetailAO.queryOrderDetails(wuliuOrderDetailQueryParam);
 
-            WuliuMemberModel wuliuMemberModel = wuliuMemberMap.get(item.getId());
+            WuliuMemberModel wuliuMemberModel = wuliuMemberMap.get(item.getMemberId());
             if (wuliuMemberModel == null) {
                 continue;
             }

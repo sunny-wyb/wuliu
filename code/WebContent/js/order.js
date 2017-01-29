@@ -374,7 +374,7 @@ $(function() {
 					totalWeight = totalWeight / 1000;
 				}
 				else {
-					totalWeight = Math.ceil(totalWeight / 1000.0);
+					totalWeight = (totalWeight / 1000.0).toFixed(1);
 				}
 				$(e).find('input[name=total-weight]').val(totalWeight);
 			}

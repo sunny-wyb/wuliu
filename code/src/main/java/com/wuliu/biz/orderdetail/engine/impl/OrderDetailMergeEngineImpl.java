@@ -60,12 +60,24 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
                 add(volumnModel, 0, getVolumn(item), volumnCost, item.getCount());
             }
         }
-
+        
         if (weightModel != null) {
+            if (weightModel.getCost() % 100000L == 0) {
+                weightModel.setCost(weightModel.getCost() / 100000);
+            }
+            else {
+                weightModel.setCost((long)Math.ceil(weightModel.getCost() / 100000.0));
+            }
             ret.add(weightModel);
         }
 
         if (volumnModel != null) {
+            if (volumnModel.getCost()  % 100000000000L == 0) {
+                volumnModel.setCost(volumnModel.getCost() / 100000000000L);
+            }
+            else {
+                volumnModel.setCost((long)Math.ceil(volumnModel.getCost() / 100000000000.0f));
+            }
             ret.add(volumnModel);
         }
 
