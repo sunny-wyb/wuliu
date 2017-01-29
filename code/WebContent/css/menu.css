@@ -69,6 +69,14 @@
  .wuliu .menu .submenu li {
  	border-bottom: 1px solid #4b4a5e;
  }
+ 
+.wuliu .menu  a {
+	color:black;
+}
+
+.wuliu .menu  a:hover {
+	text-decoration : unberline;
+}
 
  .wuliu .menu .submenu a {
  	display: block;
