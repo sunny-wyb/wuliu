@@ -63,19 +63,19 @@
 						<td class='col-car-index col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.carIndex</td>	
 						<td class='col-order-number col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.orderNumber</td>	
 						<td class='col-name col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.name</td>	
-						<td class='col-zz-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.zhongzhuanFee</td>	
-						<td class='col-js-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.jiashouFee</td>	
-						<td class='col-ds-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.daishouFee</td>	
+						<td class='col-zz-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.zhongzhuanFeeForDisplay</td>	
+						<td class='col-js-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.jiashouFeeForDisplay</td>	
+						<td class='col-ds-fee col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.daishouFeeForDisplay</td>	
 						<td class='col-comments col-item' rowspan = $item.wuliuOrderDetailModels.size()> $!item.comments</td>	
 						#end
 						
 						<td class='col-count col-item' > $itemDetail.count</td>	
-						<td class='col-weight col-item' > $itemDetail.weight</td>	
-						<td class='col-length col-item' > $itemDetail.length</td>	
-						<td class='col-width col-item' > $itemDetail.width</td>	
-						<td class='col-height col-item' > $itemDetail.height</td>	
-						<td class='col-total-weight col-item' > $itemDetail.totalWeight</td>	
-						<td class='col-total-volumn col-item' > $itemDetail.totalVolumn</td>	
+						<td class='col-weight col-item' > $itemDetail.weightForDisplay</td>	
+						<td class='col-length col-item' > $itemDetail.lengthForDisplay</td>	
+						<td class='col-width col-item' > $itemDetail.widthForDisplay</td>	
+						<td class='col-height col-item' > $itemDetail.heightForDisplay</td>	
+						<td class='col-total-weight col-item' > $itemDetail.totalWeightForDisplay</td>	
+						<td class='col-total-volumn col-item' > $itemDetail.totalVolumnForDisplay</td>	
 						
 						
 						#if($velocityCount == 1)

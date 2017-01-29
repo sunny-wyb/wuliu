@@ -36,16 +36,16 @@
 	
 	<div class='form-item'>
 		<label for="zz-fee">中转费</label>
-		<input name='zz-fee' value='$!item.zhongzhuanFee'>
+		<input name='zz-fee' value='$!item.zhongzhuanFeeForDisplay'>
 	</div>
 	
 	<div class='form-item'>
 		<label for="js-fee">加收费</label>
-		<input name='js-fee' value='$!item.jiashouFee'>
+		<input name='js-fee' value='$!item.jiashouFeeForDisplay'>
 	</div>
 	<div class='form-item'>
 		<label for="ds-fee">代收费</label>
-		<input name='ds-fee' value='$!item.daishouFee'>
+		<input name='ds-fee' value='$!item.daishouFeeForDisplay'>
 	</div>
 	<div class='form-item comments-col'>
 		<label for="comments">备注</label>
@@ -89,22 +89,22 @@
 					<input name="count" value = "$!innerItemDetail.count">
 				</div>
 				<div class='detail-col-weight detail-col-item'>
-					<input name="weight" value = "$!innerItemDetail.weight">
+					<input name="weight" value = "$!innerItemDetail.weightForDisplay">
 				</div>
 				<div class='detail-col-length detail-col-item'>
-					<input name="length" value = "$!innerItemDetail.length">
+					<input name="length" value = "$!innerItemDetail.lengthForDisplay">
 				</div>
 				<div class='detail-col-width detail-col-item'>
-					<input name="width" value = "$!innerItemDetail.width">
+					<input name="width" value = "$!innerItemDetail.widthForDisplay">
 				</div>
 				<div class='detail-col-height detail-col-item'>
-					<input name="height" value = "$!innerItemDetail.height">
+					<input name="height" value = "$!innerItemDetail.heightForDisplay">
 				</div>
 				<div class='detail-col-total-weight detail-col-item'>
-					<input name="total-weight" value = "$!innerItemDetail.totalWeight">
+					<input name="total-weight" value = "$!innerItemDetail.totalWeightForDisplay" readonly="readonly"">
 				</div>
 				<div class='detail-col-total-volumn detail-col-item'>
-					<input name="total-volumn" value = "$!innerItemDetail.totalVolumn">
+					<input name="total-volumn" value = "$!innerItemDetail.totalVolumnForDisplay" readonly="readonly"">
 				</div>
 				<div class='detail-col-operation detail-col-item'>
 					<span class='action-delete'>删除</span>

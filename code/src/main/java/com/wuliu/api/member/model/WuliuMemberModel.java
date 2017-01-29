@@ -68,6 +68,10 @@ public class WuliuMemberModel implements Serializable {
      */
     private String            shopAddress;
 
+    private String            weightPriceForDisplay;
+
+    private String            volumnPriceForDisplay;
+
     public Long getId() {
         return id;
     }
@@ -146,5 +150,21 @@ public class WuliuMemberModel implements Serializable {
 
     public void setShopAddress(String shopAddress) {
         this.shopAddress = shopAddress;
+    }
+
+    public String getWeightPriceForDisplay() {
+        return weightPriceForDisplay;
+    }
+
+    public void setWeightPriceForDisplay(String weightPriceForDisplay) {
+        this.weightPriceForDisplay = weightPriceForDisplay;
+    }
+
+    public String getVolumnPriceForDisplay() {
+        return volumnPriceForDisplay;
+    }
+
+    public void setVolumnPriceForDisplay(String volumnPriceForDisplay) {
+        this.volumnPriceForDisplay = volumnPriceForDisplay;
     }
 }

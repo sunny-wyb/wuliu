@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class WuliuMemberUtil {
         ret.setVolumnPrice(wuliuMemberModel.getVolumnPrice());
         ret.setWeightPrice(wuliuMemberModel.getWeightPrice());
         ret.setShopAddress(wuliuMemberModel.getShopAddress());
-
+        
         return ret;
     }
 
@@ -59,6 +60,15 @@ public class WuliuMemberUtil {
         ret.setWeightPrice(wuliuMemberDO.getWeightPrice());
         ret.setShopAddress(wuliuMemberDO.getShopAddress());
 
+        DecimalFormat df = new DecimalFormat("0.##");
+        if (ret.getWeightPrice() != null) {
+            ret.setWeightPriceForDisplay(df.format(ret.getWeightPrice() / 100.0));
+        }
+        
+        if (ret.getVolumnPrice() != null) {
+            ret.setVolumnPriceForDisplay(df.format(ret.getVolumnPrice() / 100.0));
+        }
+        
         return ret;
     }
 

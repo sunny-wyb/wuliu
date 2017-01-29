@@ -37,8 +37,8 @@
 					<td class='col-nick-name col-item'>$!{member.nickName}</td>
 					<td class='col-tel-number col-item'>$!{member.telephoneNumber}</td>
 					<td class='col-m-number col-item'>$!{member.mobileNumber}</td>
-					<td class='col-w-price col-item'>$!{member.weightPrice}</td>
-					<td class='col-v-price col-item'>$!{member.volumnPrice}</td>
+					<td class='col-w-price col-item'>$!{member.weightPriceForDisplay}</td>
+					<td class='col-v-price col-item'>$!{member.volumnPriceForDisplay}</td>
 					<td class='col-address col-item'>$!{member.address}</td>
 					<td class='col-shop-address col-item'>$!{member.shopAddress}</td>
 					<td class='col-operations col-item'>

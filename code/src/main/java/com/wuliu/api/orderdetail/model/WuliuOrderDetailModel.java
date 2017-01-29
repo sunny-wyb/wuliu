@@ -27,16 +27,32 @@ public class WuliuOrderDetailModel implements Serializable {
 
     private Integer           count;
 
+    // 单位是毫米
     private Long              length;
 
+    // 单位是毫米
     private Long              width;
 
+    // 单位是毫米
     private Long              height;
 
+    // 单位是克
     private Long              weight;
 
     private String            status;
-    
+
+    // 单位是厘米，精度1位
+    private String            lengthForDisplay;
+
+    // 单位是厘米，精度1位
+    private String            widthForDisplay;
+
+    // 单位是厘米，精度1位
+    private String            heightForDisplay;
+
+    // 单位是千克 精度1位
+    private String            weightForDisplay;
+
     public Long getId() {
         return id;
     }
@@ -99,5 +115,37 @@ public class WuliuOrderDetailModel implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getLengthForDisplay() {
+        return lengthForDisplay;
+    }
+
+    public void setLengthForDisplay(String lengthForDisplay) {
+        this.lengthForDisplay = lengthForDisplay;
+    }
+
+    public String getWidthForDisplay() {
+        return widthForDisplay;
+    }
+
+    public void setWidthForDisplay(String widthForDisplay) {
+        this.widthForDisplay = widthForDisplay;
+    }
+
+    public String getHeightForDisplay() {
+        return heightForDisplay;
+    }
+
+    public void setHeightForDisplay(String heightForDisplay) {
+        this.heightForDisplay = heightForDisplay;
+    }
+
+    public String getWeightForDisplay() {
+        return weightForDisplay;
+    }
+
+    public void setWeightForDisplay(String weightForDisplay) {
+        this.weightForDisplay = weightForDisplay;
     }
 }

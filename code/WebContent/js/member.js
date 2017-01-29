@@ -16,8 +16,8 @@ $(function() {
 		$('.dialog-form form input[name=nick-name]').val(data.nickName);
 		$('.dialog-form form input[name=tel-number]').val(data.telephoneNumber);
 		$('.dialog-form form input[name=m-number]').val(data.mobileNumber);
-		$('.dialog-form form input[name=w-price]').val(data.weightPrice);
-		$('.dialog-form form input[name=v-price]').val(data.volumnPrice);
+		$('.dialog-form form input[name=w-price]').val(data.weightPriceForDisplay);
+		$('.dialog-form form input[name=v-price]').val(data.volumnPriceForDisplay);
 		$('.dialog-form form input[name=address]').val(data.address);
 		$('.dialog-form form input[name=shop-address]').val(data.shopAddress);
 		
@@ -65,8 +65,17 @@ $(function() {
 		var jsonArray = $('.dialog-form form').serializeArray();
 		var jsonData = {};
 		jsonArray.forEach(function(ele , index) {
-			jsonData[ele.name] = ele.value;
+			if (ele.value) {
+				jsonData[ele.name] = ele.value.trim();
+			}
 		});
+		if (jsonData['v-price']) {
+			jsonData['v-price'] = parseInt(100 * jsonData['v-price']);;
+		}
+		
+		if (jsonData['w-price']) {
+			jsonData['w-price'] = parseInt(100 * jsonData['w-price']);
+		}
 		
 		$.ajax({ 
 			url : "save.html", 

@@ -197,11 +197,11 @@ public class Order {
         for (Map<String , String> detailMapItem : detailMapList) {
             WuliuOrderDetailModel wuliuOrderDetailModel = new WuliuOrderDetailModel();
             wuliuOrderDetailModel.setCount(detailMapItem.get("count") != null ? Integer.parseInt(detailMapItem.get("count")) : null);
-            wuliuOrderDetailModel.setHeight(detailMapItem.get("height") != null ? Long.parseLong(detailMapItem.get("height")) : null);
+            wuliuOrderDetailModel.setLength(detailMapItem.get("length") != null ? Long.parseLong(detailMapItem.get("length")) : null);
             wuliuOrderDetailModel.setId(detailMapItem.get("id") != null ? Long.parseLong(detailMapItem.get("id")) : null);
-            wuliuOrderDetailModel.setLength(detailMapItem.get("height") != null ? Long.parseLong(detailMapItem.get("height")) : null);
+            wuliuOrderDetailModel.setHeight(detailMapItem.get("height") != null ? Long.parseLong(detailMapItem.get("height")) : null);
             wuliuOrderDetailModel.setWidth(detailMapItem.get("width") != null ? Long.parseLong(detailMapItem.get("width")) : null);
-            wuliuOrderDetailModel.setWeight(detailMapItem.get("totalWeight") != null ? Long.parseLong(detailMapItem.get("totalWeight")) : null);
+            wuliuOrderDetailModel.setWeight(detailMapItem.get("weight") != null ? Long.parseLong(detailMapItem.get("weight")) : null);
             wuliuOrderDetailModel.setStatus(WuliuOrderDetailConst.STATUS_ENABLE);
             wuliuOrderDetailModel.setMainOrderId(orderId);
             detailList.add(wuliuOrderDetailModel);
@@ -242,7 +242,7 @@ public class Order {
     
     @RequestMapping(value = "/deleteorder.html", method = { RequestMethod.POST, RequestMethod.GET })
     @ResponseBody
-    public String manageOrder(@RequestParam(value = "id") Long id){
+    public String deleteOrder(@RequestParam(value = "id") Long id){
         boolean result = wuliuOrderService.deleteOrder(id);
         Map<String , Object> ret = new HashMap<String , Object>();
         ret.put("result", result);

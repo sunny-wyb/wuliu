@@ -36,6 +36,7 @@ import com.wuliu.api.orderbusiness.model.WuliuMergedOrderModel;
  * 
  * @author yunbin.wangyb 2017年1月24日 下午5:04:25
  */
+@SuppressWarnings("all")
 public class WholeOrderExport implements ExportStrategy {
 
     public static final int ROW_MAX = 50;

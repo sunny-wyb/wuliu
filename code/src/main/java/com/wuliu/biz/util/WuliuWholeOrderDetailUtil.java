@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,42 @@ public class WuliuWholeOrderDetailUtil {
                            * wuliuOrderDetailModel.getWidth() * wuliuOrderDetailModel.getCount());
         ret.setTotalWeight(wuliuOrderDetailModel.getWeight() * wuliuOrderDetailModel.getCount());
 
+        DecimalFormat df = new DecimalFormat("0.#");
+        if (ret.getLength() != null) {
+            ret.setLengthForDisplay(df.format(ret.getLength() / 10.0));
+        }
+        
+        if (ret.getWidth() != null) {
+            ret.setWidthForDisplay(df.format(ret.getWidth() / 10.0));
+        }
+        
+        if (ret.getHeight() != null) {
+            ret.setHeightForDisplay(df.format(ret.getHeight() / 10.0));
+        }
+        
+        if (ret.getWeight() != null) {
+            ret.setWeightForDisplay(df.format(ret.getWeight() / 1000.0));
+        }        
+        
+        df.applyPattern("0.###");
+        if (ret.getTotalVolumn() != null) {
+            if (ret.getTotalVolumn() % 1000000 == 0) {
+                ret.setTotalVolumnForDisplay(df.format((ret.getTotalVolumn() / 1000000) / 1000.0));
+            }
+            else {
+                ret.setTotalVolumnForDisplay(df.format(Math.ceil(ret.getTotalVolumn() / 1000000.0f) / 1000.0));
+            }
+        }
+        
+        if (ret.getTotalWeight() != null) {
+            if (ret.getTotalWeight() % 1000 == 0){
+                ret.setTotalWeightForDisplay(String.valueOf(ret.getTotalWeight() / 1000));
+            }
+            else {
+                ret.setTotalWeightForDisplay(String.valueOf((long)Math.ceil(ret.getTotalWeight() / 1000.0)));
+            }
+        }
+        
         return ret;
     }
     

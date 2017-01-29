@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.util;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -37,6 +38,20 @@ public class WuliuWholeOrderUtil {
         ret.setWuliuOrderDetailModels(WuliuWholeOrderDetailUtil.builduliuWholeDetailModelList(wuliuOrderDetailModels));
         ret.setZhongzhuanFee(wuliuOrderModel.getZhongzhuanFee());
         ret.setComments(wuliuOrderModel.getComments());
+        
+        
+        DecimalFormat df = new DecimalFormat("0.##");
+        if (ret.getZhongzhuanFee() != null) {
+            ret.setZhongzhuanFeeForDisplay(df.format(ret.getZhongzhuanFee() / 100.0));
+        }
+        
+        if (ret.getDaishouFee() != null) {
+            ret.setDaishouFeeForDisplay(df.format(ret.getDaishouFee() / 100.0));
+        }
+        
+        if (ret.getJiashouFee() != null) {
+            ret.setJiashouFeeForDisplay(df.format(ret.getJiashouFee() / 100.0));
+        }
         
         int count = 0;
         if (CollectionUtils.isNotEmpty(wuliuOrderDetailModels)) {

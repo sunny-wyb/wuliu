@@ -42,6 +42,12 @@ public class WuliuOrderModel implements Serializable {
 
     protected String          comments;
 
+    protected String          zhongzhuanFeeForDisplay;
+
+    protected String          jiashouFeeForDisplay;
+
+    protected String          daishouFeeForDisplay;
+
     public Long getId() {
         return id;
     }
@@ -120,5 +126,29 @@ public class WuliuOrderModel implements Serializable {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public String getZhongzhuanFeeForDisplay() {
+        return zhongzhuanFeeForDisplay;
+    }
+
+    public void setZhongzhuanFeeForDisplay(String zhongzhuanFeeForDisplay) {
+        this.zhongzhuanFeeForDisplay = zhongzhuanFeeForDisplay;
+    }
+
+    public String getJiashouFeeForDisplay() {
+        return jiashouFeeForDisplay;
+    }
+
+    public void setJiashouFeeForDisplay(String jiashouFeeForDisplay) {
+        this.jiashouFeeForDisplay = jiashouFeeForDisplay;
+    }
+
+    public String getDaishouFeeForDisplay() {
+        return daishouFeeForDisplay;
+    }
+
+    public void setDaishouFeeForDisplay(String daishouFeeForDisplay) {
+        this.daishouFeeForDisplay = daishouFeeForDisplay;
     }
 }

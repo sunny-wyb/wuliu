@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,23 @@ public class WuliuOrderDetailUtil {
         ret.setWidth(wuliuOrderDetailDO.getWidth());
         ret.setWeight(wuliuOrderDetailDO.getWeight());
         ret.setStatus(wuliuOrderDetailDO.getStatus());
+        
+        DecimalFormat df = new DecimalFormat("0.#");
+        if (ret.getLength() != null) {
+            ret.setLengthForDisplay(df.format(ret.getLength() / 10.0));
+        }
+        
+        if (ret.getWidth() != null) {
+            ret.setWidthForDisplay(df.format(ret.getWidth() / 10.0));
+        }
+        
+        if (ret.getHeight() != null) {
+            ret.setHeightForDisplay(df.format(ret.getHeight() / 10.0));
+        }
+        
+        if (ret.getWeight() != null) {
+            ret.setWeightForDisplay(df.format(ret.getWeight() / 1000.0));
+        }
 
         return ret;
     }

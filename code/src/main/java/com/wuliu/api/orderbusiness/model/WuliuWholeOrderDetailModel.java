@@ -21,9 +21,25 @@ public class WuliuWholeOrderDetailModel extends WuliuOrderDetailModel {
      */
     private static final long serialVersionUID = 6293824839928930272L;
 
+    /*
+     * 单位为克
+     */
     private Long              totalWeight;
 
+    /*
+     * 立方毫米
+     */
     private Long              totalVolumn;
+
+    /*
+     * 千克
+     */
+    private String            totalWeightForDisplay;
+
+    /*
+     * 立方米，保留三位小数
+     */
+    private String            totalVolumnForDisplay;
 
     public Long getTotalWeight() {
         return totalWeight;
@@ -39,5 +55,21 @@ public class WuliuWholeOrderDetailModel extends WuliuOrderDetailModel {
 
     public void setTotalVolumn(Long totalVolumn) {
         this.totalVolumn = totalVolumn;
+    }
+
+    public String getTotalWeightForDisplay() {
+        return totalWeightForDisplay;
+    }
+
+    public void setTotalWeightForDisplay(String totalWeightForDisplay) {
+        this.totalWeightForDisplay = totalWeightForDisplay;
+    }
+
+    public String getTotalVolumnForDisplay() {
+        return totalVolumnForDisplay;
+    }
+
+    public void setTotalVolumnForDisplay(String totalVolumnForDisplay) {
+        this.totalVolumnForDisplay = totalVolumnForDisplay;
     }
 }

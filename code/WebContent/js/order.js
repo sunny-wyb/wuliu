@@ -54,8 +54,9 @@ $(function() {
 		dialog.dialog('open');
 	});
 	
-	$('.detail-col-operation .action-add').on('click' , function() {
-		
+	
+	$('.dialog-form').on('click' , function() {
+		calculate();
 	});
 	
 	var date = $('.search-operation input[name=order-date]').val();
@@ -178,6 +179,11 @@ $(function() {
 			manageOrder();
 		});
 		
+		$('.btn-area .btns .btn-cancel').on('click' , function(event) {
+			event.preventDefault();
+			dialog.dialog('close');
+		});
+		
 		$('.detail-col-operation .action-delete').on('click' , function() {
 			$(this).closest('.detail-cols').remove();
 		});
@@ -210,6 +216,16 @@ $(function() {
 		var comments = $('.dialog-form form input[name=comments]').val();
 		var memberId = $('.dialog-form form input[name=member-id]').val();
 		
+		if (zzFee) {
+			zzFee = parseInt(zzFee * 100);
+		}
+		if (jsFee) {
+			jsFee = parseInt(jsFee * 100);
+		}
+		if (dsFee) {
+			dsFee = parseInt(dsFee * 100);
+		}
+		
 		if (orderId != '') {
 			param.orderId = orderId;
 		}
@@ -239,6 +255,23 @@ $(function() {
 			detailParam.height = $(e).find('input[name=height]').val();
 			detailParam.totalWeight = $(e).find('input[name=total-weight]').val();
 			detailParam.totalVolumn = $(e).find('input[name=total-volumn]').val();
+			
+			if (detailParam.length) {
+				detailParam.length = parseInt(detailParam.length * 10);
+			}
+			
+			if (detailParam.width) {
+				detailParam.width = parseInt(detailParam.width * 10);
+			}
+			
+			if (detailParam.height) {
+				detailParam.height = parseInt(detailParam.height * 10);
+			}
+			
+			if (detailParam.weight) {
+				detailParam.weight = parseInt(detailParam.weight * 1000);
+			}
+			
 			detailList.push(detailParam);
 		});
 		
@@ -302,4 +335,66 @@ $(function() {
 			return "";
 		}
 	};
+	
+	var calculate = function() {
+		$('.dialog-form form .detail-item .detail-cols').each(function(index , e) {
+			var detailParam = {};
+			if ($(e).find('input[name=detail-id]').val() != '') {
+				detailParam.id= $(e).find('input[name=detail-id]').val();
+			}
+			detailParam.count= $(e).find('input[name=count]').val();
+			detailParam.weight = $(e).find('input[name=weight]').val();
+			detailParam.length = $(e).find('input[name=length]').val();
+			detailParam.width = $(e).find('input[name=width]').val();
+			detailParam.height = $(e).find('input[name=height]').val();
+			
+			if (!$.trim(detailParam.count)) {
+				console.log('null');
+				return;
+			}
+			
+			if ($.trim(detailParam.length) && $.trim(detailParam.width) && $.trim(detailParam.height)) {
+				var volumn = parseInt($.trim(detailParam.length) * 10) * parseInt($.trim(detailParam.width) * 10) * parseInt($.trim(detailParam.height) * 10);			
+				var totalVolumn = volumn * $.trim(detailParam.count);
+				if (totalVolumn % 1000000 == 0) {
+					totalVolumn = totalVolumn / 1000000;
+				}
+				else {
+					totalVolumn = Math.ceil(totalVolumn / 1000000.0);
+				}
+				totalVolumn = totalVolumn / 1000.0;
+				totalVolumn.toFixed(3);
+				$(e).find('input[name=total-volumn]').val(totalVolumn);
+			}
+			
+			if ($.trim(detailParam.weight)) {
+				var weight = parseInt($.trim(detailParam.weight) * 1000);
+				var totalWeight = weight * $.trim(detailParam.count);
+				if(totalWeight % 1000 == 0) {
+					totalWeight = totalWeight / 1000;
+				}
+				else {
+					totalWeight = Math.ceil(totalWeight / 1000.0);
+				}
+				$(e).find('input[name=total-weight]').val(totalWeight);
+			}
+			
+			
+			if (detailParam.length) {
+				detailParam.length = parseInt(detailParam.length * 10);
+			}
+			
+			if (detailParam.width) {
+				detailParam.width = parseInt(detailParam.width * 10);
+			}
+			
+			if (detailParam.height) {
+				detailParam.height = parseInt(detailParam.height * 10);
+			}
+			
+			if (detailParam.weight) {
+				detailParam.weight = parseInt(detailParam.weight * 1000);
+			}
+		});
+	}
 });

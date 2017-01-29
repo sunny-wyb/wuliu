@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,19 @@ public class WuliuOrderUtil {
         ret.setStatus(wuliuOrderDO.getStatus());
         ret.setZhongzhuanFee(wuliuOrderDO.getZhongzhuanFee());
         ret.setComments(wuliuOrderDO.getComments());
+        
+        DecimalFormat df = new DecimalFormat("0.##");
+        if (ret.getZhongzhuanFee() != null) {
+            ret.setZhongzhuanFeeForDisplay(df.format(ret.getZhongzhuanFee() / 100.0));
+        }
+        
+        if (ret.getDaishouFee() != null) {
+            ret.setDaishouFeeForDisplay(df.format(ret.getDaishouFee() / 100.0));
+        }
+        
+        if (ret.getJiashouFee() != null) {
+            ret.setJiashouFeeForDisplay(df.format(ret.getJiashouFee() / 100.0));
+        }
         return ret;
     }
 
