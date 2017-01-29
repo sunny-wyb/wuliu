@@ -28,12 +28,14 @@ import org.slf4j.LoggerFactory;
  * @author yunbin.wangyb 2017年1月20日 上午11:03:30
  */
 public class DownloadUtil {
-    private final static Logger     logger = LoggerFactory.getLogger(DownloadUtil.class);
+
+    private final static Logger       logger         = LoggerFactory.getLogger(DownloadUtil.class);
 
     public static Map<String, String> contentTypeMap = new HashMap<String, String>();
 
     static {
         contentTypeMap.put("zip", "application/x-msdownload");
+        contentTypeMap.put("xlsx", "application/xlsx");
     }
 
     public static HttpServletResponse download(String path, HttpServletResponse response) {
@@ -51,29 +53,29 @@ public class DownloadUtil {
             // 清空response
             response.reset();
             // 设置response的Header
-            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()));
+            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes() , "ISO-8859-1"));
             response.addHeader("Content-Length", "" + file.length());
             OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-            
+
             String extension = getExtension(filename);
             if (extension == null) {
-                logger.error("error extension , filename : "  + filename);
+                logger.error("error extension , filename : " + filename);
                 return null;
             }
-            
+
             String contentType = contentTypeMap.get(extension);
             if (contentType == null) {
-                logger.error("error extension , filename : "  + filename);
+                logger.error("error extension , filename : " + filename);
                 return null;
             }
-            
+
             response.setContentType(contentType);
             toClient.write(buffer);
             toClient.flush();
             toClient.close();
             return response;
         } catch (IOException ex) {
-            logger.error("download error" , ex);
+            logger.error("download error", ex);
             return null;
         }
     }

@@ -1,0 +1,7 @@
+<link rel="stylesheet" type="text/css" href="css/export.css" />
+
+<div class='export'>
+<form method='post' action='exportcarindex.html'>
+<label class='input-label' for='carIndex'>车次</label> <input name="carIndex"> <input type='submit'>
+</form>
+</div>

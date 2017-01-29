@@ -43,6 +43,14 @@
 		<property name="wuliuMergedOrderService" ref="wuliuMergedOrderService" />
 	</bean>
 	
+	<bean class="com.wuliu.controller.Export">
+		<property name="wuliuMemberService" ref="wuliuMemberService" />
+		<property name="wuliuOrderService" ref="wuliuOrderService" />
+		<property name="wuliuOrderDetailService" ref="wuliuOrderDetailService" />
+		<property name="wuliuWholeOrderService" ref="wuliuWholeOrderService" />
+		<property name="wuliuMergedOrderService" ref="wuliuMergedOrderService" />
+	</bean>
+	
 	<bean class="com.wuliu.controller.Login">
 		<property name="username" value="${wuliu.username}" />
 		<property name="password" value="${wuliu.password}" />

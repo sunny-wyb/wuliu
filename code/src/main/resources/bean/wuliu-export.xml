@@ -15,7 +15,7 @@
 		<property name="templateMap">
 			<map>
 				<entry key="whole" value="whole_template.xlsx" />
-				<entry key="carIndex" value="carindex_template.xlsx" />
+				<entry key="carIndex" value="car_index_template.xlsx" />
 			</map>
 		</property>
 
