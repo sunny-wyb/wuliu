@@ -111,7 +111,8 @@ public class Member {
 
     @RequestMapping("/member")
     public ModelAndView load(@RequestParam(value = "page", required = false) Integer page,
-                             @RequestParam(value = "name", required = false) String name) throws EncryptedDocumentException, InvalidFormatException, IOException {
+                             @RequestParam(value = "name", required = false) String name,
+                             @RequestParam(value = "memberId", required = false) Long memberId) throws EncryptedDocumentException, InvalidFormatException, IOException {
         Map<String , Object> paramMap = new HashMap<String , Object>();
         String decodeName = null;
         if (name != null) {
@@ -119,6 +120,7 @@ public class Member {
         }
         paramMap.put("name", decodeName);
         WuliuMemberQueryParam wuliuMemberQueryParam = new WuliuMemberQueryParam();
+        wuliuMemberQueryParam.setId(memberId);
         if (page != null) {
             wuliuMemberQueryParam.setPageNum(page);
         }

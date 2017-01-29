@@ -50,7 +50,7 @@
 					#foreach($itemDetail in $item.wuliuMergedOrderDetailModels)
 					<tr>
 						#if($velocityCount == 1)
-						<td class='col-name col-item' rowspan = $item.wuliuMergedOrderDetailModels.size()> $item.name</td>	
+						<td class='col-name col-item' rowspan = $item.wuliuMergedOrderDetailModels.size()><a href="member.html?memberId=$item.memberId" style='color:black' target='_blank'> $item.name</a></td>	
 						<td class='col-order-number col-item' rowspan = $item.wuliuMergedOrderDetailModels.size()> $item.orderNumber</td>	
 						<td class='col-ds-fee col-item' rowspan = $item.wuliuMergedOrderDetailModels.size()> $item.daishouFee</td>	
 						<td class='col-js-fee col-item' rowspan = $item.wuliuMergedOrderDetailModels.size()> $item.jiashouFee</td>	
@@ -77,7 +77,7 @@
 					#end
 					#else
 					<tr>
-						<td class='col-name col-item' > $item.name</td>	
+						<td class='col-name col-item' > <a href="member.html?memberId=$item.memberId" style='color:black' target='_blank'>$item.name</a></td>	
 						<td class='col-order-number col-item' > $item.orderNumber</td>	
 						<td class='col-ds-fee col-item' > $item.daishouFee</td>	
 						<td class='col-js-fee col-item' > $item.jiashouFee</td>	
