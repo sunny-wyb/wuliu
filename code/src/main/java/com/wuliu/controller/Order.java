@@ -114,6 +114,7 @@ public class Order {
         returnMap.put("totalPage", cnt);
         returnMap.put("currentPage", wuliuOrderQueryParam.getPageNum());
         returnMap.put("nowDate", new Date());
+        returnMap.put("page", "order.html");
         
         addUtils(returnMap);
         

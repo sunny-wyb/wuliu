@@ -32,14 +32,14 @@ public class Login {
     private String password;
 
     
-    @RequestMapping("/loginpage")
+    @RequestMapping("/loginpage.html")
     public ModelAndView load() {
         Map<String , Object> ret = new HashMap<String , Object>();
         ret.put("page", "loginpage");
         return new ModelAndView("loginpage", ret);
     }
     
-    @RequestMapping("/login")
+    @RequestMapping("/login.html")
     public String login(@RequestParam(value = "username") String username,
                              @RequestParam(value = "password") String password , HttpServletRequest request) {
         if (username.equals(this.username) && password.equals(this.password)) {

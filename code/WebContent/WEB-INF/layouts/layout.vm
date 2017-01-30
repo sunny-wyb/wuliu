@@ -36,16 +36,19 @@
 		<div class = 'menu'>
 			<ul id="accordion" class="accordion">
 		        <li>
-					<div class="link"><i class="fa fa-paint-brush"></i><a href="member.html">客户管理</a><i class="fa fa-chevron-down"></i></div>
+					<a href="member.html" #if($page == 'member.html') class="selected" #end>客户管理</a>
 				</li>
+				
 		        <li>
-					<div class="link"><i class="fa fa-paint-brush"></i><a href="order.html">订单管理</a><i class="fa fa-chevron-down"></i></div>
+					<a href="order.html" #if($page == 'order.html') class="selected" #end>订单管理</a>
 				</li>
+				
 		        <li>
-					<div class="link"><i class="fa fa-paint-brush"></i><a href="mergedorder.html">订单导出</a><i class="fa fa-chevron-down"></i></div>
+					<a href="mergedorder.html" #if($page == 'mergedorder.html') class="selected" #end>订单导出</a>
 				</li>
+				
 		        <li>
-					<div class="link"><i class="fa fa-paint-brush"></i><a href="exporttool.html">导出工具</a><i class="fa fa-chevron-down"></i></div>
+					<a href="exporttool.html" #if($page == 'exporttool.html') class="selected" #end>导出工具</a>
 				</li>
 				<!-- <li>
 					<div class="link"><i class="fa fa-code"></i>订单管理<i class="fa fa-chevron-down"></i></div>

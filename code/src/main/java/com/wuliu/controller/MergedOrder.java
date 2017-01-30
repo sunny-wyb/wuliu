@@ -122,6 +122,7 @@ public class MergedOrder {
         }
         returnMap.put("totalPage", cnt);
         returnMap.put("currentPage", wuliuOrderQueryParam.getPageNum());
+        returnMap.put("page", "mergedorder.html");
         
         addUtils(returnMap);
 
@@ -141,7 +142,7 @@ public class MergedOrder {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date orderDate = sdf.parse(orderDateStr);
             wuliuOrderQueryParam.setMinOrderDate(CalendarUtil.getMinDateInSameDay(orderDate));
-            wuliuOrderQueryParam.setMinOrderDate(CalendarUtil.getMaxDateInSameDay(orderDate));
+            wuliuOrderQueryParam.setMaxOrderDate(CalendarUtil.getMaxDateInSameDay(orderDate));
         }
 
         wuliuOrderQueryParam.setCarIndex(carIndex);

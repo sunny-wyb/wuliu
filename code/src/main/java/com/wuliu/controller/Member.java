@@ -109,7 +109,7 @@ public class Member {
         return JSON.toJSONString(ret);
     }
 
-    @RequestMapping("/member")
+    @RequestMapping("/member.html")
     public ModelAndView load(@RequestParam(value = "page", required = false) Integer page,
                              @RequestParam(value = "name", required = false) String name,
                              @RequestParam(value = "memberId", required = false) Long memberId) throws EncryptedDocumentException, InvalidFormatException, IOException {
@@ -135,6 +135,7 @@ public class Member {
         returnMap.put("members", members);
         returnMap.put("currentPage", memberPageResult.getPageNum());
         returnMap.put("params", paramMap);
+        returnMap.put("page", "member.html");
 
         int totalPage = memberPageResult.getTotalCount() / memberPageResult.getPageSize();
         if (memberPageResult.getTotalCount() % memberPageResult.getPageSize() != 0) {

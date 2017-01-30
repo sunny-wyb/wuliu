@@ -8,7 +8,9 @@
 package com.wuliu.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,7 +61,9 @@ public class Export {
 
     @RequestMapping("/exporttool.html")
     public ModelAndView load() {
-        return new ModelAndView("export");
+        Map<String , Object> context = new HashMap<String , Object>();
+        context.put("page", "exporttool.html");
+        return new ModelAndView("export" , context);
     }
 
     @RequestMapping("/exportcarindex.html")
