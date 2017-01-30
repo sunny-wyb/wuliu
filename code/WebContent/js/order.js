@@ -83,7 +83,6 @@ $(function() {
       minLength: 2,
       select: function( event, ui ) {
     	  $( ".search-operation input[name=member-id]").val(ui.item.id );
-    	  $( ".search-operation input[name=name]").val(ui.item.value);
       }
     });
 	
@@ -106,8 +105,9 @@ $(function() {
 		var carIndex = $('.search-content input[name=car-index]').val();
 		var orderDate = $('.search-content input[name=order-date]').val();
 		var orderIndex = $('.search-content input[name=order-index]').val();
+		var name = $('.search-content input[name=name]').val();
 		var param = {};
-		if (memberId && memberId.trim().length > 0) {
+		if (memberId && memberId.trim().length > 0 && name && name.trim().length > 0) {
 			param.memberId = memberId.trim();
 		}
 		if (carIndex && carIndex.trim().length > 0) {
@@ -120,16 +120,11 @@ $(function() {
 			param.orderIndex= orderIndex.trim();
 		}
 		
-		var page = getParam('page');
-		if (page) {
-			param.page = page;
-		}
-		
-		if (param) {
+		if (!$.isEmptyObject(param)) {
 			window.location.href='order.html?' + $.param(param);
 		}
 		else {
-			window.location.href='order.html?';
+			window.location.href='order.html';
 		}
 	}
 	
@@ -168,7 +163,7 @@ $(function() {
 	      minLength: 2,
 	      select: function( event, ui ) {
 	    	  $('.dialog-form form input[name=member-id]').val(ui.item.id );
-	    	  $('.dialog-form form input[name=member-name]').val(ui.item.value);
+	    //	  $('.dialog-form form input[name=member-name]').val(ui.item.value);
 	      }
 	    });
 	};

@@ -33,6 +33,10 @@ public class WuliuMergedOrderDetailModel implements Serializable {
 
     private String            type;
 
+    private String            weightForDisplay;
+
+    private String            volumnForDisplay;
+
     public Long getMainOrderId() {
         return mainOrderId;
     }
@@ -79,5 +83,21 @@ public class WuliuMergedOrderDetailModel implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getWeightForDisplay() {
+        return weightForDisplay;
+    }
+
+    public void setWeightForDisplay(String weightForDisplay) {
+        this.weightForDisplay = weightForDisplay;
+    }
+
+    public String getVolumnForDisplay() {
+        return volumnForDisplay;
+    }
+
+    public void setVolumnForDisplay(String volumnForDisplay) {
+        this.volumnForDisplay = volumnForDisplay;
     }
 }

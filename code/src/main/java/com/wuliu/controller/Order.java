@@ -140,15 +140,33 @@ public class Order {
         WuliuOrderModel wuliuOrderModel = new WuliuOrderModel();
         wuliuOrderModel.setId(orderId);
         wuliuOrderModel.setComments(comments);
-        wuliuOrderModel.setDaishouFee(dsFee);
-        wuliuOrderModel.setJiashouFee(jsFee);
+        
+        if (dsFee == null) {
+            wuliuOrderModel.setDaishouFee(0L);
+        }
+        else {
+            wuliuOrderModel.setDaishouFee(dsFee);
+        }
+        
+        if (jsFee == null) {
+            wuliuOrderModel.setJiashouFee(0L);
+        }
+        else {
+            wuliuOrderModel.setJiashouFee(jsFee);
+        }
         wuliuOrderModel.setMemberId(memberId);
         wuliuOrderModel.setCarIndex(carIndex);
         if (StringUtils.isNotBlank(orderDate)) {
             wuliuOrderModel.setOrderDate(sdf.parse(orderDate));
         }
         wuliuOrderModel.setOrderIndex(orderIndex);
-        wuliuOrderModel.setZhongzhuanFee(zzFee);
+        
+        if (zzFee == null) {
+            wuliuOrderModel.setZhongzhuanFee(0L);
+        }
+        else {
+            wuliuOrderModel.setZhongzhuanFee(zzFee);
+        }
 
         if (orderId == null) {
             WuliuOrderModel newWuliuOrderModel = wuliuOrderService.addOrder(wuliuOrderModel);

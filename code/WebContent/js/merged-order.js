@@ -78,8 +78,9 @@ $(function() {
 		var carIndex = $('.search-content input[name=car-index]').val();
 		var orderDate = $('.search-content input[name=order-date]').val();
 		var orderIndex = $('.search-content input[name=order-index]').val();
+		var name = $('.search-content input[name=name]').val();
 		var param = {};
-		if (memberId && memberId.trim().length > 0) {
+		if (memberId && memberId.trim().length > 0 && name && name.trim().length > 0) {
 			param.memberId = memberId.trim();
 		}
 		if (carIndex && carIndex.trim().length > 0) {
@@ -98,16 +99,11 @@ $(function() {
 		
 		var param = getSearchParam();
 		
-		var page = getParam('page');
-		if (page) {
-			param.page = page;
-		}
-		
-		if (param) {
+		if (!$.isEmptyObject(param)) {
 			window.location.href='mergedorder.html?' + $.param(param);
 		}
 		else {
-			window.location.href='mergedorder.html?';
+			window.location.href='mergedorder.html';
 		}
 	}
 	

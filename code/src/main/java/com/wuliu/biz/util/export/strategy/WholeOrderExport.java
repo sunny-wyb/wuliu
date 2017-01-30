@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,7 +49,8 @@ public class WholeOrderExport implements ExportStrategy {
      * @see com.wuliu.biz.util.export.strategy.XlsExport#export(java.lang.String, java.util.List)
      */
 
-    public String export(String folderPath,  String templateName , List<WuliuMergedOrderModel> mergedOrders) throws Exception {
+    public String export(String folderPath, String templateName, List<WuliuMergedOrderModel> mergedOrders)
+                                                                                                          throws Exception {
         File folder = createFolder(folderPath);
         List<List<WuliuMergedOrderModel>> mergedOrderLists = split(mergedOrders);
 
@@ -232,7 +234,6 @@ public class WholeOrderExport implements ExportStrategy {
 
                 Cell cell = createCellIfNotExit(row, 1);
                 cell.setCellValue(index);
-                ;
                 index += 1;
 
                 if (cellInfo.getOrderNumber() != null) {
@@ -252,7 +253,7 @@ public class WholeOrderExport implements ExportStrategy {
 
                 if (cellInfo.getCost() != null) {
                     cell = createCellIfNotExit(row, 7);
-                    cell.setCellValue(cellInfo.getCost());
+                    cell.setCellValue(Double.valueOf(cellInfo.getCost()));
                 }
 
                 if (cellInfo.getComments() != null) {
@@ -295,36 +296,37 @@ public class WholeOrderExport implements ExportStrategy {
             cellInfo.setOrderNumber(mergedModel.getOrderNumber());
             if (WuliuMergedOrderDetailConst.TYPE_WEIGHT.equals(item.getType())) {
                 cellInfo.setUnit("千克");
+                cellInfo.setCount(item.getWeightForDisplay());
             } else if (WuliuMergedOrderDetailConst.TYPE_VOLUMN.equals(item.getType())) {
                 cellInfo.setUnit("立方米");
+                cellInfo.setCount(item.getVolumnForDisplay());
             }
 
-            cellInfo.setCount(item.getCount());
-
-            cellInfo.setCost(item.getCost());
+            cellInfo.setCost(String.valueOf(item.getCost()));
             ret.add(cellInfo);
         }
 
-        if (mergedModel.getDaishouFee() != null) {
+        DecimalFormat df = new DecimalFormat("0.##");
+        if (mergedModel.getDaishouFee() != null && mergedModel.getDaishouFee() > 0) {
             CellInfo cellInfo = new CellInfo();
             cellInfo.setOrderNumber(mergedModel.getOrderNumber());
-            cellInfo.setCost(mergedModel.getDaishouFee());
+            cellInfo.setCost(df.format(mergedModel.getDaishouFee() / 100.0));
             cellInfo.setComments("代收费");
             ret.add(cellInfo);
         }
 
-        if (mergedModel.getJiashouFee() != null) {
+        if (mergedModel.getJiashouFee() != null && mergedModel.getJiashouFee() > 0) {
             CellInfo cellInfo = new CellInfo();
             cellInfo.setOrderNumber(mergedModel.getOrderNumber());
-            cellInfo.setCost(mergedModel.getJiashouFee());
+            cellInfo.setCost(df.format(mergedModel.getJiashouFee() / 100.0));
             cellInfo.setComments("加收费");
             ret.add(cellInfo);
         }
 
-        if (mergedModel.getZhongzhuanFee() != null) {
+        if (mergedModel.getZhongzhuanFee() != null && mergedModel.getZhongzhuanFee() > 0) {
             CellInfo cellInfo = new CellInfo();
             cellInfo.setOrderNumber(mergedModel.getOrderNumber());
-            cellInfo.setCost(mergedModel.getZhongzhuanFee());
+            cellInfo.setCost(df.format(mergedModel.getZhongzhuanFee() / 100.0));
             cellInfo.setComments("中转费");
             ret.add(cellInfo);
         }
@@ -368,15 +370,15 @@ public class WholeOrderExport implements ExportStrategy {
 
 class CellInfo {
 
-    private String  orderNumber;
+    private String orderNumber;
 
-    private String  unit;
+    private String unit;
 
-    private Integer count;
+    private String count;
 
-    private Long    cost;
+    private String cost;
 
-    private String  comments;
+    private String comments;
 
     public String getOrderNumber() {
         return orderNumber;
@@ -394,19 +396,19 @@ class CellInfo {
         this.unit = unit;
     }
 
-    public Integer getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(String count) {
         this.count = count;
     }
 
-    public Long getCost() {
+    public String getCost() {
         return cost;
     }
 
-    public void setCost(Long cost) {
+    public void setCost(String cost) {
         this.cost = cost;
     }
 

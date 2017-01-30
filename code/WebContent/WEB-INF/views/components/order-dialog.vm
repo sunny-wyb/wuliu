@@ -101,10 +101,10 @@
 					<input name="height" value = "$!innerItemDetail.heightForDisplay">
 				</div>
 				<div class='detail-col-total-weight detail-col-item'>
-					<input name="total-weight" value = "$!innerItemDetail.totalWeightForDisplay" readonly="readonly"">
+					<input name="total-weight" value = "$!innerItemDetail.totalWeightForDisplay" readonly="readonly">
 				</div>
 				<div class='detail-col-total-volumn detail-col-item'>
-					<input name="total-volumn" value = "$!innerItemDetail.totalVolumnForDisplay" readonly="readonly"">
+					<input name="total-volumn" value = "$!innerItemDetail.totalVolumnForDisplay" readonly="readonly">
 				</div>
 				<div class='detail-col-operation detail-col-item'>
 					<span class='action-delete'>删除</span>
@@ -131,10 +131,10 @@
 					<input name="height" >
 				</div>
 				<div class='detail-col-total-weight detail-col-item'>
-					<input name="total-weight">
+					<input name="total-weight" readonly="readonly">
 				</div>
 				<div class='detail-col-total-volumn detail-col-item'>
-					<input name="total-volumn">
+					<input name="total-volumn" readonly="readonly">
 				</div>
 				<div class='detail-col-operation detail-col-item'>
 					<span class='action-delete'>删除</span>
