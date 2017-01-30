@@ -106,6 +106,10 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             }
 
             List<WuliuOrderDetailModel> wuliuOrderDetailModels = wuliuOrderDetailAO.queryOrderDetails(wuliuOrderDetailQueryParam);
+            int count = 0;
+            for (WuliuOrderDetailModel detailItem : wuliuOrderDetailModels) {
+               count += detailItem.getCount();
+            }
 
             WuliuMemberModel wuliuMemberModel = wuliuMemberMap.get(item.getMemberId());
             if (wuliuMemberModel == null) {
@@ -118,7 +122,7 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             wuliuMergedOrderModel.setMobileNumber(wuliuMemberModel.getMobileNumber());
             wuliuMergedOrderModel.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(item.getOrderDate(),
                                                                                      item.getOrderIndex(),
-                                                                                     wuliuOrderDetailModels.size()));
+                                                                                     count));
             wuliuMergedOrderModel.setSendDate(CalendarUtil.addDays(item.getOrderDate(), SEND_DAYS));
 
             wuliuMergedOrderModel.setWuliuMergedOrderDetailModels(orderDetailMergeEngine.mergeOrderDetail(wuliuOrderDetailModels,
