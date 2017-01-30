@@ -7,6 +7,7 @@
  */
 package com.wuliu.biz.orderdetail.engine.impl;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
         for (WuliuOrderDetailModel item : wuliuOrderDetailModels) {
             Long weightCost = getWeightCost(item, weightPrice);
             Long volumnCost = getVolumnCost(item, volumnPrice);
-            if (weightCost > volumnCost) {
+            if (weightCost * 1000 > volumnCost) {
                 if (weightModel == null) {
                     weightModel = new WuliuMergedOrderDetailModel();
                     weightModel.setType(WuliuMergedOrderDetailConst.TYPE_WEIGHT);
@@ -68,6 +69,12 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
             else {
                 weightModel.setCost((long)Math.ceil(weightModel.getCost() / 100000.0));
             }
+            
+            DecimalFormat df = new DecimalFormat("0.#");
+            if (weightModel.getWeight() > 0) {
+                weightModel.setWeightForDisplay(df.format(weightModel.getWeight() / 1000.0));
+            }
+            
             ret.add(weightModel);
         }
 
@@ -79,6 +86,11 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
                 volumnModel.setCost((long)Math.ceil(volumnModel.getCost() / 100000000000.0f));
             }
             ret.add(volumnModel);
+            
+            DecimalFormat df = new DecimalFormat("0.###");
+            if (volumnModel.getVolumn() > 0) {
+                volumnModel.setVolumnForDisplay(df.format(Math.ceil(volumnModel.getVolumn() / 1000000.0) / 1000.0));
+            }
         }
 
         return ret;

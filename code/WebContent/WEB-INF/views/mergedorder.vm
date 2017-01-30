@@ -52,9 +52,9 @@
 						#if($velocityCount == 1)
 						<td class='col-name col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()><a href="member.html?memberId=$!item.memberId" style='color:black' target='_blank'> $!item.name</a></td>	
 						<td class='col-order-number col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()> $!item.orderNumber</td>	
-						<td class='col-ds-fee col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()> $!item.daishouFee</td>	
-						<td class='col-js-fee col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()> $!item.jiashouFee</td>	
-						<td class='col-zz-fee col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()> $!item.zhongzhuanFee</td>	
+						<td class='col-ds-fee col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()> $!item.daishouFeeForDisplay</td>	
+						<td class='col-js-fee col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()> $!item.jiashouFeeForDisplay</td>	
+						<td class='col-zz-fee col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size()> $!item.zhongzhuanFeeForDisplay</td>	
 						#end
 						
 						<td class='col-unit col-item' > 
@@ -64,7 +64,13 @@
 								立方米
 							#end
 						</td>	
-						<td class='col-count col-item' > $!itemDetail.count</td>	
+						<td class='col-count col-item' >
+							#if($!itemDetail.type == "weight")
+								$!itemDetail.weightForDisplay
+							#else
+								$!itemDetail.volumnForDisplay
+							#end
+						</td>	
 						<td class='col-price col-item' ></td>	
 						<td class='col-cost col-item' > $!itemDetail.cost</td>	
 						
@@ -79,9 +85,9 @@
 					<tr>
 						<td class='col-name col-item' > <a href="member.html?memberId=$!item.memberId" style='color:black' target='_blank'>$!item.name</a></td>	
 						<td class='col-order-number col-item' > $!item.orderNumber</td>	
-						<td class='col-ds-fee col-item' > $!item.daishouFee</td>	
-						<td class='col-js-fee col-item' > $!item.jiashouFee</td>	
-						<td class='col-zz-fee col-item'> $!item.zhongzhuanFee</td>	
+						<td class='col-ds-fee col-item' > $!item.daishouFeeForDisplay</td>	
+						<td class='col-js-fee col-item' > $!item.jiashouFeeForDisplay</td>	
+						<td class='col-zz-fee col-item'> $!item.zhongzhuanFeeForDisplay</td>	
 						
 						<td class='col-unit col-item' > 单位</td>	
 						<td class='col-count col-item' > </td>	

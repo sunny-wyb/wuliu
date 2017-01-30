@@ -149,7 +149,7 @@ public class MergedOrder {
         wuliuOrderQueryParam.setMemberId(memberId);
         wuliuOrderQueryParam.setOrderIndex(orderIndex);
 
-        List<WuliuMergedOrderModel> mergedOrderModel = new ArrayList<WuliuMergedOrderModel>();
+        List<WuliuMergedOrderModel> mergedOrderModels = new ArrayList<WuliuMergedOrderModel>();
 
         int cnt = 0;
         while (true) {
@@ -159,15 +159,19 @@ public class MergedOrder {
             }
 
             cnt += partResult.getResultList().size();
-            mergedOrderModel.addAll(partResult.getResultList());
+            mergedOrderModels.addAll(partResult.getResultList());
             if (cnt >= partResult.getTotalCount()) {
                 break;
             }
 
             wuliuOrderQueryParam.setPageNum(wuliuOrderQueryParam.getPageNum() + 1);
         }
+        
+        if (CollectionUtils.isEmpty(mergedOrderModels)) {
+            return;
+        }
 
-        String path = ExportUtil.export(ExportStrategyConst.WHOLE_ORDER, mergedOrderModel);
+        String path = ExportUtil.export(ExportStrategyConst.WHOLE_ORDER, mergedOrderModels);
         String zipPath = ZipUtil.doZip(ApplicationContext.tmp_folder, path);
         FileUtil.delete(path);
         DownloadUtil.download(zipPath, response);
