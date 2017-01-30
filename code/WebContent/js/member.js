@@ -130,18 +130,14 @@ $(function() {
 		var param = {};
 		if (name && name.trim().length > 0) {
 			param.name = name.trim();
+			param.name = encodeURIComponent(param.name);
 		}
 		
-		var page = getParam('page');
-		if (page) {
-			param.page = page;
-		}
-		
-		if (param) {
+		if (!$.isEmptyObject(param)) {
 			window.location.href='member.html?' + $.param(param);
 		}
 		else {
-			window.location.href='member.html?';
+			window.location.href='member.html';
 		}
 	}
 	
