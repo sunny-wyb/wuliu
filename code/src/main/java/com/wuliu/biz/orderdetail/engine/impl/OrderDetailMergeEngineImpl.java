@@ -45,7 +45,7 @@ public class OrderDetailMergeEngineImpl implements OrderDetailMergeEngine {
         for (WuliuOrderDetailModel item : wuliuOrderDetailModels) {
             Long weightCost = getWeightCost(item, weightPrice);
             Long volumnCost = getVolumnCost(item, volumnPrice);
-            if (weightCost * 1000 > volumnCost) {
+            if (weightCost * 1000000 > volumnCost) {
                 if (weightModel == null) {
                     weightModel = new WuliuMergedOrderDetailModel();
                     weightModel.setType(WuliuMergedOrderDetailConst.TYPE_WEIGHT);

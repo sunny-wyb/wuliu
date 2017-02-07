@@ -240,6 +240,11 @@ public class WholeOrderExport implements ExportStrategy {
                     cell = createCellIfNotExit(row, 2);
                     cell.setCellValue(cellInfo.getOrderNumber());
                 }
+                
+                if (cellInfo.getGuige() != null) {
+                    cell = createCellIfNotExit(row, 3);
+                    cell.setCellValue(cellInfo.getGuige());
+                }
 
                 if (cellInfo.getUnit() != null) {
                     cell = createCellIfNotExit(row, 4);
@@ -294,6 +299,9 @@ public class WholeOrderExport implements ExportStrategy {
         for (WuliuMergedOrderDetailModel item : list) {
             CellInfo cellInfo = new CellInfo();
             cellInfo.setOrderNumber(mergedModel.getOrderNumber());
+            
+            cellInfo.setGuige(String.valueOf(item.getCount()));
+            
             if (WuliuMergedOrderDetailConst.TYPE_WEIGHT.equals(item.getType())) {
                 cellInfo.setUnit("千克");
                 cellInfo.setCount(item.getWeightForDisplay());
@@ -372,6 +380,8 @@ class CellInfo {
 
     private String orderNumber;
 
+    private String guige;
+
     private String unit;
 
     private String count;
@@ -386,6 +396,14 @@ class CellInfo {
 
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    public String getGuige() {
+        return guige;
+    }
+
+    public void setGuige(String guige) {
+        this.guige = guige;
     }
 
     public String getUnit() {
