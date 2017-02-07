@@ -233,6 +233,10 @@ $(function() {
 		param.comments = comments;
 		param.memberId = memberId;
 		
+		if (!checkOrderNumber(orderNumber)) {
+			return;
+		}
+		
 		var detailList = [];
 		$('.dialog-form form .detail-item .detail-cols').each(function(index , e) {
 			if (!checkOrderDetail($(e))) {
@@ -331,6 +335,26 @@ $(function() {
 		}
 	};
 	
+	var checkOrderNumber = function (orderNumber) {
+		if (!(orderNumber && orderNumber.trim().length > 0)) {
+			return false;
+		}
+		
+		var items = orderNumber.split('-');
+		if (items.length != 3) {
+			return false;
+		}
+		
+		var count = parseInt(items[2]);
+		
+		var total = 0;
+		$('.dialog-form form .detail-item .detail-cols').each(function(index , e) {
+			total += parseInt($(e).find('input[name=count]').val());
+		});
+		
+		return total == count;
+	}
+	
 	var calculate = function() {
 		$('.dialog-form form .detail-item .detail-cols').each(function(index , e) {
 			var detailParam = {};
@@ -344,7 +368,6 @@ $(function() {
 			detailParam.height = $(e).find('input[name=height]').val();
 			
 			if (!$.trim(detailParam.count)) {
-				console.log('null');
 				return;
 			}
 			
