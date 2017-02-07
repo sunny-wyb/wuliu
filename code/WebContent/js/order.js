@@ -238,8 +238,10 @@ $(function() {
 		}
 		
 		var detailList = [];
+		var valid = true;
 		$('.dialog-form form .detail-item .detail-cols').each(function(index , e) {
 			if (!checkOrderDetail($(e))) {
+				valid = false;
 				return;
 			}
 			
@@ -274,6 +276,9 @@ $(function() {
 			detailList.push(detailParam);
 		});
 		
+		if (!valid) {
+			return;
+		}
 		param.detailList = JSON.stringify(detailList);
 		
 		  $.ajax({
