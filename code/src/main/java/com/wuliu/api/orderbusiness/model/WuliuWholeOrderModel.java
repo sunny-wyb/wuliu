@@ -26,8 +26,6 @@ public class WuliuWholeOrderModel extends WuliuOrderModel implements Serializabl
 
     private String                           name;
 
-    private String                           orderNumber;
-
     private List<WuliuWholeOrderDetailModel> wuliuOrderDetailModels;
 
     public String getName() {
@@ -36,14 +34,6 @@ public class WuliuWholeOrderModel extends WuliuOrderModel implements Serializabl
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
     }
 
     public List<WuliuWholeOrderDetailModel> getWuliuOrderDetailModels() {

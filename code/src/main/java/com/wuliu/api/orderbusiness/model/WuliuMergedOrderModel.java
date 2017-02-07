@@ -27,8 +27,6 @@ public class WuliuMergedOrderModel implements Serializable {
 
     private Date                              orderDate;
 
-    private Long                              orderIndex;
-
     private Long                              memberId;
 
     private Long                              carIndex;
@@ -77,14 +75,6 @@ public class WuliuMergedOrderModel implements Serializable {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
-    }
-
-    public Long getOrderIndex() {
-        return orderIndex;
-    }
-
-    public void setOrderIndex(Long orderIndex) {
-        this.orderIndex = orderIndex;
     }
 
     public Long getMemberId() {

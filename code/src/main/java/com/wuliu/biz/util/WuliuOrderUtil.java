@@ -35,7 +35,7 @@ public class WuliuOrderUtil {
         ret.setJiashouFee(wuliuOrderDO.getJiashouFee());
         ret.setMemberId(wuliuOrderDO.getMemberId());
         ret.setOrderDate(wuliuOrderDO.getOrderDate());
-        ret.setOrderIndex(wuliuOrderDO.getOrderIndex());
+        ret.setOrderNumber(wuliuOrderDO.getOrderNumber());
         ret.setStatus(wuliuOrderDO.getStatus());
         ret.setZhongzhuanFee(wuliuOrderDO.getZhongzhuanFee());
         ret.setComments(wuliuOrderDO.getComments());
@@ -67,7 +67,7 @@ public class WuliuOrderUtil {
         ret.setJiashouFee(wuliuOrderModel.getJiashouFee());
         ret.setMemberId(wuliuOrderModel.getMemberId());
         ret.setOrderDate(wuliuOrderModel.getOrderDate());
-        ret.setOrderIndex(wuliuOrderModel.getOrderIndex());
+        ret.setOrderNumber(wuliuOrderModel.getOrderNumber());
         ret.setStatus(wuliuOrderModel.getStatus());
         ret.setZhongzhuanFee(wuliuOrderModel.getZhongzhuanFee());
         ret.setComments(wuliuOrderModel.getComments());

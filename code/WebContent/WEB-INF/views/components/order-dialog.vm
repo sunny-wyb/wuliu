@@ -20,11 +20,11 @@
 	</div>
 	
 	<div class='form-item'>
-		<label for="order-index">票号</label>
-		#if($!item.orderIndex)
-		<input name='order-index' value='$!item.orderIndex'>
+		<label for="order-number">票号</label>
+		#if($!item.orderNumber)
+		<input name='order-number' value='$!item.orderNumber'>
 		#else
-		<input name='order-index'>
+		<input name='order-number'>
 		#end
 	</div>
 	

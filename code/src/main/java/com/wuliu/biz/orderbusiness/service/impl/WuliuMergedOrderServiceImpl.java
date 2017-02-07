@@ -28,7 +28,6 @@ import com.wuliu.biz.order.AO.WuliuOrderAO;
 import com.wuliu.biz.orderdetail.AO.WuliuOrderDetailAO;
 import com.wuliu.biz.orderdetail.engine.OrderDetailMergeEngine;
 import com.wuliu.biz.util.CalendarUtil;
-import com.wuliu.biz.util.WuliuOrderNumberUtil;
 
 /**
  * 类WuliuMergedOrderServiceImpl.java的实现描述：TODO 类实现描述
@@ -89,7 +88,7 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             wuliuMergedOrderModel.setJiashouFee(item.getJiashouFee());
             wuliuMergedOrderModel.setMemberId(item.getMemberId());
             wuliuMergedOrderModel.setOrderDate(item.getOrderDate());
-            wuliuMergedOrderModel.setOrderIndex(item.getOrderIndex());
+            wuliuMergedOrderModel.setOrderNumber(item.getOrderNumber());
             wuliuMergedOrderModel.setZhongzhuanFee(item.getZhongzhuanFee());
             
             DecimalFormat df = new DecimalFormat("0.##");
@@ -120,9 +119,7 @@ public class WuliuMergedOrderServiceImpl implements WuliuMergedOrderService {
             wuliuMergedOrderModel.setAddress(wuliuMemberModel.getAddress());
             wuliuMergedOrderModel.setTelephoneNumber(wuliuMemberModel.getTelephoneNumber());
             wuliuMergedOrderModel.setMobileNumber(wuliuMemberModel.getMobileNumber());
-            wuliuMergedOrderModel.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(item.getOrderDate(),
-                                                                                     item.getOrderIndex(),
-                                                                                     count));
+            wuliuMergedOrderModel.setOrderNumber(item.getOrderNumber());
             wuliuMergedOrderModel.setSendDate(CalendarUtil.addDays(item.getOrderDate(), SEND_DAYS));
 
             wuliuMergedOrderModel.setWuliuMergedOrderDetailModels(orderDetailMergeEngine.mergeOrderDetail(wuliuOrderDetailModels,

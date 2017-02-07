@@ -18,7 +18,7 @@
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>票号</span>
-				<input class='input' name="order-index" value="$!params.orderIndex"> 
+				<input class='input' name="order-number" value="$!params.orderNumber"> 
 			</div>
 		</div>
 		<div class='search-btns'>
@@ -82,7 +82,7 @@
 						<td class='col-operation col-item' rowspan = $!item.wuliuOrderDetailModels.size() data-data='$JSON.toJSONString($!item)'> 
 							<div class='btn-edit'><a href="javascript:void(0);">编辑</a></div>
 							<div class='btn-delete'><a href="javascript:void(0);">删除</a></div>
-							<div><a href="mergedorder.html?orderDate=$sdf.format($!item.orderDate)&orderIndex=$!item.orderIndex" target="_blank">合并</a></div>
+							<div><a href="mergedorder.html?orderDate=$sdf.format($!item.orderDate)&orderNumber=$!item.orderNumber" target="_blank">合并</a></div>
 							<script type="text/x-template" name="form-group">
 								#parse("./WEB-INF/views//components/order-dialog.vm")
 							</script>
@@ -112,7 +112,7 @@
 						<td class='col-operation col-item' data-data='$JSON.toJSONString($!item)'> 
 							<div class='btn-edit'><a href="javascript:void(0);">编辑</a></div>
 							<div class='btn-delete'><a href="javascript:void(0);">删除</a></div>
-							<div><a href="mergedorder.html?orderDate=$sdf.format($!item.orderDate)&orderIndex=$!item.orderIndex" target="_blank">合并</a></div>
+							<div><a href="mergedorder.html?orderDate=$sdf.format($!item.orderDate)&orderNumber=$!item.orderNumber" target="_blank">合并</a></div>
 							<script type="text/x-template" name="form-group">
 								#parse("./WEB-INF/views//components/order-dialog.vm")
 							</script>

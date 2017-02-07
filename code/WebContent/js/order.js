@@ -104,7 +104,7 @@ $(function() {
 		var memberId = $('.search-content input[name=member-id]').val();
 		var carIndex = $('.search-content input[name=car-index]').val();
 		var orderDate = $('.search-content input[name=order-date]').val();
-		var orderIndex = $('.search-content input[name=order-index]').val();
+		var orderNumber = $('.search-content input[name=order-number]').val();
 		var name = $('.search-content input[name=name]').val();
 		var param = {};
 		if (memberId && memberId.trim().length > 0 && name && name.trim().length > 0) {
@@ -116,8 +116,8 @@ $(function() {
 		if (orderDate && orderDate.trim().length > 0) {
 			param.orderDate = orderDate.trim();
 		}
-		if (orderIndex && orderIndex .trim().length > 0) {
-			param.orderIndex= orderIndex.trim();
+		if (orderNumber && orderNumber.trim().length > 0) {
+			param.orderNumber = orderNumber.trim();
 		}
 		
 		if (!$.isEmptyObject(param)) {
@@ -141,7 +141,7 @@ $(function() {
 		$('.search-content input[name=member-id]').val('');
 		$('.search-content input[name=car-index]').val('');
 		$('.search-content input[name=order-date]').val('');
-		$('.search-content input[name=order-index]').val('');
+		$('.search-content input[name=order-number]').val('');
 	}
 	
 	var addToDialog = function(ele) {
@@ -204,7 +204,7 @@ $(function() {
 		var orderId = $('.dialog-form form input[name=order-id]').val();
 		var carIndex = $('.dialog-form form input[name=car-index]').val();
 		var orderDate = $('.dialog-form form input[name=order-date]').val();
-		var orderIndex = $('.dialog-form form input[name=order-index]').val();
+		var orderNumber = $('.dialog-form form input[name=order-number]').val();
 		var zzFee = $('.dialog-form form input[name=zz-fee]').val();
 		var jsFee = $('.dialog-form form input[name=js-fee]').val();
 		var dsFee = $('.dialog-form form input[name=ds-fee]').val();
@@ -226,7 +226,7 @@ $(function() {
 		}
 		param.carIndex = carIndex;
 		param.orderDate = orderDate;
-		param.orderIndex = orderIndex;
+		param.orderNumber = orderNumber;
 		param.zzFee = zzFee;
 		param.jsFee = jsFee;
 		param.dsFee = dsFee;

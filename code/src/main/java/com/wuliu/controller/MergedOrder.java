@@ -80,7 +80,7 @@ public class MergedOrder {
                              @RequestParam(value = "memberId", required = false) Long memberId,
                              @RequestParam(value = "orderDate", required = false) String orderDateStr,
                              @RequestParam(value = "carIndex", required = false) Long carIndex,
-                             @RequestParam(value = "orderIndex", required = false) Long orderIndex)
+                             @RequestParam(value = "orderNumber", required = false) String orderNumber)
                                                                                                    throws UnsupportedEncodingException,
                                                                                                    ParseException {
 
@@ -88,7 +88,7 @@ public class MergedOrder {
         params.put("memberId", memberId);
         params.put("orderDate", orderDateStr);
         params.put("carIndex", carIndex);
-        params.put("orderIndex", orderIndex);
+        params.put("orderNumber", orderNumber);
         if (memberId != null) {
             WuliuMemberModel memberModel = wuliuMemberService.queryMemberWithId(memberId);
             params.put("name", memberModel.getName());
@@ -104,7 +104,7 @@ public class MergedOrder {
 
         wuliuOrderQueryParam.setCarIndex(carIndex);
         wuliuOrderQueryParam.setMemberId(memberId);
-        wuliuOrderQueryParam.setOrderIndex(orderIndex);
+        wuliuOrderQueryParam.setOrderNumber(orderNumber);
 
         if (page != null) {
             wuliuOrderQueryParam.setPageNum(page);
@@ -133,7 +133,7 @@ public class MergedOrder {
     public void download(@RequestParam(value = "memberId", required = false) Long memberId,
                          @RequestParam(value = "orderDate", required = false) String orderDateStr,
                          @RequestParam(value = "carIndex", required = false) Long carIndex,
-                         @RequestParam(value = "orderIndex", required = false) Long orderIndex,
+                         @RequestParam(value = "orderNumber", required = false) String orderNumber,
                          HttpServletResponse response) throws Exception {
 
         logger.info("logger");
@@ -147,7 +147,7 @@ public class MergedOrder {
 
         wuliuOrderQueryParam.setCarIndex(carIndex);
         wuliuOrderQueryParam.setMemberId(memberId);
-        wuliuOrderQueryParam.setOrderIndex(orderIndex);
+        wuliuOrderQueryParam.setOrderNumber(orderNumber);
 
         List<WuliuMergedOrderModel> mergedOrderModels = new ArrayList<WuliuMergedOrderModel>();
 

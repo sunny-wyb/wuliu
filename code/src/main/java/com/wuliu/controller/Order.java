@@ -73,14 +73,14 @@ public class Order {
                              @RequestParam(value = "memberId", required = false) Long memberId,
                              @RequestParam(value = "orderDate", required = false) String orderDateStr,
                              @RequestParam(value = "carIndex", required = false) Long carIndex,
-                             @RequestParam(value = "orderIndex", required = false) Long orderIndex)
+                             @RequestParam(value = "orderNumber", required = false) String orderNumber)
                                                                                           throws UnsupportedEncodingException, ParseException {
 
         Map<String , Object> params = new HashMap<String , Object>();
         params.put("memberId", memberId);
         params.put("orderDate", orderDateStr);
         params.put("carIndex", carIndex);
-        params.put("orderIndex", orderIndex);
+        params.put("orderNumber", orderNumber);
         if (memberId != null) {
             WuliuMemberModel memberModel = wuliuMemberService.queryMemberWithId(memberId);
             params.put("name", memberModel.getName());
@@ -96,7 +96,7 @@ public class Order {
         
         wuliuOrderQueryParam.setCarIndex(carIndex);
         wuliuOrderQueryParam.setMemberId(memberId);
-        wuliuOrderQueryParam.setOrderIndex(orderIndex);
+        wuliuOrderQueryParam.setOrderNumber(orderNumber);;
         
         if (page != null) {
             wuliuOrderQueryParam.setPageNum(page);
@@ -126,7 +126,7 @@ public class Order {
     public String manageOrder(@RequestParam(value = "orderId", required = false) Long orderId,
                                     @RequestParam(value = "carIndex", required = true) Long carIndex,
                                     @RequestParam(value = "orderDate", required = true) String orderDate,
-                                    @RequestParam(value = "orderIndex", required = true) Long orderIndex,
+                                    @RequestParam(value = "orderNumber", required = true) String orderNumber,
                                     @RequestParam(value = "memberId", required = true) Long memberId,
                                     @RequestParam(value = "zzFee", required = false) Long zzFee,
                                     @RequestParam(value = "jsFee", required = false) Long jsFee,
@@ -159,7 +159,7 @@ public class Order {
         if (StringUtils.isNotBlank(orderDate)) {
             wuliuOrderModel.setOrderDate(sdf.parse(orderDate));
         }
-        wuliuOrderModel.setOrderIndex(orderIndex);
+        wuliuOrderModel.setOrderNumber(orderNumber);
         
         if (zzFee == null) {
             wuliuOrderModel.setZhongzhuanFee(0L);

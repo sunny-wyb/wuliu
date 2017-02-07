@@ -33,12 +33,12 @@ $(function() {
 			form.append(orderDateInput);
 		}
 		
-		if (param.orderIndex) {
-			var orderIndexInput = $('<input>');
-			orderIndexInput.attr('type', 'hidden');
-			orderIndexInput.attr('name', 'orderIndex');
-			orderIndexInput.attr('value', param.orderIndex);
-			form.append(orderIndexInput);
+		if (param.orderNumber) {
+			var orderNumberInput = $('<input>');
+			orderNumberInput.attr('type', 'hidden');
+			orderNumberInput.attr('name', 'orderNumber');
+			orderNumberInput.attr('value', param.orderNumber);
+			form.append(orderNumberInput);
 		}
 
 		$('body').append(form);
@@ -77,7 +77,7 @@ $(function() {
 		var memberId = $('.search-content input[name=member-id]').val();
 		var carIndex = $('.search-content input[name=car-index]').val();
 		var orderDate = $('.search-content input[name=order-date]').val();
-		var orderIndex = $('.search-content input[name=order-index]').val();
+		var orderNumber = $('.search-content input[name=order-number]').val();
 		var name = $('.search-content input[name=name]').val();
 		var param = {};
 		if (memberId && memberId.trim().length > 0 && name && name.trim().length > 0) {
@@ -89,8 +89,8 @@ $(function() {
 		if (orderDate && orderDate.trim().length > 0) {
 			param.orderDate = orderDate.trim();
 		}
-		if (orderIndex && orderIndex .trim().length > 0) {
-			param.orderIndex= orderIndex.trim();
+		if (orderNumber && orderNumber.trim().length > 0) {
+			param.orderNumber = orderNumber.trim();
 		}
 		return param;
 	}
@@ -120,7 +120,7 @@ $(function() {
 		$('.search-content input[name=member-id]').val('');
 		$('.search-content input[name=car-index]').val('');
 		$('.search-content input[name=order-date]').val('');
-		$('.search-content input[name=order-index]').val('');
+		$('.search-content input[name=order-number]').val('');
 	};
 	
 	var totalPage = $('.pagination').data('total-page');

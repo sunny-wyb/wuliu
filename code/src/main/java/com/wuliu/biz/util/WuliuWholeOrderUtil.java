@@ -32,7 +32,7 @@ public class WuliuWholeOrderUtil {
         ret.setJiashouFee(wuliuOrderModel.getJiashouFee());
         ret.setMemberId(wuliuOrderModel.getMemberId());
         ret.setOrderDate(wuliuOrderModel.getOrderDate());
-        ret.setOrderIndex(wuliuOrderModel.getOrderIndex());
+        ret.setOrderNumber(wuliuOrderModel.getOrderNumber());
         ret.setStatus(wuliuOrderModel.getStatus());
         ret.setId(wuliuOrderModel.getId());
         ret.setWuliuOrderDetailModels(WuliuWholeOrderDetailUtil.builduliuWholeDetailModelList(wuliuOrderDetailModels));
@@ -60,7 +60,7 @@ public class WuliuWholeOrderUtil {
             }
         }
 
-        ret.setOrderNumber(WuliuOrderNumberUtil.getOrderNumber(wuliuOrderModel.getOrderDate(), wuliuOrderModel.getOrderIndex(), count));
+        ret.setOrderNumber(wuliuOrderModel.getOrderNumber());
         return ret;
     }
 }

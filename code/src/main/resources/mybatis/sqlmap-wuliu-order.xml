@@ -5,8 +5,8 @@
 	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id" parameterType="WuliuOrder">
 		INSERT INTO wuliu_order (gmt_create , gmt_modified , order_date , member_id ,
-		order_index , car_index , zz_fee , js_fee , ds_fee , status , comments)
-		VALUES (now() , now() , #{orderDate} , #{memberId} , #{orderIndex} ,
+		order_number , car_index , zz_fee , js_fee , ds_fee , status , comments)
+		VALUES (now() , now() , #{orderDate} , #{memberId} , #{orderNumber} ,
 		#{carIndex} , #{zhongzhuanFee} , #{jiashouFee} , #{daishouFee}, #{status} , #{comments});
 	</insert>
 
@@ -21,8 +21,8 @@
 		member_id = #{memberId},
 		</if>
 		
-		<if test = "orderIndex != null">
-		order_index = #{orderIndex},
+		<if test = "orderNumber != null">
+		order_number = #{orderNumber},
 		</if>
 		
 		<if test = "carIndex != null">
@@ -57,14 +57,14 @@
 		SELECT
 			id				as id,
 			order_date		as orderDate,
-			member_Id	as memberId,
-			order_index	as orderIndex,
-			car_index	as carIndex,		
-			zz_fee		as zhongzhuanFee,
-			js_fee		as jiashouFee,
-			ds_fee		as daishouFee,
-			status		as status,
-			comments	as comments
+			member_Id		as memberId,
+			order_number	as orderNumber,
+			car_index		as carIndex,		
+			zz_fee			as zhongzhuanFee,
+			js_fee			as jiashouFee,
+			ds_fee			as daishouFee,
+			status			as status,
+			comments		as comments
 		FROM wuliu_order
 		<where>
 			<if test = "id != null">
@@ -85,8 +85,8 @@
 			<if test = "status != null">
 				AND status = #{status}
 			</if>
-			<if test = "orderIndex != null">
-				AND order_index = #{orderIndex}
+			<if test = "orderNumber != null">
+				AND order_number = #{orderNumber}
 			</if>
 		</where>
 		ORDER BY ID ASC
@@ -116,8 +116,8 @@
 			<if test = "status != null">
 				AND status = #{status}
 			</if>
-			<if test = "orderIndex != null">
-				AND order_index = #{orderIndex}
+			<if test = "orderNumber != null">
+				AND order_number = #{orderNumber}
 			</if>
 		</where>
 	</select>

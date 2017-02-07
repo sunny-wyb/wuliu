@@ -26,7 +26,7 @@ public class WuliuOrderModel implements Serializable {
 
     protected Date            orderDate;
 
-    protected Long            orderIndex;
+    protected String          orderNumber;
 
     protected Long            memberId;
 
@@ -64,12 +64,12 @@ public class WuliuOrderModel implements Serializable {
         this.orderDate = orderDate;
     }
 
-    public Long getOrderIndex() {
-        return orderIndex;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrderIndex(Long orderIndex) {
-        this.orderIndex = orderIndex;
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Long getMemberId() {

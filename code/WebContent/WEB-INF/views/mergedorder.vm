@@ -17,7 +17,7 @@
 			</div>
 			<div class='search-item'>
 				<span class='form-title'>票号</span>
-				<input class='input' name="order-index" value="$!params.orderIndex"> 
+				<input class='input' name="order-number" value="$!params.orderNumber"> 
 			</div>
 		</div>
 		<div class='search-btns'>
@@ -76,7 +76,7 @@
 						
 						#if($velocityCount == 1)
 						<td class='col-operation col-item' rowspan = $!item.wuliuMergedOrderDetailModels.size() data-data='$JSON.toJSONString($!item)'> 
-							<div class='btn-view'><a href="order.html?orderDate=$sdf.format($!item.orderDate)&orderIndex=$!item.orderIndex" target="_blank">原数据</a></div>
+							<div class='btn-view'><a href="order.html?orderDate=$sdf.format($!item.orderDate)&orderNumber=$!item.orderNumber" target="_blank">原数据</a></div>
 						</td>	
 						#end
 					</tr>	
@@ -95,7 +95,7 @@
 						<td class='col-cost col-item' > </td>	
 						
 						<td class='col-operation col-item'  data-data='$JSON.toJSONString($!item)'> 
-							<div class='btn-view'><a href="order.html?orderDate=$sdf.format($!item.orderDate)&orderIndex=$!item.orderIndex" target="_blank">原数据</a></div>
+							<div class='btn-view'><a href="order.html?orderDate=$sdf.format($!item.orderDate)&orderNumber=$!item.orderNumber" target="_blank">原数据</a></div>
 						</td>	
 					</tr>	
 					#end

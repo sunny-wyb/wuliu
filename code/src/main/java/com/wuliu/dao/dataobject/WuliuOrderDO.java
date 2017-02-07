@@ -22,7 +22,7 @@ public class WuliuOrderDO {
 
     private Long   memberId;
 
-    private Long   orderIndex;
+    private String orderNumber;
 
     private Long   carIndex;
 
@@ -60,12 +60,12 @@ public class WuliuOrderDO {
         this.memberId = memberId;
     }
 
-    public Long getOrderIndex() {
-        return orderIndex;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrderIndex(Long orderIndex) {
-        this.orderIndex = orderIndex;
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Long getCarIndex() {

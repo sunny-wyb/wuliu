@@ -30,7 +30,7 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
 
     private Long              carIndex;
 
-    private Long              orderIndex;
+    private String            orderNumber;
 
     private String            status;
 
@@ -62,6 +62,14 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
         this.carIndex = carIndex;
     }
 
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -84,13 +92,5 @@ public class WuliuOrderQueryParam extends BaseQueryParam implements Serializable
 
     public void setMaxOrderDate(Date maxOrderDate) {
         this.maxOrderDate = maxOrderDate;
-    }
-
-    public Long getOrderIndex() {
-        return orderIndex;
-    }
-
-    public void setOrderIndex(Long orderIndex) {
-        this.orderIndex = orderIndex;
     }
 }
