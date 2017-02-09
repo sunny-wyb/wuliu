@@ -34,6 +34,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.wuliu.api.common.model.PageResultModel;
 import com.wuliu.api.member.model.WuliuMemberModel;
 import com.wuliu.api.member.service.WuliuMemberService;
+import com.wuliu.api.order.constant.WuliuOrderConst;
 import com.wuliu.api.order.model.WuliuOrderModel;
 import com.wuliu.api.order.model.WuliuOrderQueryParam;
 import com.wuliu.api.order.service.WuliuOrderService;
@@ -83,7 +84,9 @@ public class Order {
         params.put("orderNumber", orderNumber);
         if (memberId != null) {
             WuliuMemberModel memberModel = wuliuMemberService.queryMemberWithId(memberId);
-            params.put("name", memberModel.getName());
+            if (memberModel != null) {
+                params.put("name", memberModel.getName());
+            }
         }
         
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
@@ -264,8 +267,48 @@ public class Order {
     public String deleteOrder(@RequestParam(value = "id") Long id){
         boolean result = wuliuOrderService.deleteOrder(id);
         Map<String , Object> ret = new HashMap<String , Object>();
+        
+        WuliuOrderDetailQueryParam wuliuOrderDetailQueryParam = new WuliuOrderDetailQueryParam();
+        wuliuOrderDetailQueryParam.setMainOrderId(id);
+        int total = wuliuOrderDetailService.countOrderDetails(wuliuOrderDetailQueryParam);
+        int count = 0;
+        int pageNum = 0;
+        while (true) {
+            pageNum++;
+            wuliuOrderDetailQueryParam.setPageNum(pageNum);
+            PageResultModel<WuliuOrderDetailModel> partResult = wuliuOrderDetailService.queryOrderDetails(wuliuOrderDetailQueryParam);
+            
+            if (partResult == null || CollectionUtils.isEmpty(partResult.getResultList())) {
+                break;
+            }
+            count += partResult.getResultList().size();
+            
+            for (WuliuOrderDetailModel item : partResult.getResultList()) {
+                wuliuOrderDetailService.deleteOrderDetail(item.getId());
+            }
+            
+            if (count >= total) {
+                break;
+            }
+        }
         ret.put("result", result);
         return JSON.toJSONString(ret);
+    }
+    
+    @RequestMapping(value = "/checkorder.html", method = { RequestMethod.POST, RequestMethod.GET })
+    @ResponseBody
+    public String checkOrder(@RequestParam(value = "memberId") Long memberId) {
+        WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();
+        wuliuOrderQueryParam.setMemberId(memberId);
+        wuliuOrderQueryParam.setStatus(WuliuOrderConst.STATUS_ENABLE);
+        int count = wuliuOrderService.countOrders(wuliuOrderQueryParam);
+        Map<String , Object> result = new HashMap<String , Object>();
+        boolean flag = false;
+        if (count > 0) {
+            flag = true;
+        }
+        result.put("result", flag);
+        return JSON.toJSONString(result);
     }
     
     public WuliuMemberService getWuliuMemberService() {

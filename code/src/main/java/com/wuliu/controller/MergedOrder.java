@@ -91,7 +91,9 @@ public class MergedOrder {
         params.put("orderNumber", orderNumber);
         if (memberId != null) {
             WuliuMemberModel memberModel = wuliuMemberService.queryMemberWithId(memberId);
-            params.put("name", memberModel.getName());
+            if (memberModel != null) {
+                params.put("name", memberModel.getName());
+            }
         }
         
         WuliuOrderQueryParam wuliuOrderQueryParam = new WuliuOrderQueryParam();

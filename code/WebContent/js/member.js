@@ -26,7 +26,36 @@ $(function() {
 	
 	$('tbody .col-operations .btn-delete').on('click' , function() {
 		event.preventDefault();
+		
 		var data = $(this).closest('tr').data('json');
+		
+		
+		  $.ajax({
+			url : 'checkorder.html',  
+			type : 'GET',
+			dataType : 'json',
+			data : {'memberId' : data.id},
+			success : function(result) {
+				if (result.result) {
+					$('<div></div>').appendTo('body')
+					  .html('<div style="font-size: 18px;margin-top: 15;">这个用户还存在相应的订单没有删除，所以这个用户的信息不能删除</div>')
+					  .dialog({
+					      modal: true, title: '提醒', zIndex: 10000, autoOpen: true,
+					      resizable: false,
+					      close: function (event, ui) {
+					          $(this).remove();
+					      }
+					});
+				}
+				else {
+					deleteMember(data);
+				}
+			}
+		  });
+		
+	});
+	
+	var deleteMember = function(data) {
 		$('<div></div>').appendTo('body')
 		  .html('<div style="font-size: 18px;margin-top: 15;">确认删除这条记录？</div>')
 		  .dialog({
@@ -54,7 +83,7 @@ $(function() {
 		          $(this).remove();
 		      }
 		});
-	});
+	}
 	
 	$('.btn-area .btns .btn-edit').on('click' , function() {
 	});
