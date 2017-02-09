@@ -234,15 +234,7 @@ $(function() {
 		param.memberId = memberId;
 		
 		if (!checkOrderNumber(orderNumber)) {
-			$('<div></div>').appendTo('body')
-			  .html('<div style="font-size: 18px;margin-top: 15;">数量不对，不能保存</div>')
-			  .dialog({
-			      modal: true, title: '提醒', zIndex: 10000, autoOpen: true,
-			      resizable: false,
-			      close: function (event, ui) {
-			          $(this).remove();
-			      }
-			});
+			$.show_simple_dialog('提醒',"订单件数不正确");
 			return;
 		}
 		
@@ -286,15 +278,7 @@ $(function() {
 		});
 		
 		if (!valid) {
-			$('<div></div>').appendTo('body')
-			  .html('<div style="font-size: 18px;margin-top: 15;">数据非法，不能保存</div>')
-			  .dialog({
-			      modal: true, title: '提醒', zIndex: 10000, autoOpen: true,
-			      resizable: false,
-			      close: function (event, ui) {
-			          $(this).remove();
-			      }
-			});
+			$.show_simple_dialog('提醒' , '数据非法，不能保存');
 			return;
 		}
 		param.detailList = JSON.stringify(detailList);

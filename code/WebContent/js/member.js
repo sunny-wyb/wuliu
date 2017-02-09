@@ -37,15 +37,7 @@ $(function() {
 			data : {'memberId' : data.id},
 			success : function(result) {
 				if (result.result) {
-					$('<div></div>').appendTo('body')
-					  .html('<div style="font-size: 18px;margin-top: 15;">这个用户还存在相应的订单没有删除，所以这个用户的信息不能删除</div>')
-					  .dialog({
-					      modal: true, title: '提醒', zIndex: 10000, autoOpen: true,
-					      resizable: false,
-					      close: function (event, ui) {
-					          $(this).remove();
-					      }
-					});
+					$.show_simple_dialog('提醒',"这个用户还存在相应的订单没有删除，所以这个用户的信息不能删除");
 				}
 				else {
 					deleteMember(data);
